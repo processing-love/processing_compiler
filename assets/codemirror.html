@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name=viewport
+          content="width=device-width, initial-scale=1.0,
+          minimum-scale=1.0 maximum-scale=1.0,
+          user-scalable=no viewport-fit=cover">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/codemirror/5.64.0/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/codemirror/5.64.0/theme/material.min.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/codemirror/5.64.0/addon/fold/foldgutter.min.css">
+    <title>Processing Compiler</title>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .CodeMirror {
+            font-size: 13px
+        }
+    </style>
+</head>
+<body>
+<div id="content">
+</div>
+<script src="https://cdn.staticfile.org/codemirror/5.64.0/codemirror.min.js"></script>
+<script src="https://cdn.staticfile.org/codemirror/5.64.0/mode/javascript/javascript.min.js"></script>
+<script src="https://cdn.staticfile.org/codemirror/5.64.0/addon/selection/active-line.min.js"></script>
+<script src="https://cdn.staticfile.org/codemirror/5.64.0/addon/edit/matchbrackets.min.js"></script>
+<script src="https://cdn.staticfile.org/codemirror/5.64.0/addon/edit/matchtags.min.js"></script>
+<script src="https://cdn.staticfile.org/codemirror/5.64.0/addon/fold/foldgutter.min.js"></script>
+<script type="text/javascript">
+    const element = document.querySelector("#content");
+    const editor = CodeMirror(element, {
+        lineNumbers: true,
+        styleActiveLine: true,
+        theme: "material",
+        mode: "javascript",
+        smartIndent: true,
+        matchTags: true,
+        matchBrackets: this.matchBrackets || true,
+        lineWrapping: true,
+        foldGutter: true,
+        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+    });
+
+    editor.on("change", (event) => {
+        const value = event.getValue();
+        MessageInvoker.postMessage(value);
+    });
+    editor.refresh();
+</script>
+</body>
+</html>
