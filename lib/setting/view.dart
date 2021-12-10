@@ -1,7 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:processing_compiler/editor/logic.dart';
+import 'package:processing_compiler/http/editor_provider.dart';
+import 'package:processing_compiler/tools/widget_utils.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 class SettingPage extends StatelessWidget {
@@ -52,7 +53,34 @@ class SettingPage extends StatelessWidget {
                 )
               ],
             );
-          }))
+          })),
+          cardWidget(ListTile(
+            title: Text('code_theme'.tr),
+            trailing: Obx(() {
+              return Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(state.codeTheme.value).fontSize(13),
+                  const Icon(Icons.keyboard_arrow_right)
+                ],
+              );
+            }),
+            onTap: () {
+              wrapGetBottomSheet(ListView.builder(
+                  itemBuilder: (BuildContext context, int index) {
+                    String theme = state.codeThemes[index];
+                    return ListTile(
+                      title: Text(theme),
+                      trailing: state.isCurrentCodeTheme(theme) ? const Icon(Icons.done): null,
+                      onTap: () {
+                        Get.back();
+                        EditorProvider().getCodeThemeCSS(theme);
+                      },
+                    );
+                  },
+                  itemCount: state.codeThemes.length));
+            },
+          ))
         ],
       ).scrollable(),
     );

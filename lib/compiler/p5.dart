@@ -58,18 +58,18 @@ const String p5HTML = '''
 ''';
 
 const String javascriptRawCode = '''
-  function setup() {
-    createCanvas(windowWidth, windowHeight);
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+}  
+
+function draw() {
+  if (mouseIsPressed) {
+    fill(0);
+  } else {
+    fill(255);
   }
-  
-  function draw() {
-    if (mouseIsPressed) {
-      fill(0);
-    } else {
-      fill(255);
-    }
-    if (mouseX > 0 && mouseY > 0) {
-      ellipse(mouseX, mouseY, 80, 80);
-    }
+  if (mouseX > 0 && mouseY > 0) {
+    ellipse(mouseX, mouseY, 80, 80);
   }
+}
 ''';

@@ -45,8 +45,11 @@ class EditorPage extends StatelessWidget {
   _run() async {
     final String p5LogicCodeRaw = await state.controller!
         .runJavascriptReturningResult('editor.getValue()');
-    Get.bottomSheet(PreViewWidget(
-      p5LogicCodeRaw: p5LogicCodeRaw,),
-        enableDrag: false);
+    Get.bottomSheet(
+        PreViewWidget(
+          p5LogicCodeRaw: p5LogicCodeRaw,
+        ),
+        enableDrag: false,
+        barrierColor: Colors.black38);
   }
 }

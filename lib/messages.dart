@@ -13,7 +13,8 @@ class Messages extends Translations {
           'create_python': '新建python项目',
           'setting': '设置',
           'show_code_line_number': '显示代码行号',
-          'setting_code_font_size': '设置代码字体大小'
+          'setting_code_font_size': '设置代码字体大小',
+          'code_theme':'主题风格'
         }
       };
 }

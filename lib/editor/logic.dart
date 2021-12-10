@@ -22,4 +22,14 @@ class EditorLogic extends GetxController {
     document.getElementsByClassName("CodeMirror")[0].style.fontSize = "${fontSize}px"
     ''');
   }
+
+  void setCodeTheme(String codeTheme,String rawCss) {
+    state.codeTheme.value = codeTheme;
+    state.dbCodeMirrorConfig.codeThemeName = codeTheme;
+    state.dbCodeMirrorConfig.codeThemeCSS = rawCss;
+    state.dbCodeMirrorConfig.save();
+    state.controller?.runJavascript('''
+    editor.setOption('theme','$codeTheme');
+    ''');
+  }
 }

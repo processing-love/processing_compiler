@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:processing_compiler/compiler/p5.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -11,10 +10,10 @@ typedef WebViewControllerCreatedCallback = Function(
 /// @author u
 /// @date 2020/6/12.
 class CodeEditor extends StatefulWidget {
-
   final WebViewControllerCreatedCallback? webViewControllerCreatedCallback;
 
-   const CodeEditor({Key? key,required this.webViewControllerCreatedCallback}) : super(key: key);
+  const CodeEditor({Key? key, required this.webViewControllerCreatedCallback})
+      : super(key: key);
 
   @override
   State<CodeEditor> createState() => _CodeEditorPageState();
@@ -28,6 +27,7 @@ class _CodeEditorPageState extends State<CodeEditor> {
     if (Platform.isAndroid) {
       WebView.platform = SurfaceAndroidWebView();
     }
+
     return LayoutBuilder(builder: (context, dimens) {
       return StatefulBuilder(builder: (context, setState) {
         return WebView(
@@ -53,8 +53,8 @@ class _CodeEditorPageState extends State<CodeEditor> {
                 'editor.setSize(${dimens.maxWidth},${dimens.maxHeight})');
             await _webViewController.runJavascript('editor.refresh()');
             final raw = Uri.encodeComponent(javascriptRawCode);
-            await _webViewController.runJavascript(
-                'editor.setValue(decodeURIComponent("$raw"))');
+            await _webViewController
+                .runJavascript('editor.setValue(decodeURIComponent("$raw"))');
           },
         );
       });
