@@ -31,7 +31,7 @@ class _PreViewWidgetState extends State<PreViewWidget> {
             javascriptMode: JavascriptMode.unrestricted,
             onWebViewCreated: (WebViewController controller) {
               _webViewController = controller;
-              String value = p5HTML + "<script>${widget.p5LogicCodeRaw!}</script>";
+              String value = p5PreviewHTML + "<script>${widget.p5LogicCodeRaw!}</script>";
               _webViewController?.loadUrl(Uri.dataFromString(value,
                       mimeType: 'text/html', encoding: utf8)
                   .toString());

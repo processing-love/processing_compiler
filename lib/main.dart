@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get/get.dart';
 import 'package:processing_compiler/db/db_adapter_helper.dart';
 import 'package:processing_compiler/main/view.dart';
 import 'package:processing_compiler/messages.dart';
-import 'package:processing_compiler/theme/color.dart';
+import 'package:processing_compiler/theme/theme_config.dart';
 
 void main() async {
   await DbAdapterHelper().initAllAdapter();
@@ -22,10 +22,7 @@ class MyApp extends StatelessWidget {
       fallbackLocale: const Locale('en', 'US'),
       translations: Messages(),
       home: MainPage(),
-      theme: ThemeData(
-          scaffoldBackgroundColor: Colors.grey.shade100,
-          primaryColor: processingColor,
-          primarySwatch: primarySwatchColor),
+      theme: ThemeConfig().getSettingThemeData(),
     );
   }
 }

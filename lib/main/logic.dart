@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:processing_compiler/http/editor_provider.dart';
 
 import 'state.dart';
 

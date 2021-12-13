@@ -17,19 +17,22 @@ class DbCodeMirrorConfigAdapter extends TypeAdapter<DbCodeMirrorConfig> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return DbCodeMirrorConfig(
-      showCodeLineNumber: fields[0] as bool?,
-      codeFontSize: fields[1] as double?,
+      showCodeLineNumber: fields[0] as bool,
+      codeFontSize: fields[1] as double,
+      codeThemeName: fields[2] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, DbCodeMirrorConfig obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.showCodeLineNumber)
       ..writeByte(1)
-      ..write(obj.codeFontSize);
+      ..write(obj.codeFontSize)
+      ..writeByte(2)
+      ..write(obj.codeThemeName);
   }
 
   @override

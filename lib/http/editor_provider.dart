@@ -1,15 +1,14 @@
 import 'package:get/get.dart';
-import 'package:processing_compiler/editor/logic.dart';
+import 'package:processing_compiler/db/db_adapter_helper.dart';
 
 /// @author u
 /// @date 2020/6/12.
+
 class EditorProvider extends GetConnect {
-  Future<Response> getCodeThemeCSS(String themeName) async {
-    final response = await get('https://codemirror.net/theme/$themeName.css');
+  Future<Response> getSingleThemeCSS(String themeName) async {
+    final response = await get('https://cdn.staticfile.org/codemirror/5.64.0/$themeName.min.css');
     if (response.isOk) {
-      print('peter csss' + response.bodyString.toString());
-      final logic = Get.put(EditorLogic());
-      logic.setCodeTheme(themeName,response.bodyString.toString());
+      boxCodeMirrorTheme.put(themeName, response.bodyString.toString());
     }
     return response;
   }

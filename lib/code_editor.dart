@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:processing_compiler/compiler/p5.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -27,37 +28,33 @@ class _CodeEditorPageState extends State<CodeEditor> {
     if (Platform.isAndroid) {
       WebView.platform = SurfaceAndroidWebView();
     }
-
-    return LayoutBuilder(builder: (context, dimens) {
-      return StatefulBuilder(builder: (context, setState) {
-        return WebView(
-          debuggingEnabled: true,
-          javascriptMode: JavascriptMode.unrestricted,
-          javascriptChannels: {
-            JavascriptChannel(
-                name: "MessageInvoker",
-                onMessageReceived: (event) {
-                  print('peter' + event.message);
-                })
-          },
-          onWebViewCreated: (WebViewController controller) {
-            controller.loadFlutterAsset('assets/codemirror.html');
-            _webViewController = controller;
-          },
-          onProgress: (int processing) {
-            print('peter processing' + processing.toString());
-          },
-          onPageFinished: (String url) async {
-            widget.webViewControllerCreatedCallback?.call(_webViewController);
-            await _webViewController.runJavascript(
-                'editor.setSize(${dimens.maxWidth},${dimens.maxHeight})');
-            await _webViewController.runJavascript('editor.refresh()');
-            final raw = Uri.encodeComponent(javascriptRawCode);
-            await _webViewController
-                .runJavascript('editor.setValue(decodeURIComponent("$raw"))');
-          },
-        );
-      });
-    });
+    return WebView(
+      debuggingEnabled: true,
+      javascriptMode: JavascriptMode.unrestricted,
+      backgroundColor: Get.theme.scaffoldBackgroundColor,
+      javascriptChannels: {
+        JavascriptChannel(
+            name: "MessageInvoker",
+            onMessageReceived: (event) {
+              print('peter' + event.message);
+            })
+      },
+      onWebViewCreated: (WebViewController controller) {
+        controller.loadFlutterAsset('assets/codemirror.html');
+        _webViewController = controller;
+      },
+      onProgress: (int processing) {
+        print('peter processing' + processing.toString());
+      },
+      onPageFinished: (String url) async {
+        widget.webViewControllerCreatedCallback?.call(_webViewController);
+        await _webViewController
+            .runJavascript('editor.setSize(${Get.width},${Get.height})');
+        await _webViewController.runJavascript('editor.refresh()');
+        final raw = Uri.encodeComponent(javascriptRawCode);
+        await _webViewController
+            .runJavascript('editor.setValue(decodeURIComponent("$raw"))');
+      },
+    );
   }
 }

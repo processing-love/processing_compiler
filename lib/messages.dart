@@ -6,7 +6,7 @@ class Messages extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         'zh_CN': {
-          'app_name': 'Processing Compiler',
+          'app_name': 'Processing',
           'create_project': '创建一个新项目',
           'create_processing': '新建Processing项目',
           'create_p5': '新建P5.js项目',

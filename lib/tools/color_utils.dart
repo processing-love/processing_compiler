@@ -23,4 +23,19 @@ class ColorUtils {
     }
     return MaterialColor(color.value, swatch);
   }
+
+  static MaterialColor createMaterialHexColor(String hexColor) {
+    return createMaterialColor(hexToColor(hexColor));
+  }
+
+  static Color hexToColor(String hexString) {
+    final buffer = StringBuffer();
+    if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
+    buffer.write(hexString.replaceFirst('#', ''));
+    return Color(int.parse(buffer.toString(), radix: 16));
+  }
+
+  static String getHexAlpha(int value) {
+    return value.toRadixString(16).toUpperCase().padLeft(8, '0');
+  }
 }

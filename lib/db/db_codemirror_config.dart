@@ -1,4 +1,5 @@
 import 'package:hive_flutter/hive_flutter.dart';
+
 part 'db_codemirror_config.g.dart';
 
 /// @author u
@@ -6,20 +7,16 @@ part 'db_codemirror_config.g.dart';
 @HiveType(typeId: 0)
 class DbCodeMirrorConfig extends HiveObject {
   @HiveField(0)
-  bool? showCodeLineNumber;
+  bool showCodeLineNumber;
 
   @HiveField(1)
-  double? codeFontSize;
+  double codeFontSize;
 
   @HiveField(2)
-  String? codeThemeName;
+  String codeThemeName;
 
-  @HiveField(3)
-  String? codeThemeCSS;
-
-  DbCodeMirrorConfig({
-    this.showCodeLineNumber = true,
-    this.codeFontSize = 13,
-    this.codeThemeName = "material",
-    this.codeThemeCSS});
+  DbCodeMirrorConfig(
+      {this.showCodeLineNumber = true,
+      this.codeFontSize = 13,
+      this.codeThemeName = 'material'});
 }
