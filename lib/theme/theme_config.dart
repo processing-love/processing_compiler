@@ -12,15 +12,12 @@ class ThemeConfig {
     var dbCodeMirrorConfig = boxCodeMirrorConfig.get(dbNameCodeMirrorConfig);
     final String theme = dbCodeMirrorConfig?.codeThemeName ?? "material";
     CSSTheme cssTheme = CSS().getCSS(theme);
-    Color backgroundColor = ColorUtils.createMaterialHexColor(cssTheme.hexColor);
+    print('peter css ' + cssTheme.hexColor);
     return ThemeData(
-        scaffoldBackgroundColor: backgroundColor,
-        primaryColor: backgroundColor,
-        cardColor: Colors.black87,
-        brightness: theme.contains('dark') ? Brightness.dark : Brightness.light,
-        backgroundColor: backgroundColor,
-        appBarTheme: AppBarTheme(backgroundColor: backgroundColor),
-        textTheme: Get.textTheme.apply(bodyColor: Colors.white, displayColor: Colors.white,),
-        bottomAppBarColor: backgroundColor);
+        primarySwatch: ColorUtils.createMaterialHexColor(cssTheme.hexColor));
+  }
+
+  void setTheme() {
+    Get.changeTheme(getSettingThemeData());
   }
 }

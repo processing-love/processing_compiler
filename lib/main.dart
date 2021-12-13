@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:processing_compiler/db/db_adapter_helper.dart';
-import 'package:processing_compiler/main/view.dart';
 import 'package:processing_compiler/messages.dart';
+import 'package:processing_compiler/page/main/view.dart';
 import 'package:processing_compiler/theme/theme_config.dart';
 
 void main() async {
@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
       fallbackLocale: const Locale('en', 'US'),
       translations: Messages(),
       home: MainPage(),
+      defaultTransition: Transition.rightToLeft,
       theme: ThemeConfig().getSettingThemeData(),
     );
   }

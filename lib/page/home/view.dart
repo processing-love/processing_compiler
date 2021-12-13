@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:processing_compiler/page/base/base_page.dart';
 
 import 'logic.dart';
 
@@ -11,10 +12,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('app_name'.tr),
-      ),
+    return BasePage(
+      title: 'app_name'.tr,
       body: GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: state.crossAxisCount,

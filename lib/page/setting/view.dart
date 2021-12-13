@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:processing_compiler/editor/logic.dart';
-import 'package:processing_compiler/setting/theme_page.dart';
+import 'package:processing_compiler/page/base/base_page.dart';
+import 'package:processing_compiler/page/editor/logic.dart';
+import 'package:processing_compiler/page/setting/theme_page.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 class SettingPage extends StatelessWidget {
@@ -20,10 +21,8 @@ class SettingPage extends StatelessWidget {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)));
     }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('setting'.tr),
-      ),
+    return BasePage(
+      title: 'setting'.tr,
       body: Column(
         children: [
           cardWidget(Obx(() {
@@ -60,7 +59,7 @@ class SettingPage extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(state.codeThemeName.value).fontSize(13),
-                  state.getTrailingWidget()
+                  const Icon(Icons.keyboard_arrow_right)
                 ],
               ),
               onTap: () {

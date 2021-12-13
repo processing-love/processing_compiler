@@ -46,18 +46,6 @@ class EditorState {
     controller?.runJavascript(optionRawJSCode);
   }
 
-  Widget getTrailingWidget() {
-    String themeValue =
-        boxCodeMirrorTheme.get(codeThemeName.value, defaultValue: '');
-    if (themeValue.isNotEmpty) {
-      return const Icon(Icons.keyboard_arrow_right);
-    }
-
-    return SizedBox.square(
-        dimension: Get.theme.iconTheme.size ?? 22 - 6,
-        child: const CircularProgressIndicator(strokeWidth: 2,)).marginOnly(left: 8);
-  }
-
   Widget? getTrailingItemWidget(String theme) {
     return codeThemeName.value == theme ? const Icon(Icons.done) : null;
   }

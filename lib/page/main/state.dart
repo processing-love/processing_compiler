@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:processing_compiler/editor/view.dart';
+import 'package:processing_compiler/page/editor/view.dart';
 import 'package:processing_compiler/tools/widget_utils.dart';
 
 class MainPageState {
@@ -35,9 +35,10 @@ class MainPageState {
       ),
       buildProjectItemWidget('create_processing'.tr, () {}),
       buildProjectItemWidget('create_p5'.tr, (String title) {
+        Get.back();
         Get.to(EditorPage(title: title));
       }),
-      buildProjectItemWidget('create_python'.tr, () {}),
+      buildProjectItemWidget('create_python'.tr, () {}).marginOnly(bottom: 12),
     ]));
   }
 }

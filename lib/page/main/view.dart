@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:processing_compiler/home/view.dart';
-import 'package:processing_compiler/profile/view.dart';
+import 'package:processing_compiler/page/home/view.dart';
+import 'package:processing_compiler/page/profile/view.dart';
 
 import 'logic.dart';
 import 'state.dart';
@@ -69,6 +69,6 @@ class HomeBottomAppBar extends StatelessWidget {
 
   Color selectColor(int index) {
     bool isSelect = index == state.currentIndex.value;
-    return isSelect ? Colors.white : Colors.black;
+    return isSelect ? Colors.black : Colors.black45;
   }
 }

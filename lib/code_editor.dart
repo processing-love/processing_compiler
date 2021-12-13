@@ -31,7 +31,6 @@ class _CodeEditorPageState extends State<CodeEditor> {
     return WebView(
       debuggingEnabled: true,
       javascriptMode: JavascriptMode.unrestricted,
-      backgroundColor: Get.theme.scaffoldBackgroundColor,
       javascriptChannels: {
         JavascriptChannel(
             name: "MessageInvoker",
@@ -40,7 +39,7 @@ class _CodeEditorPageState extends State<CodeEditor> {
             })
       },
       onWebViewCreated: (WebViewController controller) {
-        controller.loadFlutterAsset('assets/codemirror.html');
+        controller.loadFlutterAsset('assets/code_mirror.html');
         _webViewController = controller;
       },
       onProgress: (int processing) {

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:processing_compiler/code_editor.dart';
+import 'package:processing_compiler/page/base/base_page.dart';
+import 'package:processing_compiler/page/setting/view.dart';
 import 'package:processing_compiler/preview_widget.dart';
-import 'package:processing_compiler/setting/view.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import 'logic.dart';
@@ -16,17 +17,15 @@ class EditorPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title ?? ''),
-        actions: [
-          IconButton(
-              onPressed: () {
-                Get.to(SettingPage());
-              },
-              icon: const Icon(Icons.settings))
-        ],
-      ),
+    return BasePage(
+      title: title,
+      actions: [
+        IconButton(
+            onPressed: () {
+              Get.to(SettingPage());
+            },
+            icon: const Icon(Icons.settings))
+      ],
       body: CodeEditor(
         webViewControllerCreatedCallback:
             (WebViewController webViewController) {

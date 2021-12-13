@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:processing_compiler/theme/theme_config.dart';
 import 'state.dart';
 
 class EditorLogic extends GetxController {
@@ -30,5 +31,6 @@ class EditorLogic extends GetxController {
     state.controller?.runJavascript('''
     editor.setOption('theme','$codeTheme');
     ''');
+    ThemeConfig().setTheme();
   }
 }

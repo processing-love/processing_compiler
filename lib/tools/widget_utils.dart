@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -7,10 +9,11 @@ import 'package:get/get.dart';
 void wrapGetBottomSheet(Widget widget) {
   Get.bottomSheet(
       Container(
-        margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 48),
+        margin: EdgeInsets.symmetric(vertical: Platform.isAndroid ? 14 : 48, horizontal: 14),
         decoration: BoxDecoration(
             color: Get.theme.scaffoldBackgroundColor,
-            borderRadius: const BorderRadius.all(Radius.circular(6))),
+            borderRadius: const BorderRadius.all(Radius.circular(7))),
         child: widget,
-      ),);
+      ),
+      ignoreSafeArea: false);
 }

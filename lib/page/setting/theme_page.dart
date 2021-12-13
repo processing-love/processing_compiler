@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:processing_compiler/editor/logic.dart';
+import 'package:processing_compiler/page/base/base_page.dart';
+import 'package:processing_compiler/page/editor/logic.dart';
 /// @author u
 /// @date 2020/6/12.
 class ThemePage extends StatelessWidget {
@@ -12,8 +13,8 @@ class ThemePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('code_theme'.tr),),
+    return BasePage(
+      title: 'code_theme'.tr,
       body: Scrollbar(
         child: ListView.builder(
           itemBuilder: (BuildContext context, int index) {

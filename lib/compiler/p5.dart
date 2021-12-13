@@ -28,7 +28,7 @@ const String p5PreviewHTML = '''
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
     <script>
-        document.body.addEventListener('touchmove', function (e) {
+      document.body.addEventListener('touchmove', function (e) {
       if (e._isScroller)
         return;
       e.preventDefault();
