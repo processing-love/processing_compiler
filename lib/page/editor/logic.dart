@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
 import 'package:processing_compiler/theme/theme_config.dart';
+
 import 'state.dart';
 
 class EditorLogic extends GetxController {
   final EditorState state = EditorState();
-
 
   void setShowCodeLineNumber(bool isSelect) {
     state.showCodeLineNumber.value = isSelect;
@@ -30,6 +30,7 @@ class EditorLogic extends GetxController {
     state.dbCodeMirrorConfig.save();
     state.controller?.runJavascript('''
     editor.setOption('theme','$codeTheme');
+    editor.refresh();
     ''');
     ThemeConfig().setTheme();
   }

@@ -1,3 +1,5 @@
+import 'package:processing_compiler/db/db_adapter_helper.dart';
+
 /// @author u
 /// @date 2020/6/12.
 
@@ -450,9 +452,11 @@ class CSS {
         '#000000'),
   ];
 
-  CSSTheme getCSS(String name) {
+  CSSTheme getCSS() {
+    var dbCodeMirrorConfig = boxCodeMirrorConfig.get(dbNameCodeMirrorConfig);
+    final String theme = dbCodeMirrorConfig?.codeThemeName ?? "material";
     for (var css in cssTheme) {
-      if (css.name == name) {
+      if (css.name == theme) {
         return css;
       }
     }

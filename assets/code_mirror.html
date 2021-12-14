@@ -18,10 +18,10 @@
             height: 100vh;
             overflow: hidden;
         }
+        <x_css_x>
     </style>
 </head>
 <body>
-<div id="content"></div>
 <script src="https://cdn.staticfile.org/codemirror/5.64.0/codemirror.min.js"></script>
 <script src="https://cdn.staticfile.org/codemirror/5.64.0/mode/javascript/javascript.min.js"></script>
 <script src="https://cdn.staticfile.org/codemirror/5.64.0/addon/selection/active-line.min.js"></script>
@@ -29,48 +29,8 @@
 <script src="https://cdn.staticfile.org/codemirror/5.64.0/addon/edit/closebrackets.min.js"></script>
 <script src="https://cdn.staticfile.org/codemirror/5.64.0/addon/edit/closetag.min.js"></script>
 <script src="https://cdn.staticfile.org/codemirror/5.64.0/addon/hint/show-hint.min.js"></script>
-
 <script type="text/javascript">
-    const element = document.querySelector("#content");
-    const editor = CodeMirror(element, {
-        lineNumbers: true,
-        lineWrapping: true,
-        styleActiveLine: true,
-        mode: "text/javascript",
-        smartIndent: true,
-        matchTags: true,
-        matchBrackets: this.matchBrackets || true,
-        lineWrapping: true,
-        gutters: [
-            "CodeMirror-linenumbers",
-            "CodeMirror-foldgutter"
-        ],
-        autoCloseBrackets: true,
-        autoCloseTags: true,
-        autoMatchParens: true,
-        gutter: true,
-        tabSize: 4,
-        hintOptions: {
-            completeSingle: false,
-        },
-        indent: true,
-        foldGutter: true,
-    });
-    editor.on("cursorActivity", function () {
-        //获取用户当前的编辑器中的编写的代码
-        var words = editor.getValue() + "";
-        //利用正则取出用户输入的所有的英文的字母
-        words = words.replace(/[a-z]+[\-|\']+[a-z]+/ig, '').match(/([a-z]+)/ig);
-        //将获取到的用户的单词传入CodeMirror,并在javascript-hint中做匹配
-        CodeMirror.ukeys = words;
-        editor.showHint();
-        console.log('peter html cursorActivity');
-    });
-
-    CodeMirror.on(window, "hashchange", function() {
-        console.log('peter html hashchange');
-    });
-    editor.refresh();
+    <x_js_x>
 </script>
 </body>
 </html>

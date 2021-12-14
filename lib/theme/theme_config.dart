@@ -9,10 +9,7 @@ import 'package:processing_compiler/tools/color_utils.dart';
 
 class ThemeConfig {
   ThemeData getSettingThemeData() {
-    var dbCodeMirrorConfig = boxCodeMirrorConfig.get(dbNameCodeMirrorConfig);
-    final String theme = dbCodeMirrorConfig?.codeThemeName ?? "material";
-    CSSTheme cssTheme = CSS().getCSS(theme);
-    print('peter css ' + cssTheme.hexColor);
+    CSSTheme cssTheme = CSS().getCSS();
     return ThemeData(
         primarySwatch: ColorUtils.createMaterialHexColor(cssTheme.hexColor));
   }

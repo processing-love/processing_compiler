@@ -1,8 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:processing_compiler/compiler/p5.dart';
+import 'package:processing_compiler/lib/css.dart';
+import 'package:processing_compiler/lib/link_css_js.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 typedef WebViewControllerCreatedCallback = Function(
@@ -28,32 +31,48 @@ class _CodeEditorPageState extends State<CodeEditor> {
     if (Platform.isAndroid) {
       WebView.platform = SurfaceAndroidWebView();
     }
-    return WebView(
-      debuggingEnabled: true,
-      javascriptMode: JavascriptMode.unrestricted,
-      javascriptChannels: {
-        JavascriptChannel(
-            name: "MessageInvoker",
-            onMessageReceived: (event) {
-              print('peter' + event.message);
-            })
-      },
-      onWebViewCreated: (WebViewController controller) {
-        controller.loadFlutterAsset('assets/code_mirror.html');
-        _webViewController = controller;
-      },
-      onProgress: (int processing) {
-        print('peter processing' + processing.toString());
-      },
-      onPageFinished: (String url) async {
-        widget.webViewControllerCreatedCallback?.call(_webViewController);
-        await _webViewController
-            .runJavascript('editor.setSize(${Get.width},${Get.height})');
-        await _webViewController.runJavascript('editor.refresh()');
-        final raw = Uri.encodeComponent(javascriptRawCode);
-        await _webViewController
-            .runJavascript('editor.setValue(decodeURIComponent("$raw"))');
+    return FutureBuilder<String>(
+      future: rootBundle.loadString('assets/code_mirror.html'),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        return WebView(
+          debuggingEnabled: true,
+          initialUrl: getHtml(snapshot.data ?? ""),
+          javascriptMode: JavascriptMode.unrestricted,
+          javascriptChannels: {
+            JavascriptChannel(
+                name: "MessageInvoker",
+                onMessageReceived: (event) {
+                  print('peter' + event.message);
+                })
+          },
+          onWebViewCreated: (WebViewController controller) {
+            _webViewController = controller;
+          },
+          onProgress: (int processing) {
+            print('peter processing' + processing.toString());
+          },
+          onPageFinished: (String url) async {
+            widget.webViewControllerCreatedCallback?.call(_webViewController);
+            await _webViewController
+                .runJavascript('editor.setSize(${Get.width},${Get.height})');
+            final raw = Uri.encodeComponent(javascriptRawCode);
+            await _webViewController
+                .runJavascript('editor.setValue(decodeURIComponent("$raw"))');
+            await _webViewController.runJavascript('editor.refresh()');
+          },
+        );
       },
     );
+  }
+
+  String getHtml(String raw) {
+    String _html = raw.replaceAll("<x_css_x>", CSS().getCSS().rawCode);
+    _html = _html.replaceAll("<x_js_x>", LinkCSSJS.codeMirrorJSConfig);
+    return Uri.dataFromString(_html, mimeType: 'text/html').toString();
   }
 }
