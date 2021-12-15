@@ -11,4 +11,5 @@ class HomeState {
   }
 
   int get crossAxisCount => useMobileLayout ? 1 : 3;
+
 }

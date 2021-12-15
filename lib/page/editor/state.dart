@@ -6,11 +6,14 @@ import 'package:processing_compiler/lib/css.dart';
 import 'package:webview_flutter/src/webview.dart';
 
 class EditorState {
-  WebViewController? controller;
+  late WebViewController? controller;
   RxBool showCodeLineNumber = true.obs;
   RxDouble codeFontSize = 13.0.obs;
   late DbCodeMirrorConfig dbCodeMirrorConfig;
   RxString codeThemeName = 'material'.obs;
+  final theme = CSSTheme.material().obs;
+  final rawCode = ''.obs;
+
 
   CSS css = CSS();
 

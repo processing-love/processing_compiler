@@ -8,6 +8,8 @@
           minimum-scale=1.0 maximum-scale=1.0,
           user-scalable=no viewport-fit=cover">
     <title>Processing Compiler</title>
+    <link rel="stylesheet" href="https://codemirror.net/lib/codemirror.css">
+    <link rel="stylesheet" href="https://codemirror.net/theme/3024-day.css">
     <style>
         body {
             margin: 0px;
@@ -19,16 +21,41 @@
     </style>
 </head>
 <body>
-<div id="content">
-    peter
-    <button>peter button</button>
-</div>
 <script src="https://cdn.staticfile.org/codemirror/5.64.0/codemirror.min.js"></script>
 <script src="https://cdn.staticfile.org/codemirror/5.64.0/mode/javascript/javascript.min.js"></script>
-<script src="https://cdn.staticfile.org/codemirror/5.64.0/addon/selection/active-line.min.js"></script>
 <script src="https://cdn.staticfile.org/codemirror/5.64.0/addon/edit/matchbrackets.min.js"></script>
 <script src="https://cdn.staticfile.org/codemirror/5.64.0/addon/edit/closebrackets.min.js"></script>
 <script src="https://cdn.staticfile.org/codemirror/5.64.0/addon/edit/closetag.min.js"></script>
-<script src="https://cdn.staticfile.org/codemirror/5.64.0/addon/hint/show-hint.min.js"></script>
+<script type="text/javascript">
+    const element = document.querySelector('body');
+    const editor = CodeMirror(element, {
+        lineNumbers: true,
+        lineWrapping: true,
+        styleActiveLine: true,
+        mode: "text/javascript",
+        smartIndent: true,
+        matchTags: true,
+        matchBrackets: this.matchBrackets || true,
+        lineWrapping: true,
+        gutters: [
+            "CodeMirror-linenumbers",
+            "CodeMirror-foldgutter"
+        ],
+        autoCloseBrackets: true,
+        autoCloseTags: true,
+        autoMatchParens: true,
+        gutter: true,
+        tabSize: 4,
+        hintOptions: {
+            completeSingle: false,
+        },
+        indent: true,
+        foldGutter: true,
+        theme: 'material',
+        value: 'peter',
+        readOnly: 'nocursor'
+    });
+    editor.refresh();
+</script>
 </body>
 </html>

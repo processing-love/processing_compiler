@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:processing_compiler/code_editor.dart';
+import 'package:processing_compiler/compiler/p5.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/setting/view.dart';
-import 'package:processing_compiler/preview_widget.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import 'package:processing_compiler/widgets/code_mirror_web_view.dart';
 
 import 'logic.dart';
 
@@ -12,8 +11,9 @@ class EditorPage extends StatelessWidget {
   final logic = Get.put(EditorLogic());
   final state = Get.find<EditorLogic>().state;
   final String? title;
+  final String code;
 
-  EditorPage({Key? key, this.title}) : super(key: key);
+  EditorPage({Key? key, this.title, required this.code}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,27 +26,33 @@ class EditorPage extends StatelessWidget {
             },
             icon: const Icon(Icons.settings))
       ],
-      body: CodeEditor(
-        webViewControllerCreatedCallback:
-            (WebViewController webViewController) {
-          state.setWebController(webViewController);
+      body: CodeMirrorWebView(
+        rawCode: code,
+        onWebViewCreated: (controller) {
+          logic.state.setWebController(controller);
+          logic.initCodeMirror();
         },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _run();
         },
-        child: const Icon(Icons.add),
+        child: const Icon(
+          Icons.play_arrow,
+          color: Colors.green,
+        ),
       ),
     );
   }
 
   _run() async {
-    final String p5LogicCodeRaw = await state.controller!
-        .runJavascriptReturningResult('editor.getValue()');
+    final state = Get.find<EditorLogic>().state;
+    final String? p5LogicCodeRaw = await state.controller
+        ?.runJavascriptReturningResult('editor.getValue()');
+    final result = p5PreviewHTML.replaceAll('<-js->', p5LogicCodeRaw!);
     Get.bottomSheet(
-        PreViewWidget(
-          p5LogicCodeRaw: p5LogicCodeRaw,
+        CodeMirrorWebView(
+          rawCode: result,
         ),
         enableDrag: false,
         barrierColor: Colors.black38);

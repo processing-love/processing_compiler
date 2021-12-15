@@ -38,6 +38,7 @@ const String p5PreviewHTML = '''
       // console.log('log---onerror::::',message, url, line, column, error);
       ErrorMessageInvoker.postMessage(message.toString());
     }
+    <-js->
     </script>
 </head>
 <body>
@@ -45,10 +46,10 @@ const String p5PreviewHTML = '''
 </html>
 ''';
 
-const String javascriptRawCode = '''
+const String gP5ExampleCode = '''
 function setup() {
   createCanvas(windowWidth, windowHeight);
-}  
+}
 
 function draw() {
   if (mouseIsPressed) {

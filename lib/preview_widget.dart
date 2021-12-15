@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:processing_compiler/compiler/p5.dart';
 import 'package:styled_widget/styled_widget.dart';
@@ -31,16 +29,18 @@ class _PreViewWidgetState extends State<PreViewWidget> {
             javascriptMode: JavascriptMode.unrestricted,
             onWebViewCreated: (WebViewController controller) {
               _webViewController = controller;
-              String value = p5PreviewHTML + "<script>${widget.p5LogicCodeRaw!}</script>";
-              _webViewController?.loadUrl(Uri.dataFromString(value,
-                      mimeType: 'text/html', encoding: utf8)
-                  .toString());
+              _webViewController?.loadHtmlString(
+                  p5PreviewHTML + "<script>${widget.p5LogicCodeRaw!}</script>");
             },
             onProgress: (int progress) {
               print('peter progress ' + progress.toString());
             },
             onWebResourceError: (WebResourceError error) {
               errorMessage = error.description;
+
+            },
+            onPageFinished: (String url) {
+              isLoading = false;
             },
             javascriptChannels: {
               JavascriptChannel(
@@ -55,7 +55,7 @@ class _PreViewWidgetState extends State<PreViewWidget> {
           ),
           Visibility(
               visible: errorMessage.isNotEmpty,
-              child: Text(errorMessage).textColor(Colors.red).center())
+              child: Text(errorMessage).textColor(Colors.red))
         ],
       ),
     );

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/editor/logic.dart';
 import 'package:processing_compiler/page/setting/theme_page.dart';
+import 'package:processing_compiler/widgets/code_mirror_web_view.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 class SettingPage extends StatelessWidget {
@@ -13,35 +15,24 @@ class SettingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    cardWidget(Widget child) {
-      return child.card(
-          elevation: 0,
-          margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)));
-    }
-
     return BasePage(
-      title: 'setting'.tr,
-      body: Column(
+      title: 'editor_setting'.tr,
+      body: cardWidget(Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          cardWidget(Obx(() {
+          Obx(() {
             return SwitchListTile(
               title: Text('show_code_line_number'.tr),
               value: state.showCodeLineNumber.value,
               onChanged: logic.setShowCodeLineNumber,
             );
-          })),
-          cardWidget(Obx(() {
+          }),
+          Obx(() {
             return Column(
               children: [
                 ListTile(
                   title: Text('setting_code_font_size'.tr),
-                ),
-                ListTile(
-                  title: const Text('Hello Processing')
-                      .fontSize(state.codeFontSize.value)
-                      .center(),
+                  trailing: Text(state.codeFontSize.value.toInt().toString()),
                 ),
                 Slider(
                   value: state.codeFontSize.value,
@@ -51,8 +42,28 @@ class SettingPage extends StatelessWidget {
                 )
               ],
             );
-          })),
-          cardWidget(Obx(() {
+          }),
+          Obx(() {
+            return ListTile(
+              title: Text('setting_code_font_size'.tr),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(state.codeFontSize.value.toInt().toString())
+                      .fontSize(13),
+                  const Icon(Icons.keyboard_arrow_right)
+                ],
+              ),
+              onTap: () async {
+                final String url = await rootBundle
+                    .loadString('assets/code_mirror_config.html');
+                Get.bottomSheet(CodeMirrorWebView(
+                  rawCode: url,
+                ));
+              },
+            );
+          }),
+          Obx(() {
             return ListTile(
               title: Text('code_theme'.tr),
               trailing: Row(
@@ -66,9 +77,15 @@ class SettingPage extends StatelessWidget {
                 Get.to(ThemePage());
               },
             );
-          }))
+          }),
         ],
-      ),
+      )),
     );
   }
+}
+
+cardWidget(Widget child) {
+  return child.card(
+      margin: const EdgeInsets.all(12),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)));
 }

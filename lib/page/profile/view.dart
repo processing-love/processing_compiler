@@ -13,6 +13,9 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BasePage(
       title: 'setting'.tr,
+      body: ListView(
+
+      ),
     );
   }
 }
