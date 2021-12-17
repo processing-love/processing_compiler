@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
+import 'package:processing_compiler/page/home/knowledge_widget.dart';
+import 'package:processing_compiler/page/home/projcet_widget.dart';
 import 'package:processing_compiler/page/main/logic.dart';
 import 'package:styled_widget/styled_widget.dart';
 
@@ -16,7 +19,28 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BasePage(
       title: 'app_name'.tr,
-      body: state.projectCodes.isEmpty ? buildEmptyWidget() : Text('data'),
+      body: Obx(() {
+        return !state.projectCodes.isEmpty
+            ? buildEmptyWidget()
+            : Column(
+                children: [
+                  CupertinoSlidingSegmentedControl(
+                          children: state.buildSegmentedWidget(),
+                          groupValue: state.currentIndex.value,
+                          onValueChanged: logic.setCurrentIndex)
+                      .marginOnly(top: 24),
+                  PageView(
+                    controller: state.controller,
+                    onPageChanged: logic.setCurrentIndex,
+                    children: [
+                      ProjectWidget(),
+                      Text('2'),
+                      KnowledgeWidget(),
+                    ],
+                  ).expanded()
+                ],
+              );
+      }),
     );
   }
 
@@ -25,7 +49,7 @@ class HomePage extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         const Icon(
-          Icons.add,
+          Icons.create_new_folder_outlined,
         ).marginOnly(bottom: 12),
         Text(
           'emtpy_pro'.tr,

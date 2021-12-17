@@ -6,7 +6,8 @@ import 'package:processing_compiler/lib/css.dart';
 import 'package:webview_flutter/src/webview.dart';
 
 class EditorState {
-  late WebViewController? controller;
+  WebViewController? controller;
+  WebViewController? settingController;
   RxBool showCodeLineNumber = true.obs;
   RxDouble codeFontSize = 13.0.obs;
   late DbCodeMirrorConfig dbCodeMirrorConfig;
@@ -14,15 +15,19 @@ class EditorState {
   final theme = CSSTheme.material().obs;
   final rawCode = ''.obs;
 
-
   CSS css = CSS();
 
   EditorState() {
     ///Initialize variables
   }
 
-  void setWebController(WebViewController webViewController) {
+  setWebController(WebViewController webViewController) {
     controller = webViewController;
+    initEditorConfig();
+  }
+
+  setSettingWebController(WebViewController webViewController) {
+    settingController = webViewController;
     initEditorConfig();
   }
 
@@ -39,14 +44,14 @@ class EditorState {
 
     showCodeLineNumber.value = dbCodeMirrorConfig.showCodeLineNumber;
     codeFontSize.value = dbCodeMirrorConfig.codeFontSize;
-    final String optionRawJSCode = '''
-      editor.setOption(
-        'lineNumbers',${dbCodeMirrorConfig.showCodeLineNumber},
-        'theme','${dbCodeMirrorConfig.codeThemeName}',
-      );
+    codeThemeName.value = dbCodeMirrorConfig.codeThemeName;
+    final String result = '''
+      editor.setOption('lineNumbers',${dbCodeMirrorConfig.showCodeLineNumber});
+      editor.setOption('theme','${dbCodeMirrorConfig.codeThemeName}');
       document.getElementsByClassName("CodeMirror")[0].style.fontSize = "${dbCodeMirrorConfig.codeFontSize.toInt()}px"
     ''';
-    controller?.runJavascript(optionRawJSCode);
+    controller?.runJavascript(result);
+    settingController?.runJavascript(result);
   }
 
   Widget? getTrailingItemWidget(String theme) {

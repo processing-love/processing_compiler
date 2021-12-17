@@ -28,18 +28,18 @@ class EditorPage extends StatelessWidget {
       ],
       body: CodeMirrorWebView(
         htmlPath: htmlPath,
-        onWebViewCreated: (controller) {
+        onWebViewFinishCreated: (controller) {
           logic.state.setWebController(controller);
           logic.initCodeMirror();
         },
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.green,
         onPressed: () {
           _run();
         },
         child: const Icon(
           Icons.play_arrow,
-          color: Colors.green,
         ),
       ),
     );
@@ -47,8 +47,7 @@ class EditorPage extends StatelessWidget {
 
   _run() async {
     final state = Get.find<EditorLogic>().state;
-    final String? p5LogicCodeRaw = await state.controller
-        ?.runJavascriptReturningResult('editor.getValue()');
+    final String? p5LogicCodeRaw = await state.controller?.runJavascriptReturningResult('editor.getValue()');
     final result = p5PreviewHTML.replaceAll('<-js->', p5LogicCodeRaw!);
     Get.bottomSheet(
         CodeMirrorWebView(

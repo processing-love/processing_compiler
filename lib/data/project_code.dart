@@ -1,9 +1,12 @@
 /// @author u
 /// @date 2020/6/12.
 class ProjectCode {
+  final String projectName;
   final int createTime;
-  final int projectName;
   final int type;
 
-  ProjectCode(this.createTime, this.projectName, this.type);
+  ProjectCode(
+      {required this.projectName,
+      required this.createTime,
+      required this.type});
 }

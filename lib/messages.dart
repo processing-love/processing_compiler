@@ -17,7 +17,14 @@ class Messages extends Translations {
           'setting_code_font_size': '设置代码字体大小',
           'code_theme': '编辑器风格',
           'emtpy_pro': '开启您的创意编程吧 !',
-          'loading': '加载中 ...'
+          'loading': '加载中 ...',
+          'slide_setting_font_size': '滑动手指进行字体大小设置',
+          'project': '项目',
+          'sample': '示例',
+          'knowledge': '知识库',
+          'createTimeDesc': '创建时间：',
+          'china_bbs': 'Processing中文社区',
+          'official_bbs': 'Processing官方社区'
         }
       };
 }

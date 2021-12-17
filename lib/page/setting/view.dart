@@ -3,9 +3,7 @@ import 'package:get/get.dart';
 import 'package:processing_compiler/compiler/p5.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/editor/logic.dart';
-import 'package:processing_compiler/page/setting/theme_page.dart';
 import 'package:processing_compiler/widgets/code_mirror_web_view.dart';
-import 'package:processing_compiler/widgets/select_font_widget.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 class SettingPage extends StatelessWidget {
@@ -21,19 +19,22 @@ class SettingPage extends StatelessWidget {
       body: Column(
         children: [
           LayoutBuilder(
-              builder: (BuildContext context, BoxConstraints constraints) {
+                  builder: (BuildContext context, BoxConstraints constraints) {
             return CodeMirrorWebView(
               htmlPath: 'assets/code_mirror.html',
-              onWebViewCreated: (controller) {
+              onWebViewFinishCreated: (controller) {
                 final raw = Uri.encodeComponent(gP5ExampleCode);
+                state.setSettingWebController(controller);
                 controller.runJavascript('''
-                      editor.setOption('readOnly',true,);
+                      editor.setOption('readOnly','nocursor',);
                       editor.setValue(decodeURIComponent("$raw"));
                       editor.setSize(${constraints.maxWidth},${constraints.maxHeight});
                       ''');
               },
             );
-          }).constrained(width: Get.width, height: 280).marginAll(12),
+          })
+              .constrained(width: Get.width, height: Get.height / 3)
+              .marginAll(12),
           cardWidget(Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -56,7 +57,25 @@ class SettingPage extends StatelessWidget {
                     ],
                   ),
                   onTap: () async {
-                    Get.bottomSheet(const SelectFontWidget(),
+                    Get.bottomSheet(
+                        Wrap(
+                          alignment: WrapAlignment.center,
+                          runAlignment: WrapAlignment.center,
+                          children: [
+                            Obx(() {
+                              return Slider(
+                                value: state.codeFontSize.value,
+                                min: 13,
+                                max: 20,
+                                onChanged: logic.setCodeFontSize,
+                              );
+                            }),
+                            Text(
+                              'slide_setting_font_size'.tr,
+                              style: Get.textTheme.caption,
+                            ).marginOnly(bottom: Get.height / 3 / 3, top: 14)
+                          ],
+                        ).height(Get.height / 3).backgroundColor(Colors.white),
                         barrierColor: Colors.black38);
                   },
                 );
@@ -72,7 +91,27 @@ class SettingPage extends StatelessWidget {
                     ],
                   ),
                   onTap: () {
-                    Get.to(ThemePage());
+                    Get.bottomSheet(Scrollbar(
+                      child: ListView.builder(
+                        itemBuilder: (BuildContext context, int index) {
+                          String theme = state.css.cssTheme[index].name;
+                          return ListTile(
+                            title: Text(theme),
+                            trailing: state.codeThemeName.value == theme
+                                ? const Icon(Icons.done)
+                                : null,
+                            onTap: () {
+                              Get.back();
+                              logic.setCodeTheme(theme);
+                            },
+                          );
+                        },
+                        itemCount: state.css.cssTheme.length,
+                      ),
+                    ).decorated(
+                        color: Get.theme.scaffoldBackgroundColor,
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(8))));
                   },
                 );
               }),
@@ -87,5 +126,16 @@ class SettingPage extends StatelessWidget {
 cardWidget(Widget child) {
   return child.card(
       margin: const EdgeInsets.all(12),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)));
+      elevation: 0,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)));
+}
+
+itemWidget({required String title, bool? haveNext, required Function onTap}) {
+  return cardWidget(ListTile(
+    title: Text(title),
+    trailing: haveNext ?? false ? const Icon(Icons.keyboard_arrow_right) : null,
+    onTap: () {
+      onTap.call();
+    },
+  ));
 }

@@ -9,17 +9,17 @@ import 'package:webview_flutter/webview_flutter.dart';
 /// @date 2020/6/12.
 class CodeMirrorWebView extends StatefulWidget {
   final String? rawCode;
-  final WebViewCreatedCallback? onWebViewCreated;
+  final WebViewCreatedCallback? onWebViewFinishCreated;
   final String? htmlPath;
-  final String? replaceValue;
-  final String? fromValue;
+  final String? url;
+  final Map<String, String>? replaceMap;
 
   const CodeMirrorWebView(
       {this.rawCode,
-      this.onWebViewCreated,
+      this.onWebViewFinishCreated,
       this.htmlPath,
-      this.replaceValue,
-      this.fromValue,
+      this.replaceMap,
+      this.url,
       Key? key})
       : super(key: key);
 
@@ -47,18 +47,24 @@ class _CodeMirrorWebViewState extends State<CodeMirrorWebView> {
           onPageFinished: (String url) {
             isLoading = false;
             setState(() {});
-            widget.onWebViewCreated?.call(webViewController!);
+            widget.onWebViewFinishCreated?.call(webViewController!);
           },
           onWebViewCreated: (WebViewController controller) async {
             final String result = widget.rawCode ?? "";
             if (result.isNotEmpty) {
               controller.loadHtmlString(widget.rawCode!);
             }
+
+            final url = widget.url ?? "";
+            if (url.isNotEmpty) {
+              controller.loadUrl(url);
+            }
             final String resultFileHtml = widget.htmlPath ?? "";
             if (resultFileHtml.isNotEmpty) {
               var result = await rootBundle.loadString(resultFileHtml);
-              result = result.replaceAll(
-                  widget.fromValue ?? "", widget.replaceValue ?? "");
+              widget.replaceMap?.forEach((from, replace) {
+                result = result.replaceAll(from, replace);
+              });
               controller.loadHtmlString(result);
             }
             webViewController = controller;
