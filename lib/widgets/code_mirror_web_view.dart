@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:processing_compiler/widgets/loading_widget.dart';
 import 'package:styled_widget/styled_widget.dart';
@@ -7,11 +8,19 @@ import 'package:webview_flutter/webview_flutter.dart';
 /// @author u
 /// @date 2020/6/12.
 class CodeMirrorWebView extends StatefulWidget {
-  final String rawCode;
+  final String? rawCode;
   final WebViewCreatedCallback? onWebViewCreated;
+  final String? htmlPath;
+  final String? replaceValue;
+  final String? fromValue;
 
   const CodeMirrorWebView(
-      {required this.rawCode, this.onWebViewCreated, Key? key})
+      {this.rawCode,
+      this.onWebViewCreated,
+      this.htmlPath,
+      this.replaceValue,
+      this.fromValue,
+      Key? key})
       : super(key: key);
 
   @override
@@ -40,9 +49,18 @@ class _CodeMirrorWebViewState extends State<CodeMirrorWebView> {
             setState(() {});
             widget.onWebViewCreated?.call(webViewController!);
           },
-          onWebViewCreated: (WebViewController controller) {
-            print('peter html ' + widget.rawCode);
-            controller.loadHtmlString(widget.rawCode);
+          onWebViewCreated: (WebViewController controller) async {
+            final String result = widget.rawCode ?? "";
+            if (result.isNotEmpty) {
+              controller.loadHtmlString(widget.rawCode!);
+            }
+            final String resultFileHtml = widget.htmlPath ?? "";
+            if (resultFileHtml.isNotEmpty) {
+              var result = await rootBundle.loadString(resultFileHtml);
+              result = result.replaceAll(
+                  widget.fromValue ?? "", widget.replaceValue ?? "");
+              controller.loadHtmlString(result);
+            }
             webViewController = controller;
           },
           onWebResourceError: (WebResourceError error) {

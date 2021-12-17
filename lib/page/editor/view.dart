@@ -11,9 +11,9 @@ class EditorPage extends StatelessWidget {
   final logic = Get.put(EditorLogic());
   final state = Get.find<EditorLogic>().state;
   final String? title;
-  final String code;
+  final String htmlPath;
 
-  EditorPage({Key? key, this.title, required this.code}) : super(key: key);
+  EditorPage({Key? key, this.title, required this.htmlPath}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class EditorPage extends StatelessWidget {
             icon: const Icon(Icons.settings))
       ],
       body: CodeMirrorWebView(
-        rawCode: code,
+        htmlPath: htmlPath,
         onWebViewCreated: (controller) {
           logic.state.setWebController(controller);
           logic.initCodeMirror();

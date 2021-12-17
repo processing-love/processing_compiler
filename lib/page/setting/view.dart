@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:processing_compiler/compiler/p5.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/editor/logic.dart';
 import 'package:processing_compiler/page/setting/theme_page.dart';
 import 'package:processing_compiler/widgets/code_mirror_web_view.dart';
+import 'package:processing_compiler/widgets/select_font_widget.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 class SettingPage extends StatelessWidget {
@@ -17,69 +18,68 @@ class SettingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BasePage(
       title: 'editor_setting'.tr,
-      body: cardWidget(Column(
-        mainAxisSize: MainAxisSize.min,
+      body: Column(
         children: [
-          Obx(() {
-            return SwitchListTile(
-              title: Text('show_code_line_number'.tr),
-              value: state.showCodeLineNumber.value,
-              onChanged: logic.setShowCodeLineNumber,
+          LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+            return CodeMirrorWebView(
+              htmlPath: 'assets/code_mirror.html',
+              onWebViewCreated: (controller) {
+                final raw = Uri.encodeComponent(gP5ExampleCode);
+                controller.runJavascript('''
+                      editor.setOption('readOnly',true,);
+                      editor.setValue(decodeURIComponent("$raw"));
+                      editor.setSize(${constraints.maxWidth},${constraints.maxHeight});
+                      ''');
+              },
             );
-          }),
-          Obx(() {
-            return Column(
-              children: [
-                ListTile(
+          }).constrained(width: Get.width, height: 280).marginAll(12),
+          cardWidget(Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Obx(() {
+                return SwitchListTile(
+                  title: Text('show_code_line_number'.tr),
+                  value: state.showCodeLineNumber.value,
+                  onChanged: logic.setShowCodeLineNumber,
+                );
+              }),
+              Obx(() {
+                return ListTile(
                   title: Text('setting_code_font_size'.tr),
-                  trailing: Text(state.codeFontSize.value.toInt().toString()),
-                ),
-                Slider(
-                  value: state.codeFontSize.value,
-                  onChanged: logic.setCodeLineNumber,
-                  min: 13,
-                  max: 20,
-                )
-              ],
-            );
-          }),
-          Obx(() {
-            return ListTile(
-              title: Text('setting_code_font_size'.tr),
-              trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(state.codeFontSize.value.toInt().toString())
-                      .fontSize(13),
-                  const Icon(Icons.keyboard_arrow_right)
-                ],
-              ),
-              onTap: () async {
-                final String url = await rootBundle
-                    .loadString('assets/code_mirror_config.html');
-                Get.bottomSheet(CodeMirrorWebView(
-                  rawCode: url,
-                ));
-              },
-            );
-          }),
-          Obx(() {
-            return ListTile(
-              title: Text('code_theme'.tr),
-              trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(state.codeThemeName.value).fontSize(13),
-                  const Icon(Icons.keyboard_arrow_right)
-                ],
-              ),
-              onTap: () {
-                Get.to(ThemePage());
-              },
-            );
-          }),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(state.codeFontSize.value.toInt().toString())
+                          .fontSize(13),
+                      const Icon(Icons.keyboard_arrow_right)
+                    ],
+                  ),
+                  onTap: () async {
+                    Get.bottomSheet(const SelectFontWidget(),
+                        barrierColor: Colors.black38);
+                  },
+                );
+              }),
+              Obx(() {
+                return ListTile(
+                  title: Text('code_theme'.tr),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(state.codeThemeName.value).fontSize(13),
+                      const Icon(Icons.keyboard_arrow_right)
+                    ],
+                  ),
+                  onTap: () {
+                    Get.to(ThemePage());
+                  },
+                );
+              }),
+            ],
+          ))
         ],
-      )),
+      ).scrollable(),
     );
   }
 }

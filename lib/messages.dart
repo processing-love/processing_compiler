@@ -15,7 +15,7 @@ class Messages extends Translations {
           'setting': '设置',
           'show_code_line_number': '显示代码行号',
           'setting_code_font_size': '设置代码字体大小',
-          'code_theme': '主题风格',
+          'code_theme': '编辑器风格',
           'emtpy_pro': '开启您的创意编程吧 !',
           'loading': '加载中 ...'
         }

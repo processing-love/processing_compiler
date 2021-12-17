@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 import 'package:processing_compiler/data/project_code.dart';
 
 final bool useMobileLayout = Get.size.shortestSide < 600;
+int get crossAxisCount => useMobileLayout ? 1 : 2;
+
 
 class HomeState {
   final RxList<ProjectCode> projectCodes = RxList.empty();
@@ -11,5 +13,4 @@ class HomeState {
   }
 
   int get crossAxisCount => useMobileLayout ? 1 : 3;
-
 }

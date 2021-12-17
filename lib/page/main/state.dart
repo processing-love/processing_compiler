@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:processing_compiler/page/editor/view.dart';
 import 'package:processing_compiler/tools/widget_utils.dart';
@@ -35,10 +34,9 @@ class MainPageState {
         ),
       ),
       buildProjectItemWidget('create_processing'.tr, () {}),
-      buildProjectItemWidget('create_p5'.tr, (String title) async {
+      buildProjectItemWidget('create_p5'.tr, (String title) {
         Get.back();
-        final result = await rootBundle.loadString('assets/code_mirror.html');
-        Get.to(EditorPage(title: title, code: result));
+        Get.to(EditorPage(title: title, htmlPath: 'assets/code_mirror.html'));
       }),
       buildProjectItemWidget('create_python'.tr, () {}).marginOnly(bottom: 12),
     ]));
