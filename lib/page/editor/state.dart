@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:processing_compiler/db/db_adapter_helper.dart';
 import 'package:processing_compiler/db/db_codemirror_config.dart';
+import 'package:processing_compiler/db/db_project_file.dart';
 import 'package:processing_compiler/lib/css.dart';
 import 'package:webview_flutter/src/webview.dart';
 
@@ -14,6 +15,9 @@ class EditorState {
   RxString codeThemeName = 'material'.obs;
   final theme = CSSTheme.material().obs;
   final rawCode = ''.obs;
+  String nameKey = '';
+  ProjectType projectType = ProjectType.p5js;
+  late DbProjectFile projectFile;
 
   CSS css = CSS();
 

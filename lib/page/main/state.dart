@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:processing_compiler/page/editor/view.dart';
+import 'package:processing_compiler/db/db_project_file.dart';
 import 'package:processing_compiler/tools/widget_utils.dart';
+import 'package:processing_compiler/widgets/dialog.dart';
 
 class MainPageState {
   final RxInt currentIndex = 0.obs;
+  TextEditingController controller = TextEditingController();
 
   MainPageState() {
     ///Initialize variables
@@ -20,7 +22,7 @@ class MainPageState {
         ),
         onTap: () {
           Get.back();
-          callback.call(title);
+          callback.call();
         },
       );
     }
@@ -34,9 +36,9 @@ class MainPageState {
         ),
       ),
       buildProjectItemWidget('create_processing'.tr, () {}),
-      buildProjectItemWidget('create_p5'.tr, (String title) {
+      buildProjectItemWidget('create_p5'.tr, () {
         Get.back();
-        Get.to(EditorPage(title: title, htmlPath: 'assets/code_mirror.html'));
+        showCreateProjectDialog(controller, ProjectType.p5js);
       }),
       buildProjectItemWidget('create_python'.tr, () {}).marginOnly(bottom: 12),
     ]));

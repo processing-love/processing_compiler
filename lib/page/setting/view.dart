@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:processing_compiler/compiler/p5.dart';
+import 'package:processing_compiler/db/db_project_file.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/editor/logic.dart';
 import 'package:processing_compiler/widgets/code_mirror_web_view.dart';
@@ -130,12 +132,59 @@ cardWidget(Widget child) {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)));
 }
 
-itemWidget({required String title, bool? haveNext, required Function onTap}) {
-  return cardWidget(ListTile(
+itemWidget(
+    {required String title,
+    bool? haveNext,
+    required Function onTap,
+    IconData? leading,
+    String? subTitle}) {
+  return cardWidget(itemListTile(
+    onTap: onTap,
+    title: title,
+    haveNext: haveNext,
+    subTitle: subTitle,
+    leading: leading,
+  ));
+}
+
+itemListTile(
+    {required String title,
+    bool? haveNext,
+    required Function onTap,
+    IconData? leading,
+    String? subTitle}) {
+  return ListTile(
     title: Text(title),
     trailing: haveNext ?? false ? const Icon(Icons.keyboard_arrow_right) : null,
     onTap: () {
       onTap.call();
     },
+    leading: leading == null ? null : Icon(leading),
+    subtitle: subTitle == null ? null : Text(subTitle),
+  );
+}
+
+itemWidgetForSlide(Function onPressed, DbProjectFile project) {
+  return cardWidget(Slidable(
+    endActionPane: ActionPane(
+      motion: const ScrollMotion(),
+      children: [
+        SlidableAction(
+          onPressed: (_) {
+            onPressed.call();
+          },
+          backgroundColor: Colors.red,
+          foregroundColor: Colors.white,
+          icon: Icons.delete,
+          label: 'delete'.tr,
+        ),
+      ],
+    ),
+    child: itemListTile(
+        title: project.name,
+        onTap: () {},
+        haveNext: true,
+        leading: Icons.folder_outlined,
+        subTitle: 'data'),
   ));
 }

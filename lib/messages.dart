@@ -23,8 +23,16 @@ class Messages extends Translations {
           'sample': '示例',
           'knowledge': '知识库',
           'createTimeDesc': '创建时间：',
-          'china_bbs': 'Processing中文社区',
-          'official_bbs': 'Processing官方社区'
+          'china_bbs': 'Processing 中文社区',
+          'official_bbs': 'Processing 官方社区',
+          'create': '创建',
+          'cancel': '取消',
+          'new_project': '请输入新项目的名称',
+          'delete': '删除',
+          'config_delete': '您确定删除x吗 ？',
+          'tip': '温馨提示',
+          'limit_project_name_length':'项目名称不能超过15个字符',
+          'limit_project_name_exist':'该项目已经存在，请重新输入新的项目名称'
         }
       };
 }

@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
     return BasePage(
       title: 'app_name'.tr,
       body: Obx(() {
-        return !state.projectCodes.isEmpty
+        return state.projectFiles.isEmpty
             ? buildEmptyWidget()
             : Column(
                 children: [
@@ -34,8 +34,8 @@ class HomePage extends StatelessWidget {
                     onPageChanged: logic.setCurrentIndex,
                     children: [
                       ProjectWidget(),
-                      Text('2'),
-                      KnowledgeWidget(),
+                      const Text('2'),
+                      const KnowledgeWidget(),
                     ],
                   ).expanded()
                 ],
@@ -53,15 +53,10 @@ class HomePage extends StatelessWidget {
         ).marginOnly(bottom: 12),
         Text(
           'emtpy_pro'.tr,
-          style: Get.textTheme.headline6,
+          style: Get.textTheme.bodyText1,
         ),
       ],
-    )
-        .center()
-        .width(Get.width * 0.65)
-        .height(Get.height * 0.25)
-        .card()
-        .gestures(onTap: () {
+    ).center().gestures(onTap: () {
       Get.find<MainPageLogic>().state.createProjectList();
     }).center();
   }

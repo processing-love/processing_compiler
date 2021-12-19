@@ -1,35 +1,44 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'db_project_raw_code.dart';
+part of 'db_project_file.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class DbProjectRawCodeAdapter extends TypeAdapter<DbProjectRawCode> {
+class DbProjectFileAdapter extends TypeAdapter<DbProjectFile> {
   @override
   final int typeId = 1;
 
   @override
-  DbProjectRawCode read(BinaryReader reader) {
+  DbProjectFile read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return DbProjectRawCode(
-      createTime: fields[0] as int?,
-      rawCode: fields[1] as String?,
+    return DbProjectFile(
+      name: fields[0] as String,
+      code: fields[1] as String,
+      type: fields[3] as int,
+      htmlTemplate: fields[5] as String,
+      time: fields[4] as int,
     );
   }
 
   @override
-  void write(BinaryWriter writer, DbProjectRawCode obj) {
+  void write(BinaryWriter writer, DbProjectFile obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(5)
       ..writeByte(0)
-      ..write(obj.createTime)
+      ..write(obj.name)
       ..writeByte(1)
-      ..write(obj.rawCode);
+      ..write(obj.code)
+      ..writeByte(3)
+      ..write(obj.type)
+      ..writeByte(4)
+      ..write(obj.time)
+      ..writeByte(5)
+      ..write(obj.htmlTemplate);
   }
 
   @override
@@ -38,7 +47,7 @@ class DbProjectRawCodeAdapter extends TypeAdapter<DbProjectRawCode> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is DbProjectRawCodeAdapter &&
+      other is DbProjectFileAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

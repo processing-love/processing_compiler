@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:processing_compiler/compiler/p5.dart';
+import 'package:processing_compiler/db/db_project_file.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/setting/view.dart';
 import 'package:processing_compiler/widgets/code_mirror_web_view.dart';
@@ -10,15 +11,15 @@ import 'logic.dart';
 class EditorPage extends StatelessWidget {
   final logic = Get.put(EditorLogic());
   final state = Get.find<EditorLogic>().state;
-  final String? title;
-  final String htmlPath;
+  final DbProjectFile projectFile;
 
-  EditorPage({Key? key, this.title, required this.htmlPath}) : super(key: key);
+  EditorPage({Key? key, required this.projectFile}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    logic.initExternalParameter(projectFile);
     return BasePage(
-      title: title,
+      title: projectFile.name,
       actions: [
         IconButton(
             onPressed: () {
@@ -27,7 +28,7 @@ class EditorPage extends StatelessWidget {
             icon: const Icon(Icons.settings))
       ],
       body: CodeMirrorWebView(
-        htmlPath: htmlPath,
+        htmlPath: projectFile.htmlTemplate,
         onWebViewFinishCreated: (controller) {
           logic.state.setWebController(controller);
           logic.initCodeMirror();
@@ -47,7 +48,8 @@ class EditorPage extends StatelessWidget {
 
   _run() async {
     final state = Get.find<EditorLogic>().state;
-    final String? p5LogicCodeRaw = await state.controller?.runJavascriptReturningResult('editor.getValue()');
+    final String? p5LogicCodeRaw = await state.controller
+        ?.runJavascriptReturningResult('editor.getValue()');
     final result = p5PreviewHTML.replaceAll('<-js->', p5LogicCodeRaw!);
     Get.bottomSheet(
         CodeMirrorWebView(

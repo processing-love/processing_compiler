@@ -6,7 +6,8 @@ import 'package:processing_compiler/page/main/view.dart';
 import 'package:processing_compiler/theme/theme_config.dart';
 
 void main() async {
-  await DbAdapterHelper().initAllAdapter();
+  WidgetsFlutterBinding.ensureInitialized();
+  await gAdapterHelper.initAllAdapter();
   runApp(const MyApp());
 }
 

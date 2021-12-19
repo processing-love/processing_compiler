@@ -1,6 +1,6 @@
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:processing_compiler/compiler/p5.dart';
+import 'package:processing_compiler/db/db_project_file.dart';
 
 import 'state.dart';
 
@@ -40,10 +40,8 @@ class EditorLogic extends GetxController {
     state.settingController?.runJavascript(result);
   }
 
-  loadSource() async {
-    final String codeMirrorHtml =
-        await rootBundle.loadString('assets/code_mirror.html');
-    state.rawCode.value = codeMirrorHtml;
+  initExternalParameter(DbProjectFile projectFile) {
+    state.projectFile = projectFile;
   }
 
   initCodeMirror() {
@@ -52,11 +50,5 @@ class EditorLogic extends GetxController {
         editor.setSize(${Get.width},${Get.height});
         editor.setValue(decodeURIComponent("$raw"));
         ''');
-  }
-
-  @override
-  void onInit() {
-    super.onInit();
-    loadSource();
   }
 }

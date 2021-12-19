@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:processing_compiler/data/project_code.dart';
+import 'package:processing_compiler/db/db_adapter_helper.dart';
+import 'package:processing_compiler/db/db_project_file.dart';
 
 final bool useMobileLayout = Get.size.shortestSide < 600;
 
 int get crossAxisCount => useMobileLayout ? 1 : 2;
 
 class HomeState {
-  final RxList<ProjectCode> projectCodes = RxList.empty();
+  final RxList<DbProjectFile> projectFiles = RxList.empty();
 
   final RxInt currentIndex = 0.obs;
 
@@ -25,5 +26,10 @@ class HomeState {
       1: Text('sample'.tr),
       2: Text('knowledge'.tr),
     };
+  }
+
+  void deleteProject(String projectName,index) async {
+    await boxProjectFile.delete(projectName);
+    projectFiles.removeAt(index);
   }
 }
