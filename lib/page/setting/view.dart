@@ -164,14 +164,16 @@ itemListTile(
   );
 }
 
-itemWidgetForSlide(Function onPressed, DbProjectFile project) {
+itemWidgetForSlide(Function onPressed,
+    Function slideTapFunction,
+    DbProjectFile project) {
   return cardWidget(Slidable(
     endActionPane: ActionPane(
       motion: const ScrollMotion(),
       children: [
         SlidableAction(
           onPressed: (_) {
-            onPressed.call();
+            slideTapFunction.call();
           },
           backgroundColor: Colors.red,
           foregroundColor: Colors.white,
@@ -182,7 +184,9 @@ itemWidgetForSlide(Function onPressed, DbProjectFile project) {
     ),
     child: itemListTile(
         title: project.name,
-        onTap: () {},
+        onTap: () {
+          onPressed.call(project);
+        },
         haveNext: true,
         leading: Icons.folder_outlined,
         subTitle: 'data'),

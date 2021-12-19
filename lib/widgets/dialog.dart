@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:processing_compiler/db/db_adapter_helper.dart';
 import 'package:processing_compiler/db/db_project_file.dart';
 import 'package:processing_compiler/page/editor/view.dart';
 import 'package:processing_compiler/page/home/logic.dart';
@@ -27,7 +26,7 @@ showDeleteProjectDialog(HomeState state, String projectName, int index) {
               child: Text('delete'.tr),
               onPressed: () async {
                 Get.back();
-                state.deleteProject(projectName,index);
+                state.deleteProject(projectName, index);
               },
             ),
           ],

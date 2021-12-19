@@ -302,6 +302,11 @@
         CodeMirror.ukeys = words;
         editor.showHint();
     });
+
+    editor.on("change", (event) => {
+        const value = event.getValue();
+        MessageInvoker.postMessage(value);
+    });
     editor.refresh();
 </script>
 </body>

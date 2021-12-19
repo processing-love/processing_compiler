@@ -5,6 +5,7 @@ import 'package:processing_compiler/db/db_project_file.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/setting/view.dart';
 import 'package:processing_compiler/widgets/code_mirror_web_view.dart';
+import 'package:webview_flutter/platform_interface.dart';
 
 import 'logic.dart';
 
@@ -32,6 +33,13 @@ class EditorPage extends StatelessWidget {
         onWebViewFinishCreated: (controller) {
           logic.state.setWebController(controller);
           logic.initCodeMirror();
+        },
+        javascriptChannel: {
+          JavascriptChannel(
+              name: "MessageInvoker",
+              onMessageReceived: (event) {
+                logic.autoSaveCode(event.message);
+              })
         },
       ),
       floatingActionButton: FloatingActionButton(

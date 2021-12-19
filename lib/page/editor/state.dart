@@ -17,7 +17,7 @@ class EditorState {
   final rawCode = ''.obs;
   String nameKey = '';
   ProjectType projectType = ProjectType.p5js;
-  late DbProjectFile projectFile;
+  late DbProjectFile currentProjectFile;
 
   CSS css = CSS();
 
