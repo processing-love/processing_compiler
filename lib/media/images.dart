@@ -1,2 +1,3 @@
 /// @author u
-/// @date 2020/6/12.
+/// @date 2020/6/12
+const String icP5js = '';

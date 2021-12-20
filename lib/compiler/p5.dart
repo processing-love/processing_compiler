@@ -27,6 +27,7 @@ const String p5PreviewHTML = '''
        }        
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <-script->
     <script>
       document.body.addEventListener('touchmove', function (e) {
       if (e._isScroller)
@@ -35,10 +36,9 @@ const String p5PreviewHTML = '''
       }, { passive: false}
       );
     window.onerror = function(message,url,line,column,error) {
-      // console.log('log---onerror::::',message, url, line, column, error);
       ErrorMessageInvoker.postMessage(message.toString());
     }
-    <-js->
+    <-code->
     </script>
 </head>
 <body>
@@ -73,3 +73,17 @@ function draw() {
   ellipse(50,50,80,80);
 }
 ''';
+
+const String gPyExampleCode = '''
+def setup():
+    createCanvas(200, 200)
+
+def draw():
+    background(200)
+    diameter = sin(frameCount / 60) * 50 + 50
+    fill("blue")
+    ellipse(100, 100, diameter, diameter)
+    
+''';
+
+const String gLibPyodide = '<script src="https://cdn.jsdelivr.net/pyodide/v0.18.1/full/pyodide.js"></script>';

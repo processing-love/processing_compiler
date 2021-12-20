@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:processing_compiler/compiler/p5.dart';
 import 'package:processing_compiler/db/db_project_file.dart';
 
 import 'state.dart';
@@ -54,5 +55,22 @@ class EditorLogic extends GetxController {
   void autoSaveCode(String code) {
     state.currentProjectFile.code = code;
     state.currentProjectFile.save();
+  }
+
+  Future<String> buildPreviewCode() async {
+    final String? code = await state.controller?.runJavascriptReturningResult('editor.getValue();');
+    String previewHTML = "";
+    ProjectType type = ProjectType.values.firstWhere((type) => type.index == state.currentProjectFile.projectType);
+    switch (type) {
+      case ProjectType.processing:
+        break;
+      case ProjectType.p5js:
+        previewHTML = p5PreviewHTML.replaceAll('<-script->', '');
+        break;
+      case ProjectType.py:
+        previewHTML = p5PreviewHTML.replaceAll('<-script->', gLibPyodide);
+        break;
+    }
+    return previewHTML.replaceAll('<-code->', code ?? "");
   }
 }

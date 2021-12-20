@@ -19,8 +19,8 @@ class DbProjectFileAdapter extends TypeAdapter<DbProjectFile> {
     return DbProjectFile(
       name: fields[0] as String,
       code: fields[1] as String,
-      type: fields[3] as int,
       htmlTemplate: fields[5] as String,
+      projectType: fields[3] as int,
       time: fields[4] as int,
     );
   }
@@ -34,7 +34,7 @@ class DbProjectFileAdapter extends TypeAdapter<DbProjectFile> {
       ..writeByte(1)
       ..write(obj.code)
       ..writeByte(3)
-      ..write(obj.type)
+      ..write(obj.projectType)
       ..writeByte(4)
       ..write(obj.time)
       ..writeByte(5)

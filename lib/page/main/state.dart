@@ -37,10 +37,16 @@ class MainPageState {
       ),
       buildProjectItemWidget('create_processing'.tr, () {}),
       buildProjectItemWidget('create_p5'.tr, () {
-        Get.back();
-        showCreateProjectDialog(controller, ProjectType.p5js);
+        createProjectFile(ProjectType.p5js);
       }),
-      buildProjectItemWidget('create_python'.tr, () {}).marginOnly(bottom: 12),
+      buildProjectItemWidget('create_python'.tr, () {
+        createProjectFile(ProjectType.py);
+      }).marginOnly(bottom: 12),
     ]));
+  }
+
+  createProjectFile(ProjectType projectType) {
+    Get.back();
+    showCreateProjectDialog(controller, projectType);
   }
 }

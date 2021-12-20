@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:processing_compiler/compiler/p5.dart';
 import 'package:processing_compiler/db/db_project_file.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/setting/view.dart';
 import 'package:processing_compiler/widgets/code_mirror_web_view.dart';
 import 'package:webview_flutter/platform_interface.dart';
-
 import 'logic.dart';
 
 class EditorPage extends StatelessWidget {
@@ -55,10 +53,7 @@ class EditorPage extends StatelessWidget {
   }
 
   _run() async {
-    final state = Get.find<EditorLogic>().state;
-    final String? p5LogicCodeRaw = await state.controller
-        ?.runJavascriptReturningResult('editor.getValue()');
-    final result = p5PreviewHTML.replaceAll('<-js->', p5LogicCodeRaw!);
+    final String result = await logic.buildPreviewCode();
     Get.bottomSheet(
         CodeMirrorWebView(
           rawCode: result,

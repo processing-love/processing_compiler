@@ -30,8 +30,4 @@ class ProjectWidget extends StatelessWidget {
       );
     });
   }
-
-  String createTimeDesc(int time) {
-    return 'createTimeDesc'.tr + DateTime.now().toLocal().toString();
-  }
 }

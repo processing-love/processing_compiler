@@ -32,12 +32,8 @@ class _PreViewWidgetState extends State<PreViewWidget> {
               _webViewController?.loadHtmlString(
                   p5PreviewHTML + "<script>${widget.p5LogicCodeRaw!}</script>");
             },
-            onProgress: (int progress) {
-              print('peter progress ' + progress.toString());
-            },
             onWebResourceError: (WebResourceError error) {
               errorMessage = error.description;
-
             },
             onPageFinished: (String url) {
               isLoading = false;
@@ -46,7 +42,6 @@ class _PreViewWidgetState extends State<PreViewWidget> {
               JavascriptChannel(
                   name: "ErrorMessageInvoker",
                   onMessageReceived: (event) {
-                    print('peter error ' + event.message);
                     setState(() {
                       errorMessage = event.message;
                     });

@@ -4,7 +4,7 @@ import 'package:processing_compiler/db/db_adapter_helper.dart';
 import 'package:processing_compiler/db/db_codemirror_config.dart';
 import 'package:processing_compiler/db/db_project_file.dart';
 import 'package:processing_compiler/lib/css.dart';
-import 'package:webview_flutter/src/webview.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class EditorState {
   WebViewController? controller;

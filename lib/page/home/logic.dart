@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:processing_compiler/db/db_adapter_helper.dart';
 import 'package:processing_compiler/db/db_project_file.dart';
+import 'package:processing_compiler/messages.dart';
 import 'package:processing_compiler/widgets/dialog.dart';
 
 import 'state.dart';
@@ -23,6 +24,7 @@ class HomeLogic extends GetxController {
   void onInit() {
     super.onInit();
     state.projectFiles.addAll(boxProjectFile.values);
+    DateMessage().buildCurrentDateMessage();
   }
 
   getOrCreateProjectFile(String name, ProjectType projectType) async {

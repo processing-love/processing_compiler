@@ -7,6 +7,7 @@ import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/editor/logic.dart';
 import 'package:processing_compiler/widgets/code_mirror_web_view.dart';
 import 'package:styled_widget/styled_widget.dart';
+import 'package:timeago/timeago.dart';
 
 class SettingPage extends StatelessWidget {
   final logic = Get.put(EditorLogic());
@@ -18,7 +19,7 @@ class SettingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BasePage(
       title: 'editor_setting'.tr,
-      body: Column(
+      body: ListView(
         children: [
           LayoutBuilder(
                   builder: (BuildContext context, BoxConstraints constraints) {
@@ -120,16 +121,16 @@ class SettingPage extends StatelessWidget {
             ],
           ))
         ],
-      ).scrollable(),
+      ),
     );
   }
 }
 
 cardWidget(Widget child) {
   return child.card(
-      margin: const EdgeInsets.all(12),
-      elevation: 0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)));
+      margin: const EdgeInsets.only(left: 10, right: 10, top: 8),
+      elevation: 0.2,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)));
 }
 
 itemWidget(
@@ -164,9 +165,8 @@ itemListTile(
   );
 }
 
-itemWidgetForSlide(Function onPressed,
-    Function slideTapFunction,
-    DbProjectFile project) {
+itemWidgetForSlide(
+    Function onPressed, Function slideTapFunction, DbProjectFile project) {
   return cardWidget(Slidable(
     endActionPane: ActionPane(
       motion: const ScrollMotion(),
@@ -189,6 +189,6 @@ itemWidgetForSlide(Function onPressed,
         },
         haveNext: true,
         leading: Icons.folder_outlined,
-        subTitle: 'data'),
+        subTitle: format(DateTime.fromMillisecondsSinceEpoch(project.time))),
   ));
 }

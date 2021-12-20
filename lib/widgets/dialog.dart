@@ -44,11 +44,44 @@ showCreateProjectDialog(
         return StatefulBuilder(
           builder:
               (BuildContext context, void Function(void Function()) setState) {
+            onSubmit() async {
+              if (controller.text.isEmpty) {
+                setState(() {
+                  error = 'please_input_project_name'.tr;
+                });
+                return;
+              }
+
+              final logic = Get.put(HomeLogic());
+              if (logic.isExist(controller.text.trim())) {
+                setState(() {
+                  error = 'limit_project_name_exist'.tr;
+                });
+                return;
+              }
+
+              final projectFile = await logic.getOrCreateProjectFile(
+                  controller.text, projectType);
+              var statues = error ?? "";
+              if (statues.isEmpty) {
+                Get.focusScope?.requestFocus(FocusNode());
+                Get.back();
+                Get.to(EditorPage(
+                  projectFile: projectFile,
+                ))?.then((value) => logic.addProjectFile(projectFile));
+              }
+            }
+
             return AlertDialog(
               title: Text('new_project'.tr),
               content: TextField(
                 controller: controller,
+                autocorrect: true,
+                autofocus: true,
                 decoration: InputDecoration(errorText: error),
+                onSubmitted: (String content) {
+                  onSubmit();
+                },
                 onChanged: (String content) {
                   if (content.length > 15) {
                     error = 'limit_project_name_length'.tr;
@@ -68,30 +101,14 @@ showCreateProjectDialog(
                 TextButton(
                   child: Text('create'.tr),
                   onPressed: () async {
-                    if (controller.text.isNotEmpty) {
-                      final logic = Get.put(HomeLogic());
-                      if (logic.isExist(controller.text.trim())) {
-                        setState(() {
-                          error = 'limit_project_name_exist'.tr;
-                        });
-                        return;
-                      }
-
-                      final projectFile = await logic.getOrCreateProjectFile(
-                          controller.text, ProjectType.p5js);
-                      var statues = error ?? "";
-                      if (statues.isEmpty) {
-                        Get.back();
-                        Get.to(EditorPage(
-                          projectFile: projectFile,
-                        ))?.then((value) => logic.addProjectFile(projectFile));
-                      }
-                    }
+                    onSubmit();
                   },
                 ),
               ],
             );
           },
         );
-      });
+      }).then((value) {
+    FocusScope.of(Get.context!).requestFocus(FocusNode());
+  });
 }

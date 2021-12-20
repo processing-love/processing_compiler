@@ -2,7 +2,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:processing_compiler/compiler/p5.dart';
 import 'package:processing_compiler/db/db_codemirror_config.dart';
 import 'package:processing_compiler/db/db_project_file.dart';
-
 /// @author u
 /// @date 2020/6/12.
 
@@ -16,7 +15,8 @@ class DbAdapterHelper {
     await Hive.initFlutter();
     Hive.registerAdapter(DbCodeMirrorConfigAdapter());
     Hive.registerAdapter(DbProjectFileAdapter());
-    boxCodeMirrorConfig = await Hive.openBox<DbCodeMirrorConfig>(dbNameCodeMirrorConfig);
+    boxCodeMirrorConfig =
+        await Hive.openBox<DbCodeMirrorConfig>(dbNameCodeMirrorConfig);
     boxProjectFile = await Hive.openBox<DbProjectFile>(dbNameProjectFile);
   }
 
@@ -26,17 +26,17 @@ class DbAdapterHelper {
     if (projectFile == null) {
       String code;
       String htmlTemplate;
-      switch (projectType.index) {
-        case 0:
+      switch (projectType) {
+        case ProjectType.processing:
           code = gP5ExampleCode;
           htmlTemplate = 'assets/code_mirror.html';
           break;
-        case 1:
+        case ProjectType.p5js: // javascript
           code = gP5ExampleCode;
           htmlTemplate = 'assets/code_mirror.html';
           break;
-        case 2:
-          code = gP5ExampleCode;
+        case ProjectType.py: // python
+          code = gPyExampleCode;
           htmlTemplate = 'assets/code_mirror.html';
           break;
         default:
@@ -50,13 +50,12 @@ class DbAdapterHelper {
               name: projectName,
               code: code,
               htmlTemplate: htmlTemplate,
-              type: projectType.index,
+              projectType: projectType.index,
               time: DateTime.now().millisecondsSinceEpoch));
       return boxProjectFile.get(projectName)!;
     }
     return projectFile;
   }
-
 }
 
 DbAdapterHelper gAdapterHelper = DbAdapterHelper();

@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:timeago/timeago.dart';
 
 /// @author u
 /// @date 2020/6/12.
@@ -31,8 +32,23 @@ class Messages extends Translations {
           'delete': '删除',
           'config_delete': '您确定删除x吗 ？',
           'tip': '温馨提示',
-          'limit_project_name_length':'项目名称不能超过15个字符',
-          'limit_project_name_exist':'该项目已经存在，请重新输入新的项目名称'
+          'limit_project_name_length': '项目名称不能超过15个字符',
+          'limit_project_name_exist': '该项目已经存在，请重新输入新的项目名称',
+          'please_input_project_name': '项目名称不能为空'
         }
       };
+}
+
+class DateMessage {
+  final Map<String, LookupMessages> lookupMessagesMap = {
+    'en': EnMessages(),
+    'es': EsMessages(),
+    'zh': ZhCnMessages()
+  };
+
+  void buildCurrentDateMessage() {
+    final language = Get.locale?.languageCode;
+    setLocaleMessages(language ?? 'zh', lookupMessagesMap[language] ?? ZhMessages());
+    setDefaultLocale(language ?? 'zh');
+  }
 }
