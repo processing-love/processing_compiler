@@ -24,11 +24,10 @@ class HomeState {
     return {
       0: Text('project'.tr),
       1: Text('sample'.tr),
-      2: Text('knowledge'.tr),
     };
   }
 
-  void deleteProject(String projectName,index) async {
+  void deleteProject(String projectName, index) async {
     await boxProjectFile.delete(projectName);
     projectFiles.removeAt(index);
   }

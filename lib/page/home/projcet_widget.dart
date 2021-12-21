@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:processing_compiler/devices/messages.dart';
 import 'package:processing_compiler/page/editor/view.dart';
 import 'package:processing_compiler/page/home/logic.dart';
 import 'package:processing_compiler/page/setting/view.dart';
@@ -15,18 +16,20 @@ class ProjectWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      return ListView.builder(
-        itemCount: logic.state.projectFiles.length,
-        itemBuilder: (BuildContext context, int index) {
-          final project = logic.state.projectFiles[index];
-          return itemWidgetForSlide((projectFile) {
-            Get.to(EditorPage(
-              projectFile: projectFile,
-            ));
-          }, () {
-            logic.deleteProject(index);
-          }, project);
-        },
+      return Scrollbar(
+        child: ListView.builder(
+          itemCount: logic.state.projectFiles.length,
+          itemBuilder: (BuildContext context, int index) {
+            final project = logic.state.projectFiles[index];
+            return itemWidgetForSlide((projectFile) {
+              Get.to(EditorPage(
+                projectFile: projectFile,
+              ));
+            }, () {
+              logic.deleteProject(index);
+            }, project);
+          },
+        ),
       );
     });
   }

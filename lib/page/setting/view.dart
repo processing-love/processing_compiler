@@ -3,6 +3,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:processing_compiler/compiler/p5.dart';
 import 'package:processing_compiler/db/db_project_file.dart';
+import 'package:processing_compiler/devices/messages.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/editor/logic.dart';
 import 'package:processing_compiler/widgets/code_mirror_web_view.dart';
@@ -49,50 +50,40 @@ class SettingPage extends StatelessWidget {
                 );
               }),
               Obx(() {
-                return ListTile(
-                  title: Text('setting_code_font_size'.tr),
-                  trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(state.codeFontSize.value.toInt().toString())
-                          .fontSize(13),
-                      const Icon(Icons.keyboard_arrow_right)
-                    ],
-                  ),
-                  onTap: () async {
-                    Get.bottomSheet(
-                        Wrap(
-                          alignment: WrapAlignment.center,
-                          runAlignment: WrapAlignment.center,
-                          children: [
-                            Obx(() {
-                              return Slider(
-                                value: state.codeFontSize.value,
-                                min: 13,
-                                max: 20,
-                                onChanged: logic.setCodeFontSize,
-                              );
-                            }),
-                            Text(
-                              'slide_setting_font_size'.tr,
-                              style: Get.textTheme.caption,
-                            ).marginOnly(bottom: Get.height / 3 / 3, top: 14)
-                          ],
-                        ).height(Get.height / 3).backgroundColor(Colors.white),
-                        barrierColor: Colors.black38);
-                  },
-                );
+                return itemListTile(
+                    title: 'setting_code_font_size'.tr,
+                    haveNext: true,
+                    trailingDesc: state.codeFontSize.value.toInt().toString(),
+                    onTap: () async {
+                      Get.bottomSheet(
+                          Wrap(
+                            alignment: WrapAlignment.center,
+                            runAlignment: WrapAlignment.center,
+                            children: [
+                              Obx(() {
+                                return Slider(
+                                  value: state.codeFontSize.value,
+                                  min: 13,
+                                  max: 20,
+                                  onChanged: logic.setCodeFontSize,
+                                );
+                              }),
+                              Text(
+                                'slide_setting_font_size'.tr,
+                                style: Get.textTheme.caption,
+                              ).marginOnly(bottom: Get.height / 3 / 3, top: 14)
+                            ],
+                          )
+                              .height(Get.height / 3)
+                              .backgroundColor(Colors.white),
+                          barrierColor: Colors.black38);
+                    });
               }),
               Obx(() {
-                return ListTile(
-                  title: Text('code_theme'.tr),
-                  trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(state.codeThemeName.value).fontSize(13),
-                      const Icon(Icons.keyboard_arrow_right)
-                    ],
-                  ),
+                return itemListTile(
+                  title: 'code_theme'.tr,
+                  trailingDesc: state.codeThemeName.value,
+                  haveNext: true,
                   onTap: () {
                     Get.bottomSheet(Scrollbar(
                       child: ListView.builder(
@@ -138,14 +129,15 @@ itemWidget(
     bool? haveNext,
     required Function onTap,
     IconData? leading,
-    String? subTitle}) {
+    String? subTitle,
+    String? trailingDesc}) {
   return cardWidget(itemListTile(
-    onTap: onTap,
-    title: title,
-    haveNext: haveNext,
-    subTitle: subTitle,
-    leading: leading,
-  ));
+      onTap: onTap,
+      title: title,
+      haveNext: haveNext,
+      subTitle: subTitle,
+      leading: leading,
+      trailingDesc: trailingDesc));
 }
 
 itemListTile(
@@ -153,10 +145,22 @@ itemListTile(
     bool? haveNext,
     required Function onTap,
     IconData? leading,
-    String? subTitle}) {
+    String? subTitle,
+    String? trailingDesc}) {
   return ListTile(
     title: Text(title),
-    trailing: haveNext ?? false ? const Icon(Icons.keyboard_arrow_right) : null,
+    trailing: haveNext ?? false
+        ? Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                trailingDesc ?? "",
+                style: Get.textTheme.caption,
+              ),
+              const Icon(Icons.keyboard_arrow_right)
+            ],
+          )
+        : null,
     onTap: () {
       onTap.call();
     },
@@ -165,8 +169,8 @@ itemListTile(
   );
 }
 
-itemWidgetForSlide(
-    Function onPressed, Function slideTapFunction, DbProjectFile project) {
+itemWidgetForSlide(Function onPressed, Function slideTapFunction, DbProjectFile project) {
+  DateMessage().buildCurrentDateMessage();
   return cardWidget(Slidable(
     endActionPane: ActionPane(
       motion: const ScrollMotion(),

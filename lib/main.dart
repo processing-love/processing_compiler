@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:processing_compiler/db/db_adapter_helper.dart';
-import 'package:processing_compiler/messages.dart';
+import 'package:processing_compiler/devices/messages.dart';
 import 'package:processing_compiler/page/main/view.dart';
 import 'package:processing_compiler/theme/theme_config.dart';
 
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Processing Compiler',
       debugShowCheckedModeBanner: false,
-      locale: const Locale('zh', 'CN'),
+      locale: getCurrentLocale(),
       fallbackLocale: const Locale('en', 'US'),
       translations: Messages(),
       home: MainPage(),
@@ -27,4 +27,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeConfig().getSettingThemeData(),
     );
   }
+}
+
+Locale getCurrentLocale() {
+  String localeCode = boxCodeMirrorConfig.get(dbNameCodeMirrorConfig)?.language ?? "";
+  if (localeCode.isEmpty) {
+    return Get.locale ?? const Locale('en');
+  }
+  return Locale(localeCode);
 }

@@ -19,6 +19,7 @@ class DbCodeMirrorConfigAdapter extends TypeAdapter<DbCodeMirrorConfig> {
     return DbCodeMirrorConfig(
       showCodeLineNumber: fields[0] as bool,
       codeFontSize: fields[1] as double,
+      language: fields[3] as String?,
       codeThemeName: fields[2] as String,
     );
   }
@@ -26,13 +27,15 @@ class DbCodeMirrorConfigAdapter extends TypeAdapter<DbCodeMirrorConfig> {
   @override
   void write(BinaryWriter writer, DbCodeMirrorConfig obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.showCodeLineNumber)
       ..writeByte(1)
       ..write(obj.codeFontSize)
       ..writeByte(2)
-      ..write(obj.codeThemeName);
+      ..write(obj.codeThemeName)
+      ..writeByte(3)
+      ..write(obj.language);
   }
 
   @override

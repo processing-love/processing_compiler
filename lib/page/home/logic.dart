@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:processing_compiler/db/db_adapter_helper.dart';
 import 'package:processing_compiler/db/db_project_file.dart';
-import 'package:processing_compiler/messages.dart';
+import 'package:processing_compiler/devices/messages.dart';
 import 'package:processing_compiler/widgets/dialog.dart';
 
 import 'state.dart';
@@ -24,17 +24,19 @@ class HomeLogic extends GetxController {
   void onInit() {
     super.onInit();
     state.projectFiles.addAll(boxProjectFile.values);
-    DateMessage().buildCurrentDateMessage();
   }
 
   getOrCreateProjectFile(String name, ProjectType projectType) async {
-    final DbProjectFile projectFile = await gAdapterHelper.getOrCreateProjectFile(name, projectType);
+    final DbProjectFile projectFile =
+        await gAdapterHelper.getOrCreateProjectFile(name, projectType);
     return projectFile;
   }
 
   deleteProject(int index) async {
     final name = state.projectFiles[index].name;
-    showDeleteProjectDialog(state,name, index);
+    showDeleteProjectDialog('config_delete'.tr.replaceAll('x', name), 'delete'.tr, () {
+      state.deleteProject(name, index);
+    });
   }
 
   bool isExist(String name) {
@@ -44,7 +46,6 @@ class HomeLogic extends GetxController {
   void addProjectFile(projectFile) {
     state.projectFiles.add(projectFile);
   }
-  void deleteProjectFile() {
 
-  }
+  void deleteProjectFile() {}
 }

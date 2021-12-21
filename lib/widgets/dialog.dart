@@ -3,18 +3,21 @@ import 'package:get/get.dart';
 import 'package:processing_compiler/db/db_project_file.dart';
 import 'package:processing_compiler/page/editor/view.dart';
 import 'package:processing_compiler/page/home/logic.dart';
-import 'package:processing_compiler/page/home/state.dart';
 
 /// @author u
 /// @date 2020/6/12.
 
-showDeleteProjectDialog(HomeState state, String projectName, int index) {
+showDeleteProjectDialog(String content, String actionName, Function actionTap) {
+  showTalkDialog(content, actionName, actionTap);
+}
+
+showTalkDialog(String content, String actionName, Function actionTap) {
   showDialog(
       context: Get.context!,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('tip'.tr),
-          content: Text('config_delete'.tr.replaceAll('x', projectName)),
+          content: Text(content),
           actions: [
             TextButton(
               child: Text('cancel'.tr),
@@ -23,10 +26,10 @@ showDeleteProjectDialog(HomeState state, String projectName, int index) {
               },
             ),
             TextButton(
-              child: Text('delete'.tr),
+              child: Text(actionName),
               onPressed: () async {
                 Get.back();
-                state.deleteProject(projectName, index);
+                actionTap.call();
               },
             ),
           ],
@@ -108,7 +111,5 @@ showCreateProjectDialog(
             );
           },
         );
-      }).then((value) {
-    FocusScope.of(Get.context!).requestFocus(FocusNode());
-  });
+      });
 }

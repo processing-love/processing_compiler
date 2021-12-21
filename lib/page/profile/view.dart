@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
+import 'package:processing_compiler/page/profile/language_setting_page.dart';
 import 'package:processing_compiler/page/setting/logic.dart';
 import 'package:processing_compiler/page/setting/view.dart';
 
@@ -17,9 +18,15 @@ class ProfilePage extends StatelessWidget {
       body: ListView(
         children: [
           itemWidget(title: '深色模式', onTap: () {}, haveNext: true),
-          itemWidget(title: '多语言', onTap: () {}, haveNext: true),
-          itemWidget(title: '导出', onTap: () {}, haveNext: true),
-          itemWidget(title: '导入', onTap: () {}, haveNext: true),
+          Obx(() {
+            return itemWidget(
+                title: 'language'.tr,
+                onTap: () {
+                  Get.to(LanguageSettingPage());
+                },
+                trailingDesc: state.currentLanguage.value.desc.tr,
+                haveNext: true);
+          }),
         ],
       ),
     );
