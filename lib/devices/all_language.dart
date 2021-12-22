@@ -23,6 +23,8 @@ class Language {
 
 Map<String, Map<String, String>> gAllSupportLanguage = {
   "en": {
+    "theme":'主题风格',
+    'theme_setting':'设置主题风格',
     "app_name": "Processing",
     "create_project": "Create a new project",
     "create_processing": "New processing project",

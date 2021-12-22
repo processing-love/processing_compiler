@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:processing_compiler/db/db_adapter_helper.dart';
 import 'package:processing_compiler/db/db_project_file.dart';
-import 'package:processing_compiler/devices/messages.dart';
 import 'package:processing_compiler/widgets/dialog.dart';
 
 import 'state.dart';

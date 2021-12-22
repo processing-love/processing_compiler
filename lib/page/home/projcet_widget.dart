@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:processing_compiler/devices/messages.dart';
 import 'package:processing_compiler/page/editor/view.dart';
 import 'package:processing_compiler/page/home/logic.dart';
 import 'package:processing_compiler/page/setting/view.dart';

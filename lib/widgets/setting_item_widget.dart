@@ -20,7 +20,7 @@ class SettingItemWidget extends StatelessWidget {
         cardWidget(Column(
           children: item.map((model) {
             if (model.radio ?? false) {
-              return SwitchListTile(
+              return SwitchListTile.adaptive(
                 title: Text(model.title),
                 value: model.radioValue ?? false,
                 onChanged: model.onTap.call(),

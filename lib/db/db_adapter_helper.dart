@@ -8,6 +8,7 @@ import 'package:processing_compiler/db/db_project_file.dart';
 
 const String dbNameCodeMirrorConfig = 'db_code_mirror_config';
 const String dbNameProjectFile = 'db_project_file';
+const String dbNameTheme = 'db_theme';
 late Box<DbCodeMirrorConfig> boxCodeMirrorConfig;
 late Box<DbProjectFile> boxProjectFile;
 

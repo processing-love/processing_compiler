@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:crypto/crypto.dart';
 import 'package:processing_compiler/devices/all_language.dart';
 import 'package:processing_compiler/tools/string_ex.dart';
+
 /// @author u
 /// @date 2020/6/12.
 void main() async {

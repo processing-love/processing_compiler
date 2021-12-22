@@ -43,7 +43,7 @@ class SettingPage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Obx(() {
-                return SwitchListTile(
+                return SwitchListTile.adaptive(
                   title: Text('show_code_line_number'.tr),
                   value: state.showCodeLineNumber.value,
                   onChanged: logic.setShowCodeLineNumber,

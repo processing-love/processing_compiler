@@ -4,6 +4,7 @@ import 'package:processing_compiler/devices/all_language.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/setting/logic.dart';
 import 'package:processing_compiler/widgets/dialog.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 /// @author u
 /// @date 2020/6/12.
@@ -46,6 +47,11 @@ class LanguageSettingPage extends StatelessWidget {
   }
 
   void showTranslateQuestion() {
-    showTalkDialog('language_desc'.tr, 'send'.tr, () {});
+    showTalkDialog('language_desc'.tr, 'send'.tr, () async {
+      launch(Uri(
+        scheme: 'mailto',
+        path: '1611641037@qq.com',
+      ).toString());
+    });
   }
 }
