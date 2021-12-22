@@ -20,6 +20,7 @@ class _ThemeSettingPageState extends State<ThemeSettingPage> {
   @override
   Widget build(BuildContext context) {
     final double margins = Responsive.responsiveInsets(Get.width);
+
     return BasePage(
       title: 'theme_setting'.tr,
       body: ListView(
@@ -41,8 +42,7 @@ class _ThemeSettingPageState extends State<ThemeSettingPage> {
                     onThemeModeChanged: gThemeController.setThemeMode,
                     flexSchemeData:
                         AppColor.schemes[gThemeController.schemeIndex],
-                    optionButtonBorderRadius:
-                        gThemeController.useSubThemes ? 12 : 4,
+                    optionButtonBorderRadius: 4,
                     buttonOrder: FlexThemeModeButtonOrder.lightSystemDark,
                   ),
                   const SizedBox(height: 8),

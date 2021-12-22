@@ -24,7 +24,6 @@ class ThemeController with ChangeNotifier {
   /// it can load all the settings from the service.
   Future<void> loadAll() async {
     _themeMode = await _themeService.themeMode();
-    _useSubThemes = await _themeService.useSubThemes();
     _useTextTheme = await _themeService.useTextTheme();
     _usedScheme = await _themeService.usedScheme();
     _schemeIndex = await _themeService.schemeIndex();
@@ -84,7 +83,6 @@ class ThemeController with ChangeNotifier {
   /// after all values have been reset and persisted.
   Future<void> resetAllToDefaults() async {
     await setThemeMode(ThemeService.defaultThemeMode, false);
-    await setUseSubThemes(ThemeService.defaultUseSubThemes, false);
     await setUseTextTheme(ThemeService.defaultUseTextTheme, false);
     await setUsedScheme(ThemeService.defaultUsedScheme, false);
     await setSchemeIndex(ThemeService.defaultSchemeIndex, false);
@@ -171,16 +169,6 @@ class ThemeController with ChangeNotifier {
   // Repeat above pattern for all other theme settings. The properties will
   // not be further explained, property names correspond to equivalent
   // FlexColorScheme properties.
-  late bool _useSubThemes;
-  bool get useSubThemes => _useSubThemes;
-  Future<void> setUseSubThemes(bool? value, [bool notify = true]) async {
-    if (value == null) return;
-    if (value == _useSubThemes) return;
-    _useSubThemes = value;
-    if (notify) notifyListeners();
-    await _themeService.saveUseSubThemes(value);
-  }
-
   late bool _useTextTheme;
   bool get useTextTheme => _useTextTheme;
   Future<void> setUseTextTheme(bool? value, [bool notify = true]) async {

@@ -23,18 +23,6 @@ abstract class ThemeService {
   /// Persists the ThemeMode in examples 2, 3, 4 and 5.
   Future<void> saveThemeMode(ThemeMode value);
 
-  /// Key used to read and save the useSubThemes value.
-  static const String keyUseSubThemes = 'useSubThemes';
-
-  /// Default value for the useSubThemes, also used to reset settings.
-  static const bool defaultUseSubThemes = true;
-
-  /// Loads the use sub themes setting in examples 2, 3, 4 and 5.
-  Future<bool> useSubThemes();
-
-  /// Persists the use sub themes setting in examples 2, 3, 4 and 5.
-  Future<void> saveUseSubThemes(bool value);
-
   /// Key used to read and save the useTextTheme value.
   static const String keyUseTextTheme = 'useTextTheme';
 

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'db_codemirror_config.dart';
+part of 'db_code_mirror_config.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
@@ -19,9 +19,8 @@ class DbCodeMirrorConfigAdapter extends TypeAdapter<DbCodeMirrorConfig> {
     return DbCodeMirrorConfig(
       showCodeLineNumber: fields[0] as bool,
       codeFontSize: fields[1] as double,
-      language: fields[3] as String?,
       codeThemeName: fields[2] as String,
-    );
+    )..language = fields[3] as String?;
   }
 
   @override

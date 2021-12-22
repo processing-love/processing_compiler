@@ -9,17 +9,19 @@ import 'state.dart';
 class SettingLogic extends GetxController {
   final SettingState state = SettingState();
 
-  void setCurrentLanguageDesc(Language language) {
+  void setCurrentLanguageDesc(Language language) async {
     state.currentLanguage.value = language;
-    Get.updateLocale(Locale(language.code, language.code));
     boxCodeMirrorConfig.get(dbNameCodeMirrorConfig)?.language = language.code;
-    boxCodeMirrorConfig.get(dbNameCodeMirrorConfig)?.save();
+    await boxCodeMirrorConfig.get(dbNameCodeMirrorConfig)?.save();
+    await Get.updateLocale(Locale(language.code, language.code));
+    print(
+        'peter ' + boxCodeMirrorConfig.get(dbNameCodeMirrorConfig).toString());
   }
 
   @override
   void onInit() {
     super.onInit();
     Locale locale = getCurrentLocale();
-    state.currentLanguage.value = Language(locale.languageCode,locale.languageCode,locale.languageCode);
+    state.currentLanguage.value = Language(locale.languageCode, locale.scriptCode ?? "", locale.languageCode);
   }
 }

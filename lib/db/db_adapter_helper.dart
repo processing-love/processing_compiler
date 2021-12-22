@@ -1,6 +1,6 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:processing_compiler/compiler/p5.dart';
-import 'package:processing_compiler/db/db_codemirror_config.dart';
+import 'package:processing_compiler/db/db_code_mirror_config.dart';
 import 'package:processing_compiler/db/db_project_file.dart';
 
 /// @author u
@@ -20,6 +20,10 @@ class DbAdapterHelper {
     boxCodeMirrorConfig =
         await Hive.openBox<DbCodeMirrorConfig>(dbNameCodeMirrorConfig);
     boxProjectFile = await Hive.openBox<DbProjectFile>(dbNameProjectFile);
+
+    if (boxCodeMirrorConfig.isEmpty) {
+      await boxCodeMirrorConfig.put(dbNameCodeMirrorConfig, DbCodeMirrorConfig());
+    }
   }
 
   Future<DbProjectFile> getOrCreateProjectFile(

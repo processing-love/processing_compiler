@@ -1,6 +1,6 @@
 import 'package:hive_flutter/hive_flutter.dart';
 
-part 'db_codemirror_config.g.dart';
+part 'db_code_mirror_config.g.dart';
 
 /// @author u
 /// @date 2020/6/12.
@@ -21,6 +21,10 @@ class DbCodeMirrorConfig extends HiveObject {
   DbCodeMirrorConfig(
       {this.showCodeLineNumber = true,
       this.codeFontSize = 13,
-      this.language = 'en',
       this.codeThemeName = 'material'});
+
+  @override
+  String toString() {
+    return 'DbCodeMirrorConfig{showCodeLineNumber: $showCodeLineNumber, codeFontSize: $codeFontSize, codeThemeName: $codeThemeName, language: $language}';
+  }
 }

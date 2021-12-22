@@ -36,14 +36,6 @@ class ThemeServiceMem implements ThemeService {
   @override
   Future<void> saveThemeMode(ThemeMode value) async {}
 
-  /// Loads the use sub themes setting from mem in examples 2, 3, 4 and 5.
-  @override
-  Future<bool> useSubThemes() async => ThemeService.defaultUseSubThemes;
-
-  /// Persists the use sub themes setting to mem in examples 2, 3, 4 and 5.
-  @override
-  Future<void> saveUseSubThemes(bool value) async {}
-
   /// Loads the useTextTheme setting in example 5.
   @override
   Future<bool> useTextTheme() async => ThemeService.defaultUseTextTheme;

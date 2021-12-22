@@ -37,6 +37,28 @@ showTalkDialog(String content, String actionName, Function actionTap) {
       });
 }
 
+showTalkErrorDialog(String error) {
+  showDialog(
+      context: Get.context!,
+      builder: (context) {
+        return AlertDialog(
+          title: Row(
+            children: [
+              const Icon(
+                Icons.error,
+                color: Colors.red,
+              ).marginOnly(right: 8),
+              Text('tip'.tr)
+            ],
+          ),
+          content: Text(
+            error,
+            style: const TextStyle(color: Colors.red),
+          ),
+        );
+      });
+}
+
 showCreateProjectDialog(
     TextEditingController controller, ProjectType projectType) {
   controller.clear();

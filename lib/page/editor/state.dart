@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:processing_compiler/db/db_adapter_helper.dart';
-import 'package:processing_compiler/db/db_codemirror_config.dart';
+import 'package:processing_compiler/db/db_code_mirror_config.dart';
 import 'package:processing_compiler/db/db_project_file.dart';
 import 'package:processing_compiler/lib/css.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -36,14 +36,7 @@ class EditorState {
   }
 
   initEditorConfig() async {
-    if (boxCodeMirrorConfig.isEmpty) {
-      await boxCodeMirrorConfig.put(
-          dbNameCodeMirrorConfig,
-          DbCodeMirrorConfig(
-            showCodeLineNumber: false,
-            codeFontSize: 13,
-          ));
-    }
+
     dbCodeMirrorConfig = boxCodeMirrorConfig.get(dbNameCodeMirrorConfig)!;
 
     showCodeLineNumber.value = dbCodeMirrorConfig.showCodeLineNumber;

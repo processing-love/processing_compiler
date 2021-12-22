@@ -23,8 +23,9 @@ class Language {
 
 Map<String, Map<String, String>> gAllSupportLanguage = {
   "en": {
-    "theme":'主题风格',
-    'theme_setting':'设置主题风格',
+    "theme": '主题风格',
+    'email_error': '启动邮箱程序失败，请检查是否安装邮箱程序，如有更多问题，请前往应用市场反馈',
+    'theme_setting': '设置主题风格',
     "app_name": "Processing",
     "create_project": "Create a new project",
     "create_processing": "New processing project",

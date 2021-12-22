@@ -70,29 +70,6 @@ class ThemeServicePrefs implements ThemeService {
     }
   }
 
-  /// Loads the use sub themes setting used in examples 2, 3, 4 and 5.
-  @override
-  Future<bool> useSubThemes() async {
-    try {
-      final bool value = _prefs.getBool(ThemeService.keyUseSubThemes) ??
-          ThemeService.defaultUseSubThemes;
-      return value;
-    } catch (e) {
-      debugPrint(e.toString());
-      return ThemeService.defaultUseSubThemes;
-    }
-  }
-
-  /// Persists the use sub themes setting used in examples 2, 3, 4 and 5.
-  @override
-  Future<void> saveUseSubThemes(bool value) async {
-    try {
-      await _prefs.setBool(ThemeService.keyUseSubThemes, value);
-    } catch (e) {
-      debugPrint(e.toString());
-    }
-  }
-
   /// Loads the useTextTheme setting in example 5.
   @override
   Future<bool> useTextTheme() async {

@@ -107,29 +107,6 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads the useSubThemes from Hive box for examples 2, 3, 4 and 5.
-  @override
-  Future<bool> useSubThemes() async {
-    try {
-      return _hiveBox.get(ThemeService.keyUseSubThemes,
-          defaultValue: ThemeService.defaultUseSubThemes) as bool;
-    } catch (e) {
-      debugPrint(e.toString());
-      // If something goes wrong we return the default value.
-      return ThemeService.defaultUseSubThemes;
-    }
-  }
-
-  /// Persists the useSubThemes from Hive box for examples 2, 3, 4 and 5.
-  @override
-  Future<void> saveUseSubThemes(bool value) async {
-    try {
-      await _hiveBox.put(ThemeService.keyUseSubThemes, value);
-    } catch (e) {
-      debugPrint(e.toString());
-    }
-  }
-
   /// Loads the useTextTheme setting for example 5.
   @override
   Future<bool> useTextTheme() async {

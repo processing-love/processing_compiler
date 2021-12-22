@@ -1,14 +1,15 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:processing_compiler/db/db_adapter_helper.dart';
+import 'package:processing_compiler/devices/all_language.dart';
 import 'package:processing_compiler/devices/messages.dart';
 import 'package:processing_compiler/page/main/view.dart';
 import 'package:processing_compiler/theme/theme_controller.dart';
 import 'package:processing_compiler/theme/theme_service.dart';
 import 'package:processing_compiler/theme/theme_service_hive.dart';
 import 'package:processing_compiler/tools/const/app_color.dart';
-import 'package:processing_compiler/tools/const/app_data.dart';
 
 late ThemeController gThemeController;
 
@@ -43,18 +44,16 @@ class MyApp extends StatelessWidget {
             surfaceMode: FlexSurfaceMode.highScaffoldLowSurfaces,
             blendLevel: 5,
             appBarElevation: 0.5,
-            useSubThemes: gThemeController.useSubThemes,
-            visualDensity: AppData.visualDensity,
-            fontFamily: AppData.font,
+            visualDensity: FlexColorScheme.comfortablePlatformDensity,
+            fontFamily: GoogleFonts.notoSans().fontFamily,
           ),
           darkTheme: FlexThemeData.dark(
             colors: AppColor.schemes[gThemeController.schemeIndex].dark,
             surfaceMode: FlexSurfaceMode.highScaffoldLowSurfaces,
             blendLevel: 7,
             appBarElevation: 0.5,
-            useSubThemes: gThemeController.useSubThemes,
-            visualDensity: AppData.visualDensity,
-            fontFamily: AppData.font,
+            visualDensity: FlexColorScheme.comfortablePlatformDensity,
+            fontFamily: GoogleFonts.notoSans().fontFamily,
           ),
           // Use the dark or light theme based on controller setting.
           themeMode: gThemeController.themeMode,
@@ -67,8 +66,14 @@ class MyApp extends StatelessWidget {
 Locale getCurrentLocale() {
   String localeCode =
       boxCodeMirrorConfig.get(dbNameCodeMirrorConfig)?.language ?? "";
+  print('peter locale code ' + localeCode);
+
   if (localeCode.isEmpty) {
-    return Get.locale ?? const Locale('en');
+    return Get.locale ??
+        Locale.fromSubtags(
+            languageCode: gSupportLanguages[0].code,
+            scriptCode: gSupportLanguages[0].desc,
+            countryCode: gSupportLanguages[0].code);
   }
   return Locale(localeCode);
 }
