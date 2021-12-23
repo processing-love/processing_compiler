@@ -48,7 +48,7 @@ class HomeBottomAppBar extends StatelessWidget {
         children: <Widget>[
           IconButton(
             tooltip: 'Open navigation menu',
-            icon: const Icon(Icons.home),
+            icon: const Icon(Icons.home_filled),
             color: selectColor(0),
             onPressed: () {
               logic.changeTabIndex(0);
@@ -56,7 +56,7 @@ class HomeBottomAppBar extends StatelessWidget {
           ),
           IconButton(
             tooltip: 'Favorite',
-            icon: const Icon(Icons.settings),
+            icon: const Icon(Icons.person),
             color: selectColor(1),
             onPressed: () {
               logic.changeTabIndex(1);

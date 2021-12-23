@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:processing_compiler/main.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/editor/editor_setting/logic.dart';
+import 'package:processing_compiler/page/profile/contact_me_page.dart';
 import 'package:processing_compiler/page/profile/language_setting_page.dart';
 import 'package:processing_compiler/page/profile/theme_setting_page.dart';
 import 'package:processing_compiler/widgets/item_widget.dart';
@@ -27,6 +29,7 @@ class ProfilePage extends StatelessWidget {
                   onTap: () {
                     Get.to(const ThemeSettingPage());
                   },
+                  trailingDesc: getThemeName(),
                   haveNext: true),
               itemListTile(
                   title: 'language'.tr,
@@ -35,10 +38,32 @@ class ProfilePage extends StatelessWidget {
                   },
                   trailingDesc: state.currentLanguage.value.desc.tr,
                   haveNext: true),
+              itemListTile(
+                  title: 'about'.tr,
+                  onTap: () {
+                    Get.to(const ContactMePage());
+                  },
+                  haveNext: true),
             ],
           ));
         }),
       ],
     );
+  }
+
+  String getThemeName() {
+    var name = gThemeController.themeMode.name;
+    switch (name) {
+      case 'light':
+        name = 'light_mode'.tr;
+        break;
+      case 'dark':
+        name = 'dark_mode'.tr;
+        break;
+      default:
+        name = 'system_mode'.tr;
+        break;
+    }
+    return name;
   }
 }

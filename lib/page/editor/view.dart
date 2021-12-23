@@ -56,10 +56,10 @@ class EditorPage extends StatelessWidget {
   _run() async {
     final String result = await logic.buildPreviewCode();
     Get.bottomSheet(
-        CodeMirrorWebView(
-          rawCode: result,
-        ),
-        enableDrag: false,
-        barrierColor: Colors.black38);
+      CodeMirrorWebView(
+        rawCode: result,
+      ),
+      enableDrag: false,
+    );
   }
 }

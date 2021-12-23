@@ -155,7 +155,6 @@ class ThemeController with ChangeNotifier {
 
   /// Set and persist new ThemeMode value.
   Future<void> setThemeMode(ThemeMode? value, [bool notify = true]) async {
-    print('peter mode ' + value.toString() + " before " + _themeMode.toString());
     // No work if null value passed.
     if (value == null) return;
     // Do not perform any work if new and old value are identical.

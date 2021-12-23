@@ -49,14 +49,18 @@ class LanguageSettingPage extends StatelessWidget {
   }
 
   void showTranslateQuestion() {
-    showTalkDialog('language_desc'.tr, 'send'.tr, () async {
-      final result = await launch(Uri(
-        scheme: 'mailto',
-        path: '1611641037@qq.com',
-      ).toString());
-      if (!result) {
-        showTalkErrorDialog('email_error'.tr);
-      }
+    showTalkDialog('language_desc'.tr, 'send'.tr, () {
+      gotoEmail();
     });
+  }
+}
+
+gotoEmail() async {
+  final result = await launch(Uri(
+    scheme: 'mailto',
+    path: '1611641037@qq.com',
+  ).toString());
+  if (!result) {
+    showTalkErrorDialog('email_error'.tr);
   }
 }

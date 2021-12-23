@@ -49,7 +49,7 @@ class _CodeMirrorWebViewState extends State<CodeMirrorWebView> {
           debuggingEnabled: true,
           javascriptMode: JavascriptMode.unrestricted,
           javascriptChannels: widget.javascriptChannel,
-          backgroundColor: widget.backgroundColor ?? Colors.transparent,
+          backgroundColor: widget.backgroundColor ?? Colors.white,
           onPageFinished: (String url) {
             isLoading = false;
             setState(() {});

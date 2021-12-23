@@ -21,5 +21,6 @@ class EditorSettingLogic extends GetxController {
     super.onInit();
     Locale locale = getCurrentLocale();
     state.currentLanguage.value = Language(locale.languageCode, locale.scriptCode ?? "", locale.languageCode);
+    print(' valeu ' + state.currentLanguage.value.code.toString());
   }
 }

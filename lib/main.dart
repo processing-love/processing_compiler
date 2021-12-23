@@ -73,5 +73,6 @@ Locale getCurrentLocale() {
             scriptCode: gSupportLanguages[0].desc,
             countryCode: gSupportLanguages[0].code);
   }
-  return Locale(localeCode);
+  Language language = gSupportLanguages.firstWhere((element) => element.code == localeCode);
+  return Locale.fromSubtags(languageCode: language.code,scriptCode: language.desc,countryCode: language.code);
 }

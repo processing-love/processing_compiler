@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:processing_compiler/compiler/p5.dart';
-import 'package:processing_compiler/lib/css.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/editor/logic.dart';
-import 'package:processing_compiler/tools/color_utils.dart';
 import 'package:processing_compiler/tools/responsive.dart';
 import 'package:processing_compiler/widgets/code_mirror_web_view.dart';
 import 'package:processing_compiler/widgets/item_widget.dart';
@@ -26,8 +24,6 @@ class EditorSettingPage extends StatelessWidget {
                 builder: (BuildContext context, BoxConstraints constraints) {
           return CodeMirrorWebView(
             htmlPath: 'assets/code_mirror.html',
-            backgroundColor:
-                ColorUtils.createMaterialHexColor(CSS().getCSS().hexColor),
             onWebViewFinishCreated: (controller) {
               final raw = Uri.encodeComponent(gP5ExampleCode);
               state.setSettingWebController(controller);
@@ -54,10 +50,12 @@ class EditorSettingPage extends StatelessWidget {
                   haveNext: true,
                   trailingDesc: state.codeFontSize.value.toInt().toString(),
                   onTap: () async {
-                    Get.bottomSheet(
-                        Wrap(
-                          alignment: WrapAlignment.center,
-                          runAlignment: WrapAlignment.center,
+                    Get.bottomSheet(ListView(
+                      shrinkWrap: true,
+                      itemExtent: Get.height / 3,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Obx(() {
                               return Slider(
@@ -70,10 +68,14 @@ class EditorSettingPage extends StatelessWidget {
                             Text(
                               'slide_setting_font_size'.tr,
                               style: Get.textTheme.bodyText1,
-                            ).marginOnly(bottom: Get.height / 3 / 3, top: 14)
+                            ).marginOnly(top: 14)
                           ],
-                        ).height(Get.height / 3).backgroundColor(Colors.white),
-                        barrierColor: Colors.black38);
+                        ),
+                      ],
+                    ).decorated(
+                        color: Get.theme.scaffoldBackgroundColor,
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(8))));
                   }),
               itemListTile(
                 title: 'code_theme'.tr,
