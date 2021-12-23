@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:processing_compiler/compiler/p5.dart';
-import 'package:processing_compiler/db/db_project_file.dart';
-import 'package:processing_compiler/devices/messages.dart';
+import 'package:processing_compiler/lib/css.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/editor/logic.dart';
+import 'package:processing_compiler/tools/color_utils.dart';
+import 'package:processing_compiler/tools/responsive.dart';
 import 'package:processing_compiler/widgets/code_mirror_web_view.dart';
-import 'package:processing_compiler/widgets/setting_item_widget.dart';
+import 'package:processing_compiler/widgets/item_widget.dart';
 import 'package:styled_widget/styled_widget.dart';
-import 'package:timeago/timeago.dart';
 
-class SettingPage extends StatelessWidget {
+class EditorSettingPage extends StatelessWidget {
   final logic = Get.put(EditorLogic());
   final state = Get.find<EditorLogic>().state;
 
-  SettingPage({Key? key}) : super(key: key);
+  EditorSettingPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,25 +23,28 @@ class SettingPage extends StatelessWidget {
       isContentList: true,
       contentListWidgets: [
         LayoutBuilder(
-            builder: (BuildContext context, BoxConstraints constraints) {
+                builder: (BuildContext context, BoxConstraints constraints) {
           return CodeMirrorWebView(
             htmlPath: 'assets/code_mirror.html',
+            backgroundColor:
+                ColorUtils.createMaterialHexColor(CSS().getCSS().hexColor),
             onWebViewFinishCreated: (controller) {
               final raw = Uri.encodeComponent(gP5ExampleCode);
               state.setSettingWebController(controller);
               controller.runJavascript('''
                       editor.setOption('readOnly','nocursor',);
                       editor.setValue(decodeURIComponent("$raw"));
-                      editor.setSize(${constraints.maxWidth},${constraints.maxHeight});
                       ''');
             },
           );
-        }).constrained(width: Get.width, height: Get.height / 3).marginAll(12),
+        })
+            .constrained(width: Get.width, height: Get.height / 3)
+            .marginOnly(bottom: Responsive.responsiveInsets()),
         Obx(() {
           return cardItemWidget(
               child: Column(
             children: [
-              SwitchListTile.adaptive(
+              SwitchListTile(
                 title: Text('show_code_line_number'.tr),
                 value: state.showCodeLineNumber.value,
                 onChanged: logic.setShowCodeLineNumber,
@@ -67,7 +69,7 @@ class SettingPage extends StatelessWidget {
                             }),
                             Text(
                               'slide_setting_font_size'.tr,
-                              style: Get.textTheme.caption,
+                              style: Get.textTheme.bodyText1,
                             ).marginOnly(bottom: Get.height / 3 / 3, top: 14)
                           ],
                         ).height(Get.height / 3).backgroundColor(Colors.white),
@@ -107,62 +109,4 @@ class SettingPage extends StatelessWidget {
       ],
     );
   }
-}
-
-itemListTile(
-    {required String title,
-    bool? haveNext,
-    required Function onTap,
-    IconData? leading,
-    String? subTitle,
-    String? trailingDesc}) {
-  return ListTile(
-    title: Text(title),
-    trailing: haveNext ?? false
-        ? Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                trailingDesc ?? "",
-                style: Get.textTheme.caption,
-              ),
-              const Icon(Icons.keyboard_arrow_right)
-            ],
-          )
-        : null,
-    onTap: () {
-      onTap.call();
-    },
-    leading: leading == null ? null : Icon(leading),
-    subtitle: subTitle == null ? null : Text(subTitle),
-  );
-}
-
-Widget itemWidgetForSlide(
-    Function onPressed, Function slideTapFunction, DbProjectFile project) {
-  DateMessage().buildCurrentDateMessage();
-  return Slidable(
-    endActionPane: ActionPane(
-      motion: const ScrollMotion(),
-      children: [
-        SlidableAction(
-          onPressed: (_) {
-            slideTapFunction.call();
-          },
-          backgroundColor: Colors.red,
-          foregroundColor: Colors.white,
-          icon: Icons.delete,
-          label: 'delete'.tr,
-        ),
-      ],
-    ),
-    child: itemListTile(
-        title: project.name,
-        onTap: () {
-          onPressed.call(project);
-        },
-        haveNext: true,
-        leading: Icons.folder_outlined,
-        subTitle: format(DateTime.fromMillisecondsSinceEpoch(project.time))),
-  );
 }

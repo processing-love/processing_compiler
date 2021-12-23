@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:processing_compiler/main.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/tools/const/app_color.dart';
-import 'package:processing_compiler/widgets/setting_item_widget.dart';
+import 'package:processing_compiler/widgets/item_widget.dart';
 
 /// @author u
 /// @date 2020/6/12.
@@ -25,7 +25,22 @@ class _ThemeSettingPageState extends State<ThemeSettingPage> {
         cardItemWidget(
             child: FlexThemeModeSwitch(
               themeMode: gThemeController.themeMode,
-              onThemeModeChanged: gThemeController.setThemeMode,
+              labelLight: 'light_mode'.tr,
+              labelSystem: 'system_mode'.tr,
+              labelDark: 'dark_mode'.tr,
+              title: Center(
+                child: TextButton(
+                  onPressed: () {
+                    gThemeController.resetAllToDefaults();
+                    setState(() {});
+                  },
+                  child: Text('reset'.tr),
+                ),
+              ),
+              onThemeModeChanged: (mode) {
+                gThemeController.setThemeMode(mode);
+                setState(() {});
+              },
               flexSchemeData: AppColor.schemes[gThemeController.schemeIndex],
               buttonOrder: FlexThemeModeButtonOrder.lightSystemDark,
             ),
@@ -35,7 +50,7 @@ class _ThemeSettingPageState extends State<ThemeSettingPage> {
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: Get.width ~/ 100, //每行三列
+            crossAxisCount: Get.width ~/ 80, //每行三列
             childAspectRatio: 1.0, //显示区域宽高相等
           ),
           itemCount: AppColor.schemes.length,

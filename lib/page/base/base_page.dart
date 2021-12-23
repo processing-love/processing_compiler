@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:processing_compiler/tools/responsive.dart';
 
 /// @author u
@@ -44,9 +43,11 @@ class BasePage extends StatelessWidget {
   }
 
   Widget buildListContentWidget() {
-    return ListView(
-      padding: EdgeInsets.all(Responsive.responsiveInsets()),
-      children: contentListWidgets ?? [],
+    return Scrollbar(
+      child: ListView(
+        padding: EdgeInsets.all(Responsive.responsiveInsets()),
+        children: contentListWidgets ?? [],
+      ),
     );
   }
 }

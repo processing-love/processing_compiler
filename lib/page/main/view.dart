@@ -69,6 +69,6 @@ class HomeBottomAppBar extends StatelessWidget {
 
   Color selectColor(int index) {
     bool isSelect = index == state.currentIndex.value;
-    return isSelect ? Colors.black : Colors.black45;
+    return isSelect ? Colors.black : Colors.black54;
   }
 }

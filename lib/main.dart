@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
             visualDensity: FlexColorScheme.comfortablePlatformDensity,
             fontFamily: GoogleFonts.notoSans().fontFamily,
           ),
-          // Use the dark or light theme based on controller setting.
+          // Use the dark or light theme based on controller editor_setting.
           themeMode: gThemeController.themeMode,
         );
       },

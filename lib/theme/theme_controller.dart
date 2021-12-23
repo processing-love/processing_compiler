@@ -1,6 +1,7 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:processing_compiler/main.dart';
 import 'package:processing_compiler/theme/theme_service.dart';
 
 import 'theme_service.dart';
@@ -154,6 +155,7 @@ class ThemeController with ChangeNotifier {
 
   /// Set and persist new ThemeMode value.
   Future<void> setThemeMode(ThemeMode? value, [bool notify = true]) async {
+    print('peter mode ' + value.toString() + " before " + _themeMode.toString());
     // No work if null value passed.
     if (value == null) return;
     // Do not perform any work if new and old value are identical.
@@ -164,6 +166,8 @@ class ThemeController with ChangeNotifier {
     if (notify) notifyListeners();
     // Persist the change to whatever storage is used with the ThemeService.
     await _themeService.saveThemeMode(value);
+
+    print('index '  +gThemeController.schemeIndex.toString());
   }
 
   // Repeat above pattern for all other theme settings. The properties will
@@ -633,7 +637,7 @@ class ThemeController with ChangeNotifier {
 
   // Set the custom scheme colors to the colors scheme FlexSchemeData.
   Future<void> setCustomScheme(FlexSchemeData scheme) async {
-    // Don't notify listeners while setting new values for each value.
+    // Don't notify listeners while editor_setting new values for each value.
     await setPrimaryLight(scheme.light.primary, false);
     await setPrimaryVariantLight(scheme.light.primaryVariant, false);
     await setSecondaryLight(scheme.light.secondary, false);

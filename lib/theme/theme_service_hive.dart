@@ -10,7 +10,7 @@ import 'theme_service_hive_adapters.dart';
 /// locally using the package Hive:
 /// https://pub.dev/packages/hive
 ///
-/// This service on purpose demonstrates persisting each theme setting value as
+/// This service on purpose demonstrates persisting each theme editor_setting value as
 /// its own string key and value pair. With this amount of values,
 /// bundling them all up in a data class and persisting them all as one big
 /// serialized JSON string, with just one settings key, would be more
@@ -107,7 +107,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads the useTextTheme setting for example 5.
+  /// Loads the useTextTheme editor_setting for example 5.
   @override
   Future<bool> useTextTheme() async {
     try {
@@ -120,7 +120,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists the useTextTheme setting for example 5.
+  /// Persists the useTextTheme editor_setting for example 5.
   @override
   Future<void> saveUseTextTheme(bool value) async {
     try {
@@ -130,7 +130,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads the used scheme setting for example 3.
+  /// Loads the used scheme editor_setting for example 3.
   @override
   Future<FlexScheme> usedScheme() async {
     try {
@@ -143,7 +143,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists the used scheme setting for example 3.
+  /// Persists the used scheme editor_setting for example 3.
   @override
   Future<void> saveUsedScheme(FlexScheme value) async {
     try {
@@ -153,7 +153,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads used scheme index setting for examples 4 and 5.
+  /// Loads used scheme index editor_setting for examples 4 and 5.
   @override
   Future<int> schemeIndex() async {
     try {
@@ -166,7 +166,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists the used scheme setting for examples 4 and 5.
+  /// Persists the used scheme editor_setting for examples 4 and 5.
   @override
   Future<void> saveSchemeIndex(int value) async {
     try {
@@ -176,7 +176,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads used themed effects setting in example 5.
+  /// Loads used themed effects editor_setting in example 5.
   @override
   Future<bool> interactionEffects() async {
     try {
@@ -189,7 +189,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists used themed effects setting in example 5.
+  /// Persists used themed effects editor_setting in example 5.
   @override
   Future<void> saveInteractionEffects(bool value) async {
     try {
@@ -199,7 +199,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads used useDefaultRadius setting in example 5.
+  /// Loads used useDefaultRadius editor_setting in example 5.
   @override
   Future<bool> useDefaultRadius() async {
     try {
@@ -212,7 +212,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists the useDefaultRadius setting in example 5.
+  /// Persists the useDefaultRadius editor_setting in example 5.
   @override
   Future<void> saveUseDefaultRadius(bool value) async {
     try {
@@ -222,7 +222,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads used corner radius setting in example 5.
+  /// Loads used corner radius editor_setting in example 5.
   @override
   Future<double> cornerRadius() async {
     try {
@@ -235,7 +235,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists the used corner radius setting in example 5.
+  /// Persists the used corner radius editor_setting in example 5.
   @override
   Future<void> saveCornerRadius(double value) async {
     try {
@@ -245,7 +245,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads used inputDecoratorIsFilled setting in example 5.
+  /// Loads used inputDecoratorIsFilled editor_setting in example 5.
   @override
   Future<bool> inputDecoratorIsFilled() async {
     try {
@@ -258,7 +258,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists used inputDecoratorIsFilled setting in example 5.
+  /// Persists used inputDecoratorIsFilled editor_setting in example 5.
   @override
   Future<void> saveInputDecoratorIsFilled(bool value) async {
     try {
@@ -268,7 +268,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads used inputDecoratorBorderType setting in example 5.
+  /// Loads used inputDecoratorBorderType editor_setting in example 5.
   @override
   Future<FlexInputBorderType> inputDecoratorBorderType() async {
     try {
@@ -282,7 +282,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists used inputDecoratorBorderType setting in example 5.
+  /// Persists used inputDecoratorBorderType editor_setting in example 5.
   @override
   Future<void> saveInputDecoratorBorderType(FlexInputBorderType value) async {
     try {
@@ -292,7 +292,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads used inputDecoratorUnfocusedHasBorder setting in example 5.
+  /// Loads used inputDecoratorUnfocusedHasBorder editor_setting in example 5.
   @override
   Future<bool> inputDecoratorUnfocusedHasBorder() async {
     try {
@@ -306,7 +306,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists used inputDecoratorUnfocusedHasBorder setting in example 5.
+  /// Persists used inputDecoratorUnfocusedHasBorder editor_setting in example 5.
   @override
   Future<void> saveInputDecoratorUnfocusedHasBorder(bool value) async {
     try {
@@ -317,7 +317,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads used surface mode setting in example 5.
+  /// Loads used surface mode editor_setting in example 5.
   @override
   Future<FlexSurfaceMode> surfaceMode() async {
     try {
@@ -330,7 +330,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists the used surface mode setting in example 5.
+  /// Persists the used surface mode editor_setting in example 5.
   @override
   Future<void> saveSurfaceMode(FlexSurfaceMode value) async {
     try {
@@ -340,7 +340,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads used surface blend level setting in example 5.
+  /// Loads used surface blend level editor_setting in example 5.
   @override
   Future<int> blendLevel() async {
     try {
@@ -353,7 +353,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists the used surface blend level setting in example 5.
+  /// Persists the used surface blend level editor_setting in example 5.
   @override
   Future<void> saveBlendLevel(int value) async {
     try {
@@ -363,7 +363,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads used app bar style for light theme setting in example 5.
+  /// Loads used app bar style for light theme editor_setting in example 5.
   @override
   Future<FlexAppBarStyle> lightAppBarStyle() async {
     try {
@@ -377,7 +377,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists the used app bar style for light theme setting in example 5.
+  /// Persists the used app bar style for light theme editor_setting in example 5.
   @override
   Future<void> saveLightAppBarStyle(FlexAppBarStyle value) async {
     try {
@@ -387,7 +387,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads used app bar style for dark theme setting in example 5.
+  /// Loads used app bar style for dark theme editor_setting in example 5.
   @override
   Future<FlexAppBarStyle> darkAppBarStyle() async {
     try {
@@ -400,7 +400,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists the used app bar style for dark theme setting in example 5.
+  /// Persists the used app bar style for dark theme editor_setting in example 5.
   @override
   Future<void> saveDarkAppBarStyle(FlexAppBarStyle value) async {
     try {
@@ -410,7 +410,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads used app bar opacity setting in example 5.
+  /// Loads used app bar opacity editor_setting in example 5.
   @override
   Future<double> appBarOpacity() async {
     try {
@@ -423,7 +423,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists the used app bar opacity setting in example 5.
+  /// Persists the used app bar opacity editor_setting in example 5.
   @override
   Future<void> saveAppBarOpacity(double value) async {
     try {
@@ -433,7 +433,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads used app bar elevation setting in example 5.
+  /// Loads used app bar elevation editor_setting in example 5.
   @override
   Future<double> appBarElevation() async {
     try {
@@ -446,7 +446,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists the used app bar elevation setting in example 5.
+  /// Persists the used app bar elevation editor_setting in example 5.
   @override
   Future<void> saveAppBarElevation(double value) async {
     try {
@@ -456,7 +456,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads used status bar transparency setting in example 5.
+  /// Loads used status bar transparency editor_setting in example 5.
   @override
   Future<bool> transparentStatusBar() async {
     try {
@@ -469,7 +469,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists used status bar transparency setting in example 5.
+  /// Persists used status bar transparency editor_setting in example 5.
   @override
   Future<void> saveTransparentStatusBar(bool value) async {
     try {
@@ -479,7 +479,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads used tab bar style setting in example 5.
+  /// Loads used tab bar style editor_setting in example 5.
   @override
   Future<FlexTabBarStyle> tabBarStyle() async {
     try {
@@ -492,7 +492,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists used tab bar style setting in example 5.
+  /// Persists used tab bar style editor_setting in example 5.
   @override
   Future<void> saveTabBarStyle(FlexTabBarStyle value) async {
     try {
@@ -502,7 +502,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads used bottom navigation bar opacity setting in example 5.
+  /// Loads used bottom navigation bar opacity editor_setting in example 5.
   @override
   Future<double> bottomNavigationBarOpacity() async {
     try {
@@ -516,7 +516,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists the used app bar opacity setting in example 5.
+  /// Persists the used app bar opacity editor_setting in example 5.
   @override
   Future<void> saveBottomNavigationBarOpacity(double value) async {
     try {
@@ -526,7 +526,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads used bottom navigation bar elevation setting in example 5.
+  /// Loads used bottom navigation bar elevation editor_setting in example 5.
   @override
   Future<double> bottomNavigationBarElevation() async {
     try {
@@ -540,7 +540,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists the used app bar elevation setting in example 5.
+  /// Persists the used app bar elevation editor_setting in example 5.
   @override
   Future<void> saveBottomNavigationBarElevation(double value) async {
     try {
@@ -550,7 +550,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads used navBarStyle setting in example 5.
+  /// Loads used navBarStyle editor_setting in example 5.
   @override
   Future<FlexSystemNavBarStyle> navBarStyle() async {
     try {
@@ -564,7 +564,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists used navBarStyle setting in example 5.
+  /// Persists used navBarStyle editor_setting in example 5.
   @override
   Future<void> saveNavBarStyle(FlexSystemNavBarStyle value) async {
     try {
@@ -574,7 +574,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads used useNavDivider setting in example 5.
+  /// Loads used useNavDivider editor_setting in example 5.
   @override
   Future<bool> useNavDivider() async {
     try {
@@ -587,7 +587,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists useNavDivider setting in example 5.
+  /// Persists useNavDivider editor_setting in example 5.
   @override
   Future<void> saveUseNavDivider(bool value) async {
     try {
@@ -597,7 +597,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads used tooltip style setting in example 5.
+  /// Loads used tooltip style editor_setting in example 5.
   @override
   Future<bool> tooltipsMatchBackground() async {
     try {
@@ -610,7 +610,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists used tooltip style setting in example 5.
+  /// Persists used tooltip style editor_setting in example 5.
   @override
   Future<void> saveTooltipsMatchBackground(bool value) async {
     try {
@@ -666,7 +666,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads lightIsWhite setting, in example 5.
+  /// Loads lightIsWhite editor_setting, in example 5.
   @override
   Future<bool> lightIsWhite() async {
     try {
@@ -679,7 +679,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists lightIsWhite setting, in example 5.
+  /// Persists lightIsWhite editor_setting, in example 5.
   @override
   Future<void> saveLightIsWhite(bool value) async {
     try {
@@ -689,7 +689,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads dark uses true black setting in dark mode, in example 5.
+  /// Loads dark uses true black editor_setting in dark mode, in example 5.
   @override
   Future<bool> darkIsTrueBlack() async {
     try {
@@ -702,7 +702,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists dark uses true black setting in dark mode, in example 5.
+  /// Persists dark uses true black editor_setting in dark mode, in example 5.
   @override
   Future<void> saveDarkIsTrueBlack(bool value) async {
     try {
@@ -712,7 +712,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads use computed dark mode setting, in example 5.
+  /// Loads use computed dark mode editor_setting, in example 5.
   @override
   Future<bool> useToDarkMethod() async {
     try {
@@ -725,7 +725,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists use computed dark mode setting, in example 5.
+  /// Persists use computed dark mode editor_setting, in example 5.
   @override
   Future<void> saveUseToDarkMethod(bool value) async {
     try {
@@ -735,7 +735,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads use computed dark mode level setting, in example 5.
+  /// Loads use computed dark mode level editor_setting, in example 5.
   @override
   Future<int> darkMethodLevel() async {
     try {
@@ -748,7 +748,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists use computed dark mode level setting, in example 5.
+  /// Persists use computed dark mode level editor_setting, in example 5.
   @override
   Future<void> saveDarkMethodLevel(int value) async {
     try {
@@ -758,7 +758,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads setting that turns ON/OFF FlexColorScheme theme, in example 5.
+  /// Loads editor_setting that turns ON/OFF FlexColorScheme theme, in example 5.
   @override
   Future<bool> useFlexColorScheme() async {
     try {
@@ -771,7 +771,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists setting that turns ON/OFF FlexColorScheme theme, in example 5.
+  /// Persists editor_setting that turns ON/OFF FlexColorScheme theme, in example 5.
   @override
   Future<void> saveUseFlexColorScheme(bool value) async {
     try {
@@ -781,7 +781,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads setting that blends light colors, in example 5.
+  /// Loads editor_setting that blends light colors, in example 5.
   @override
   Future<bool> blendLightOnColors() async {
     try {
@@ -794,7 +794,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists setting that blends light colors, in example 5.
+  /// Persists editor_setting that blends light colors, in example 5.
   @override
   Future<void> saveBlendLightOnColors(bool value) async {
     try {
@@ -804,7 +804,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads setting that blends dark colors, in example 5.
+  /// Loads editor_setting that blends dark colors, in example 5.
   @override
   Future<bool> blendDarkOnColors() async {
     try {
@@ -817,7 +817,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists setting that blends dark colors, in example 5.
+  /// Persists editor_setting that blends dark colors, in example 5.
   @override
   Future<void> saveBlendDarkOnColors(bool value) async {
     try {
@@ -827,7 +827,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads setting that blends light text theme, in example 5.
+  /// Loads editor_setting that blends light text theme, in example 5.
   @override
   Future<bool> blendLightTextTheme() async {
     try {
@@ -840,7 +840,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists setting that blends light text theme, in example 5.
+  /// Persists editor_setting that blends light text theme, in example 5.
   @override
   Future<void> saveBlendLightTextTheme(bool value) async {
     try {
@@ -850,7 +850,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads setting that blends dark text theme, in example 5.
+  /// Loads editor_setting that blends dark text theme, in example 5.
   @override
   Future<bool> blendDarkTextTheme() async {
     try {
@@ -863,7 +863,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists setting that blends dark text theme, in example 5.
+  /// Persists editor_setting that blends dark text theme, in example 5.
   @override
   Future<void> saveBlendDarkTextTheme(bool value) async {
     try {
@@ -873,7 +873,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads setting for fabUseShape, in example 5.
+  /// Loads editor_setting for fabUseShape, in example 5.
   @override
   Future<bool> fabUseShape() async {
     try {
@@ -886,7 +886,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists setting for fabUseShape, in example 5.
+  /// Persists editor_setting for fabUseShape, in example 5.
   @override
   Future<void> saveFabUseShape(bool value) async {
     try {
@@ -896,7 +896,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads setting for primaryLight color, in example 5.
+  /// Loads editor_setting for primaryLight color, in example 5.
   @override
   Future<Color> primaryLight() async {
     try {
@@ -909,7 +909,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists setting for primaryLight color, in example 5.
+  /// Persists editor_setting for primaryLight color, in example 5.
   @override
   Future<void> savePrimaryLight(Color value) async {
     try {
@@ -919,7 +919,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads setting for primaryVariantLight color, in example 5.
+  /// Loads editor_setting for primaryVariantLight color, in example 5.
   @override
   Future<Color> primaryVariantLight() async {
     try {
@@ -932,7 +932,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists setting for primaryVariantLight color, in example 5.
+  /// Persists editor_setting for primaryVariantLight color, in example 5.
   @override
   Future<void> savePrimaryVariantLight(Color value) async {
     try {
@@ -942,7 +942,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads setting for secondaryLight color, in example 5.
+  /// Loads editor_setting for secondaryLight color, in example 5.
   @override
   Future<Color> secondaryLight() async {
     try {
@@ -955,7 +955,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists setting for secondaryLight color, in example 5.
+  /// Persists editor_setting for secondaryLight color, in example 5.
   @override
   Future<void> saveSecondaryLight(Color value) async {
     try {
@@ -965,7 +965,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads setting for secondaryVariantLight color, in example 5.
+  /// Loads editor_setting for secondaryVariantLight color, in example 5.
   @override
   Future<Color> secondaryVariantLight() async {
     try {
@@ -978,7 +978,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists setting for secondaryVariantLight color, in example 5.
+  /// Persists editor_setting for secondaryVariantLight color, in example 5.
   @override
   Future<void> saveSecondaryVariantLight(Color value) async {
     try {
@@ -988,7 +988,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads setting for primaryDark color, in example 5.
+  /// Loads editor_setting for primaryDark color, in example 5.
   @override
   Future<Color> primaryDark() async {
     try {
@@ -1001,7 +1001,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists setting for primaryDark color, in example 5.
+  /// Persists editor_setting for primaryDark color, in example 5.
   @override
   Future<void> savePrimaryDark(Color value) async {
     try {
@@ -1011,7 +1011,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads setting for primaryVariantDark color, in example 5.
+  /// Loads editor_setting for primaryVariantDark color, in example 5.
   @override
   Future<Color> primaryVariantDark() async {
     try {
@@ -1024,7 +1024,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists setting for primaryVariantDark color, in example 5.
+  /// Persists editor_setting for primaryVariantDark color, in example 5.
   @override
   Future<void> savePrimaryVariantDark(Color value) async {
     try {
@@ -1034,7 +1034,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads setting for secondaryDark color, in example 5.
+  /// Loads editor_setting for secondaryDark color, in example 5.
   @override
   Future<Color> secondaryDark() async {
     try {
@@ -1047,7 +1047,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists setting for secondaryDark color, in example 5.
+  /// Persists editor_setting for secondaryDark color, in example 5.
   @override
   Future<void> saveSecondaryDark(Color value) async {
     try {
@@ -1057,7 +1057,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Loads setting for secondaryVariantDark color, in example 5.
+  /// Loads editor_setting for secondaryVariantDark color, in example 5.
   @override
   Future<Color> secondaryVariantDark() async {
     try {
@@ -1070,7 +1070,7 @@ class ThemeServiceHive implements ThemeService {
     }
   }
 
-  /// Persists setting for secondaryVariantDark color, in example 5.
+  /// Persists editor_setting for secondaryVariantDark color, in example 5.
   @override
   Future<void> saveSecondaryVariantDark(Color value) async {
     try {

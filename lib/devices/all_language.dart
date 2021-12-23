@@ -23,9 +23,10 @@ class Language {
 
 Map<String, Map<String, String>> gAllSupportLanguage = {
   "en": {
-    "theme": '主题风格',
-    'email_error': '启动邮箱程序失败，请检查是否安装邮箱程序，如有更多问题，请前往应用市场反馈',
-    'theme_setting': '设置主题风格',
+    "theme": "Theme style",
+    "email_error":
+        "Failed to start the mailbox program. Please check whether the mailbox program is installed. If you have more questions, please go to the application market for feedback",
+    "theme_setting": "Set theme style",
     "app_name": "Processing",
     "create_project": "Create a new project",
     "create_processing": "New processing project",
@@ -70,6 +71,13 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "send": "Send out"
   },
   "zh": {
+    'light_mode':'浅色模式',
+    'dark_mode':'深色模式',
+    'system_mode':'跟随系统',
+    'reset':'恢复默认模式',
+    "theme": "主题风格",
+    "email_error": "启动邮箱程序失败，请检查是否安装邮箱程序，如有更多问题，请前往应用市场反馈",
+    "theme_setting": "设置主题风格",
     "app_name": "Processing",
     "create_project": "创建一个新项目",
     "create_processing": "新建Processing项目",
@@ -108,10 +116,13 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "德语": "德语",
     "意大利语": "意大利语",
     "韩语": "韩语",
-    "language_desc": "如果有内容翻译不对，请发邮件联系我，非常感谢您的支持和理解!",
+    "language_desc": "如果有内容翻译不对或者需要增加新的语言，请发邮件联系我，非常感谢您的支持和理解!",
     "send": "发送"
   },
   "cht": {
+    "theme": "主題風格",
+    "email_error": "啟動郵箱程式失敗，請檢查是否安裝郵箱程式，如有更多問題，請前往應用市場迴響",
+    "theme_setting": "設定主題風格",
     "app_name": "Processing",
     "create_project": "創建一個新項目",
     "create_processing": "新建Processing項目",
@@ -154,6 +165,10 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "send": "發送"
   },
   "jp": {
+    "theme": "テーマスタイル",
+    "email_error":
+        "メールボックスプログラムの起動に失敗しました。メールボックスプログラムをインストールするかどうかを確認してください。詳細については、アプリケーション市場のフィードバックに行ってください。",
+    "theme_setting": "テーマスタイルの設定",
     "app_name": "Processing",
     "create_project": "新規プロジェクトの作成",
     "create_processing": "新規プロセスプロジェクト",
@@ -196,6 +211,10 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "send": "送信"
   },
   "spa": {
+    "theme": "Estilo temático",
+    "email_error":
+        "Fallo al iniciar el programa de buzón de correo. Compruebe si el programa de buzón de correo está instalado. Para más preguntas, vaya a la aplicación de retroalimentación del mercado",
+    "theme_setting": "Establecer estilo de tema",
     "app_name": "Procesamiento",
     "create_project": "Crear un nuevo proyecto",
     "create_processing": "Nuevo proyecto de procesamiento",
@@ -243,6 +262,10 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "send": "Enviar"
   },
   "fra": {
+    "theme": "Style thématique",
+    "email_error":
+        "Impossible de démarrer le programme de boîte aux lettres. Veuillez vérifier si le programme de boîte aux lettres est installé. Si vous avez d'autres problèmes, allez à l'application Market feedback",
+    "theme_setting": "Définir le style du thème",
     "app_name": "Traitement",
     "create_project": "Créer un nouveau projet",
     "create_processing": "Nouveau projet de traitement",
@@ -289,6 +312,10 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "send": "Envoyer"
   },
   "de": {
+    "theme": "Stil des Designs",
+    "email_error":
+        "Das Mailbox-Programm konnte nicht gestartet werden. Bitte überprüfen Sie, ob das Mailbox-Programm installiert ist. Wenn Sie weitere Fragen haben, wenden Sie sich bitte an den Application Market, um Feedback zu erhalten.",
+    "theme_setting": "Stil festlegen",
     "app_name": "Verarbeitung",
     "create_project": "Neues Projekt erstellen",
     "create_processing": "Neues Verarbeitungsprojekt",
@@ -335,6 +362,10 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "send": "Senden Sie"
   },
   "it": {
+    "theme": "Stile di tema",
+    "email_error":
+        "Impossibile avviare il programma delle caselle postali. Controlla se il programma delle caselle postali è installato. Se hai altre domande, vai al mercato delle applicazioni per il feedback",
+    "theme_setting": "Imposta stile di tema",
     "app_name": "Elaborazione",
     "create_project": "Creare un nuovo progetto",
     "create_processing": "Nuovo progetto di elaborazione",
@@ -381,6 +412,10 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "send": "Inviare fuori"
   },
   "kor": {
+    "theme": "주제 스타일",
+    "email_error":
+        "메일박스 프로그램을 시작하는 데 실패했습니다. 메일박스 프로그램을 설치했는지 확인하십시오. 더 많은 문제가 있으면 응용 시장에 가서 피드백을 주십시오",
+    "theme_setting": "테마 스타일 설정",
     "app_name": "Processing",
     "create_project": "새 항목 만들기",
     "create_processing": "새 Processing 프로젝트",

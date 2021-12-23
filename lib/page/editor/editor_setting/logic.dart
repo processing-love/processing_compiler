@@ -6,8 +6,8 @@ import 'package:processing_compiler/main.dart';
 
 import 'state.dart';
 
-class SettingLogic extends GetxController {
-  final SettingState state = SettingState();
+class EditorSettingLogic extends GetxController {
+  final EditorSettingState state = EditorSettingState();
 
   void setCurrentLanguageDesc(Language language) async {
     state.currentLanguage.value = language;

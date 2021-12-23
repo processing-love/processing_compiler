@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:processing_compiler/db/db_project_file.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
-import 'package:processing_compiler/page/setting/view.dart';
+import 'package:processing_compiler/page/editor/editor_setting/view.dart';
 import 'package:processing_compiler/widgets/code_mirror_web_view.dart';
 import 'package:webview_flutter/platform_interface.dart';
+
 import 'logic.dart';
 
 class EditorPage extends StatelessWidget {
@@ -22,7 +23,7 @@ class EditorPage extends StatelessWidget {
       actions: [
         IconButton(
             onPressed: () {
-              Get.to(SettingPage());
+              Get.to(EditorSettingPage());
             },
             icon: const Icon(Icons.settings))
       ],

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
+import 'package:processing_compiler/db/db_project_file.dart';
+import 'package:processing_compiler/devices/messages.dart';
 import 'package:processing_compiler/page/editor/view.dart';
 import 'package:processing_compiler/page/home/logic.dart';
-import 'package:processing_compiler/page/setting/view.dart';
 import 'package:processing_compiler/tools/responsive.dart';
+import 'package:processing_compiler/widgets/item_widget.dart';
+import 'package:timeago/timeago.dart';
 
 /// @author u
 /// @date 2020/6/12.
@@ -34,4 +38,33 @@ class ProjectWidget extends StatelessWidget {
           itemCount: logic.state.projectFiles.length);
     });
   }
+}
+
+Widget itemWidgetForSlide(
+    Function onPressed, Function slideTapFunction, DbProjectFile project) {
+  DateMessage().buildCurrentDateMessage();
+  return Slidable(
+    endActionPane: ActionPane(
+      motion: const ScrollMotion(),
+      children: [
+        SlidableAction(
+          onPressed: (_) {
+            slideTapFunction.call();
+          },
+          backgroundColor: Colors.red,
+          foregroundColor: Colors.white,
+          icon: Icons.delete,
+          label: 'delete'.tr,
+        ),
+      ],
+    ),
+    child: itemListTile(
+        title: project.name,
+        onTap: () {
+          onPressed.call(project);
+        },
+        haveNext: true,
+        leading: Icons.folder_outlined,
+        subTitle: format(DateTime.fromMillisecondsSinceEpoch(project.time))),
+  );
 }

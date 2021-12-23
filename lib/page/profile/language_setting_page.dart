@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:processing_compiler/devices/all_language.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
-import 'package:processing_compiler/page/setting/logic.dart';
+import 'package:processing_compiler/page/editor/editor_setting/logic.dart';
 import 'package:processing_compiler/widgets/dialog.dart';
-import 'package:processing_compiler/widgets/setting_item_widget.dart';
+import 'package:processing_compiler/widgets/item_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// @author u
 /// @date 2020/6/12.
 class LanguageSettingPage extends StatelessWidget {
-  final logic = Get.put(SettingLogic());
-  final state = Get.find<SettingLogic>().state;
+  final logic = Get.put(EditorSettingLogic());
+  final state = Get.find<EditorSettingLogic>().state;
 
   LanguageSettingPage({Key? key}) : super(key: key);
 

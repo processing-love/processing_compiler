@@ -14,6 +14,7 @@ class CodeMirrorWebView extends StatefulWidget {
   final String? url;
   final Map<String, String>? replaceMap;
   final Set<JavascriptChannel>? javascriptChannel;
+  final Color? backgroundColor;
 
   const CodeMirrorWebView(
       {this.rawCode,
@@ -22,6 +23,7 @@ class CodeMirrorWebView extends StatefulWidget {
       this.replaceMap,
       this.url,
       this.javascriptChannel,
+      this.backgroundColor,
       Key? key})
       : super(key: key);
 
@@ -47,6 +49,7 @@ class _CodeMirrorWebViewState extends State<CodeMirrorWebView> {
           debuggingEnabled: true,
           javascriptMode: JavascriptMode.unrestricted,
           javascriptChannels: widget.javascriptChannel,
+          backgroundColor: widget.backgroundColor ?? Colors.transparent,
           onPageFinished: (String url) {
             isLoading = false;
             setState(() {});
