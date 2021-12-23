@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:processing_compiler/tools/responsive.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 /// @author u
@@ -17,7 +18,8 @@ class SettingItemWidget extends StatelessWidget {
         ListTile(
           title: Text(title),
         ),
-        cardWidget(Column(
+        cardItemWidget(
+            child: Column(
           children: item.map((model) {
             if (model.radio ?? false) {
               return SwitchListTile.adaptive(
@@ -60,9 +62,37 @@ class SettingItemModel {
       this.isNext = false});
 }
 
-cardWidget(Widget child) {
-  return child.card(
-      elevation: 0,
-      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)));
+cardItemListViewWidget(
+    {required IndexedWidgetBuilder itemBuilder,
+    required int itemCount,
+    bool? haveNext}) {
+  return Card(
+    margin: EdgeInsets.zero,
+    child: Padding(
+      padding: Responsive.symmetric(),
+      child: ListView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        padding: EdgeInsets.zero,
+        itemBuilder: itemBuilder,
+        itemCount: itemCount,
+      ),
+    ),
+  );
+}
+
+cardItemWidget({required Widget child, bool? haveNext}) {
+  final isHaveNext = haveNext ?? false;
+  return Column(
+    children: [
+      Card(
+        margin: EdgeInsets.zero,
+        child: Padding(
+          padding: Responsive.symmetric(),
+          child: child,
+        ),
+      ),
+      SizedBox(height: isHaveNext ? Responsive.responsiveInsets() : 0)
+    ],
+  );
 }

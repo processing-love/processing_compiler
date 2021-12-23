@@ -66,8 +66,6 @@ class MyApp extends StatelessWidget {
 Locale getCurrentLocale() {
   String localeCode =
       boxCodeMirrorConfig.get(dbNameCodeMirrorConfig)?.language ?? "";
-  print('peter locale code ' + localeCode);
-
   if (localeCode.isEmpty) {
     return Get.locale ??
         Locale.fromSubtags(

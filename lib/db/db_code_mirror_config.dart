@@ -22,9 +22,4 @@ class DbCodeMirrorConfig extends HiveObject {
       {this.showCodeLineNumber = true,
       this.codeFontSize = 13,
       this.codeThemeName = 'material'});
-
-  @override
-  String toString() {
-    return 'DbCodeMirrorConfig{showCodeLineNumber: $showCodeLineNumber, codeFontSize: $codeFontSize, codeThemeName: $codeThemeName, language: $language}';
-  }
 }

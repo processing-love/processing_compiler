@@ -14,8 +14,6 @@ class SettingLogic extends GetxController {
     boxCodeMirrorConfig.get(dbNameCodeMirrorConfig)?.language = language.code;
     await boxCodeMirrorConfig.get(dbNameCodeMirrorConfig)?.save();
     await Get.updateLocale(Locale(language.code, language.code));
-    print(
-        'peter ' + boxCodeMirrorConfig.get(dbNameCodeMirrorConfig).toString());
   }
 
   @override

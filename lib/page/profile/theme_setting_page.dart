@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:processing_compiler/main.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
-import 'package:processing_compiler/page/profile/theme_popup_menu.dart';
 import 'package:processing_compiler/tools/const/app_color.dart';
-import 'package:processing_compiler/tools/responsive.dart';
+import 'package:processing_compiler/widgets/setting_item_widget.dart';
 
 /// @author u
 /// @date 2020/6/12.
@@ -19,47 +18,57 @@ class ThemeSettingPage extends StatefulWidget {
 class _ThemeSettingPageState extends State<ThemeSettingPage> {
   @override
   Widget build(BuildContext context) {
-    final double margins = Responsive.responsiveInsets(Get.width);
-
     return BasePage(
       title: 'theme_setting'.tr,
-      body: ListView(
-        padding: EdgeInsets.all(margins),
-        children: <Widget>[
-          Card(
-            margin: EdgeInsets.zero,
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: margins,
-                horizontal: margins + 4,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  // A 3-way theme toggle switch that shows the scheme.
-                  FlexThemeModeSwitch(
-                    themeMode: gThemeController.themeMode,
-                    onThemeModeChanged: gThemeController.setThemeMode,
-                    flexSchemeData:
-                        AppColor.schemes[gThemeController.schemeIndex],
-                    optionButtonBorderRadius: 4,
-                    buttonOrder: FlexThemeModeButtonOrder.lightSystemDark,
-                  ),
-                  const SizedBox(height: 8),
-                  ThemePopupMenu(
-                    contentPadding: EdgeInsets.zero,
-                    schemeIndex: gThemeController.schemeIndex,
-                    onChanged: (int index) {
-                      gThemeController.setSchemeIndex(index);
-                      setState(() {});
-                    },
-                  ),
-                ],
-              ),
+      isContentList: true,
+      contentListWidgets: [
+        cardItemWidget(
+            child: FlexThemeModeSwitch(
+              themeMode: gThemeController.themeMode,
+              onThemeModeChanged: gThemeController.setThemeMode,
+              flexSchemeData: AppColor.schemes[gThemeController.schemeIndex],
+              buttonOrder: FlexThemeModeButtonOrder.lightSystemDark,
             ),
+            haveNext: true),
+        cardItemWidget(
+            child: GridView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: Get.width ~/ 100, //每行三列
+            childAspectRatio: 1.0, //显示区域宽高相等
           ),
-        ],
-      ),
+          itemCount: AppColor.schemes.length,
+          itemBuilder: (context, index) {
+            return IconButton(
+                onPressed: () {
+                  gThemeController.setSchemeIndex(index);
+                  setState(() {});
+                },
+                icon: buildIconColorWidget(index));
+          },
+        ))
+      ],
     );
+  }
+
+  buildIconColorWidget(int index) {
+    final ThemeData theme = Theme.of(context);
+    final bool isLight = theme.brightness == Brightness.light;
+    final ColorScheme colorScheme = theme.colorScheme;
+
+    Icon icon = Icon(Icons.lens,
+        color: isLight
+            ? AppColor.schemes[index].light.primary
+            : AppColor.schemes[index].dark.primary,
+        size: 40);
+    if (icon.color == colorScheme.primary) {
+      return const CircleAvatar(
+        child: Icon(
+          Icons.check,
+        ),
+      );
+    }
+    return icon;
   }
 }
