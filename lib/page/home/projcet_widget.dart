@@ -3,9 +3,9 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:processing_compiler/db/db_project_file.dart';
 import 'package:processing_compiler/devices/messages.dart';
+import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/editor/view.dart';
 import 'package:processing_compiler/page/home/logic.dart';
-import 'package:processing_compiler/tools/responsive.dart';
 import 'package:processing_compiler/widgets/item_widget.dart';
 import 'package:timeago/timeago.dart';
 
@@ -19,24 +19,24 @@ class ProjectWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      return ListView.builder(
-          padding: EdgeInsets.all(Responsive.responsiveInsets()),
-          itemBuilder: (BuildContext context, int index) {
-            final project = logic.state.projectFiles[index];
-            return Card(
-              margin: EdgeInsets.zero,
-              child: itemWidgetForSlide((projectFile) {
+    return BasePage(
+      isContentList: true,
+      isHaveAppBar: false,
+      contentListWidgets: [
+        cardItemListViewWidget(
+            itemCount: logic.state.projectFiles.length,
+            itemBuilder: (BuildContext context, int index) {
+              final project = logic.state.projectFiles[index];
+              return itemWidgetForSlide((projectFile) {
                 Get.to(EditorPage(
                   projectFile: projectFile,
                 ));
               }, () {
                 logic.deleteProject(index);
-              }, project),
-            );
-          },
-          itemCount: logic.state.projectFiles.length);
-    });
+              }, project);
+            }),
+      ],
+    );
   }
 }
 

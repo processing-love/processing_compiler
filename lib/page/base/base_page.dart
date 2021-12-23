@@ -9,6 +9,7 @@ class BasePage extends StatelessWidget {
   final List<Widget>? actions;
   final List<Widget>? contentListWidgets;
   final bool? isContentList;
+  final bool? isHaveAppBar;
   final FloatingActionButton? floatingActionButton;
 
   const BasePage(
@@ -18,20 +19,26 @@ class BasePage extends StatelessWidget {
       this.body,
       this.actions,
       this.contentListWidgets,
+      this.isHaveAppBar,
       this.floatingActionButton})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title ?? ''),
-        centerTitle: true,
-        actions: actions,
-      ),
-      body: buildContentWidget(),
-      floatingActionButton: floatingActionButton,
-    );
+    final haveAppBar = isHaveAppBar ?? true;
+    if (haveAppBar) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(title ?? ''),
+          centerTitle: true,
+          actions: actions,
+        ),
+        body: buildContentWidget(),
+        floatingActionButton: floatingActionButton,
+      );
+    }
+
+    return buildListContentWidget();
   }
 
   buildContentWidget() {

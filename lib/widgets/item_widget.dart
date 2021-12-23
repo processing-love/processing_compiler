@@ -64,7 +64,9 @@ itemListTile(
     onTap: () {
       onTap.call();
     },
-    leading: leading == null ? null : Icon(leading),
+    leading: leading == null
+        ? null
+        : SizedBox(height: double.infinity, child: Icon(leading)),
     subtitle: subTitle == null ? null : Text(subTitle),
   );
 }

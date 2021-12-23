@@ -17,7 +17,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BasePage(
-      title: 'editor_setting'.tr,
+      title: 'setting'.tr,
       isContentList: true,
       contentListWidgets: [
         Obx(() {
