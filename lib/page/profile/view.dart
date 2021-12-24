@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:open_store/open_store.dart';
+import 'package:processing_compiler/devices/third_platform.dart';
 import 'package:processing_compiler/main.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/editor/editor_setting/logic.dart';
-import 'package:processing_compiler/page/profile/contact_me_page.dart';
 import 'package:processing_compiler/page/profile/language_setting_page.dart';
 import 'package:processing_compiler/page/profile/theme_setting_page.dart';
 import 'package:processing_compiler/widgets/item_widget.dart';
+import 'package:share_plus/share_plus.dart';
+
+import 'contact_me_page.dart';
 
 class ProfilePage extends StatelessWidget {
   final logic = Get.put(EditorSettingLogic());
@@ -22,31 +26,50 @@ class ProfilePage extends StatelessWidget {
       contentListWidgets: [
         Obx(() {
           return cardItemWidget(
+              haveNext: true,
               child: Column(
-            children: [
-              itemListTile(
-                  title: 'theme'.tr,
-                  onTap: () {
-                    Get.to(const ThemeSettingPage());
-                  },
-                  trailingDesc: getThemeName(),
-                  haveNext: true),
-              itemListTile(
-                  title: 'language'.tr,
-                  onTap: () {
-                    Get.to(LanguageSettingPage());
-                  },
-                  trailingDesc: state.currentLanguage.value.desc.tr,
-                  haveNext: true),
-              itemListTile(
-                  title: 'about'.tr,
-                  onTap: () {
-                    Get.to(const ContactMePage());
-                  },
-                  haveNext: true),
-            ],
-          ));
+                children: [
+                  itemListTile(
+                      title: 'theme'.tr,
+                      onTap: () {
+                        Get.to(const ThemeSettingPage());
+                      },
+                      trailingDesc: getThemeName(),
+                      haveNext: true),
+                  itemListTile(
+                      title: 'language'.tr,
+                      onTap: () {
+                        Get.to(LanguageSettingPage());
+                      },
+                      trailingDesc: state.currentLanguage.value.desc.tr,
+                      haveNext: true),
+                ],
+              ));
         }),
+        cardItemWidget(
+            child: Column(
+          children: [
+            itemListTile(
+                title: 'like_me'.tr,
+                onTap: () {
+                  OpenStore.instance.open(
+                    appStoreId: ThirdPlatform.appStoreAppId,
+                    androidAppBundleId: ThirdPlatform.googlePlayId,
+                  );
+                }),
+            itemListTile(
+                title: 'recommend'.tr,
+                onTap: () {
+                  Share.share('app_share'.tr);
+                }),
+            itemListTile(
+                title: 'about'.tr,
+                onTap: () {
+                  Get.to(const ContactMePage());
+                },
+                haveNext: true)
+          ],
+        )),
       ],
     );
   }

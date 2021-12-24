@@ -7,6 +7,7 @@ import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/editor/view.dart';
 import 'package:processing_compiler/page/home/logic.dart';
 import 'package:processing_compiler/widgets/item_widget.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:timeago/timeago.dart';
 
 /// @author u
@@ -43,17 +44,53 @@ class ProjectWidget extends StatelessWidget {
 Widget itemWidgetForSlide(
     Function onPressed, Function slideTapFunction, DbProjectFile project) {
   DateMessage().buildCurrentDateMessage();
+  final modifyTime =
+      format(DateTime.fromMillisecondsSinceEpoch(project.modifyTime));
   return Slidable(
     endActionPane: ActionPane(
       motion: const ScrollMotion(),
       children: [
         SlidableAction(
           onPressed: (_) {
+            showCardBottomSheet(widgets: [
+              itemListTile(
+                  title: project.name,
+                  onTap: () {},
+                  leading: Icons.insert_drive_file_outlined,
+                  haveNext: true,
+                  subTitle: modifyTime,
+                  trailingDesc: 'rename'.tr),
+              itemListTile(
+                  title: '置顶',
+                  onTap: () {},
+                  leading: Icons.sticky_note_2_outlined,
+                  subTitle: 'p5js'),
+              itemListTile(
+                  title: '分享',
+                  onTap: () {
+                    Share.share(project.code);
+                  },
+                  leading: Icons.share_outlined,
+                  subTitle: 'p5js'),
+              itemListTile(
+                  title: '打印',
+                  onTap: () {},
+                  leading: Icons.print_outlined,
+                  subTitle: 'p5js'),
+            ]);
+          },
+          backgroundColor: Get.theme.primaryColor,
+          foregroundColor: Colors.white,
+          icon: Icons.more_horiz,
+          label: 'more'.tr,
+        ),
+        SlidableAction(
+          onPressed: (_) {
             slideTapFunction.call();
           },
           backgroundColor: Colors.red,
           foregroundColor: Colors.white,
-          icon: Icons.delete,
+          icon: Icons.delete_outline,
           label: 'delete'.tr,
         ),
       ],
@@ -65,6 +102,6 @@ Widget itemWidgetForSlide(
         },
         haveNext: true,
         leading: Icons.folder_outlined,
-        subTitle: format(DateTime.fromMillisecondsSinceEpoch(project.modifyTime))),
+        subTitle: modifyTime),
   );
 }

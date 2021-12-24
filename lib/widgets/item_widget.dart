@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:processing_compiler/tools/responsive.dart';
+import 'package:styled_widget/styled_widget.dart';
 
 /// @author u
 /// @date 2020/6/12.
@@ -70,4 +71,14 @@ itemListTile(
         : SizedBox(height: double.infinity, child: Icon(leading)),
     subtitle: subTitle == null ? null : Text(subTitle),
   );
+}
+
+showCardBottomSheet({required List<Widget> widgets, double? height}) {
+  Get.bottomSheet(ListView(
+    shrinkWrap: height == null ? true : false,
+    itemExtent: height,
+    children: widgets,
+  ).decorated(
+      color: Get.theme.scaffoldBackgroundColor,
+      borderRadius: const BorderRadius.all(Radius.circular(8))));
 }

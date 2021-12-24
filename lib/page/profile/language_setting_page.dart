@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:processing_compiler/devices/all_language.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/editor/editor_setting/logic.dart';
+import 'package:processing_compiler/page/profile/contact_me_page.dart';
 import 'package:processing_compiler/widgets/dialog.dart';
 import 'package:processing_compiler/widgets/item_widget.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 /// @author u
 /// @date 2020/6/12.
@@ -50,17 +50,7 @@ class LanguageSettingPage extends StatelessWidget {
 
   void showTranslateQuestion() {
     showTalkDialog('language_desc'.tr, 'send'.tr, () {
-      gotoEmail();
+      Get.to(const ContactMePage());
     });
-  }
-}
-
-gotoEmail() async {
-  final result = await launch(Uri(
-    scheme: 'mailto',
-    path: '1611641037@qq.com',
-  ).toString());
-  if (!result) {
-    showTalkErrorDialog('email_error'.tr);
   }
 }

@@ -32,7 +32,8 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "system_mode": "Follow system",
     "reset": "Restore default mode",
     "theme": "Theme style",
-    "email_error": "Failed to start the mailbox program. Please check whether the mailbox program is installed. If you have more questions, please go to the application market for feedback",
+    "email_error":
+        "Failed to start the mailbox program. Please check whether the mailbox program is installed. If you have more questions, please go to the application market for feedback",
     "theme_setting": "Set theme style",
     "app_name": "Processing",
     "create_project": "Create a new project",
@@ -59,7 +60,8 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "config_delete": "Are you sure to delete x?",
     "tip": "Reminder",
     "limit_project_name_length": "The project name cannot exceed 15 characters",
-    "limit_project_name_exist": "The project already exists. Please re-enter a new project name",
+    "limit_project_name_exist":
+        "The project already exists. Please re-enter a new project name",
     "please_input_project_name": "Project name cannot be empty",
     "language": "Multilingual",
     "language_setting": "Set language",
@@ -72,11 +74,19 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "德语": "German",
     "意大利语": "Italian",
     "韩语": "Korean",
-    "language_desc": "If the translation of any content is incorrect or a new language needs to be added, please contact me by email. Thank you very much for your support and understanding!",
+    "language_desc":
+        "If the translation of any content is incorrect or a new language needs to be added, please contact me by email. Thank you very much for your support and understanding!",
     "send": "Send out"
   },
   "zh": {
+    'app_share':'Processing&p5.js&Py by Compiler',
     "about": "联系我",
+    'feedback':'Processing Compiler 相关问题反馈',
+    'like_me': '鼓励我一下',
+    'recommend': '推荐朋友',
+    'wechat': '微信',
+    'rename': '重新命名',
+    "more": "更多",
     "email": "邮箱",
     "Processing中文论坛": "Processing中文论坛",
     "about_how": "如何联系到我",
@@ -86,6 +96,8 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "reset": "恢复默认模式",
     "theme": "主题风格",
     "email_error": "启动邮箱程序失败，请检查是否安装邮箱程序，如有更多问题，请前往应用市场反馈",
+    "wechat_error": "启动微信程序失败，请检查是否安装微信程序，如有更多问题，请前往应用市场反馈",
+    "twitter_error": "启动Twitter程序失败，请检查是否安装Twitter程序，如有更多问题，请前往应用市场反馈",
     "theme_setting": "设置主题风格",
     "app_name": "Processing",
     "create_project": "创建一个新项目",
@@ -191,7 +203,8 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "system_mode": "システムに従う",
     "reset": "デフォルトモードを復元",
     "theme": "テーマスタイル",
-    "email_error": "メールボックスプログラムの起動に失敗しました。メールボックスプログラムをインストールするかどうかを確認してください。詳細については、アプリケーション市場のフィードバックに行ってください。",
+    "email_error":
+        "メールボックスプログラムの起動に失敗しました。メールボックスプログラムをインストールするかどうかを確認してください。詳細については、アプリケーション市場のフィードバックに行ってください。",
     "theme_setting": "テーマスタイルの設定",
     "app_name": "Processing",
     "create_project": "新規プロジェクトの作成",
@@ -231,7 +244,8 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "德语": "ドイツ語",
     "意大利语": "イタリア語",
     "韩语": "韓国語",
-    "language_desc": "もし内容の翻訳が間違っていたり、新しい言語を追加する必要がある場合は、メールで連絡してください。サポートと理解に感謝します。",
+    "language_desc":
+        "もし内容の翻訳が間違っていたり、新しい言語を追加する必要がある場合は、メールで連絡してください。サポートと理解に感謝します。",
     "send": "送信"
   },
   "spa": {
@@ -244,7 +258,8 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "system_mode": "Sistema de seguimiento",
     "reset": "Restaurar el modo predeterminado",
     "theme": "Estilo temático",
-    "email_error": "Fallo al iniciar el programa de buzón de correo. Compruebe si el programa de buzón de correo está instalado. Para más preguntas, vaya a la aplicación de retroalimentación del mercado",
+    "email_error":
+        "Fallo al iniciar el programa de buzón de correo. Compruebe si el programa de buzón de correo está instalado. Para más preguntas, vaya a la aplicación de retroalimentación del mercado",
     "theme_setting": "Establecer estilo de tema",
     "app_name": "Procesamiento",
     "create_project": "Crear un nuevo proyecto",
@@ -254,11 +269,13 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "editor_setting": "Configuración del editor",
     "setting": "Configuración",
     "show_code_line_number": "Mostrar números de línea de código",
-    "setting_code_font_size": "Establecer el tamaño del tipo de letra del Código",
+    "setting_code_font_size":
+        "Establecer el tamaño del tipo de letra del Código",
     "code_theme": "Estilo del editor",
     "emtpy_pro": "¡Abre tu programación creativa!",
     "loading": "Cargando...",
-    "slide_setting_font_size": "Deslizar el dedo para establecer el tamaño de la fuente",
+    "slide_setting_font_size":
+        "Deslizar el dedo para establecer el tamaño de la fuente",
     "project": "Proyecto",
     "sample": "Ejemplo",
     "createTimeDesc": "Hora de creación:",
@@ -270,8 +287,10 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "delete": "Borrar",
     "config_delete": "¿Estás seguro de que quieres borrar X?",
     "tip": "Consejos cálidos",
-    "limit_project_name_length": "El nombre del proyecto no puede exceder de 15 caracteres",
-    "limit_project_name_exist": "El proyecto ya existe. Vuelva a introducir el nuevo nombre del proyecto",
+    "limit_project_name_length":
+        "El nombre del proyecto no puede exceder de 15 caracteres",
+    "limit_project_name_exist":
+        "El proyecto ya existe. Vuelva a introducir el nuevo nombre del proyecto",
     "please_input_project_name": "El nombre del proyecto no puede estar vacío",
     "language": "Multilingüismo",
     "language_setting": "Establecer idioma",
@@ -284,7 +303,8 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "德语": "Alemán",
     "意大利语": "Italiano",
     "韩语": "Coreano",
-    "language_desc": "¡Si el contenido no está traducido correctamente o necesita a ñadir un nuevo idioma, por favor póngase en contacto conmigo por correo electrónico, muchas gracias por su apoyo y comprensión!",
+    "language_desc":
+        "¡Si el contenido no está traducido correctamente o necesita a ñadir un nuevo idioma, por favor póngase en contacto conmigo por correo electrónico, muchas gracias por su apoyo y comprensión!",
     "send": "Enviar"
   },
   "fra": {
@@ -297,7 +317,8 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "system_mode": "Système de suivi",
     "reset": "Restaurer le mode par défaut",
     "theme": "Style thématique",
-    "email_error": "Impossible de démarrer le programme de boîte aux lettres. Veuillez vérifier si le programme de boîte aux lettres est installé. Si vous avez d'autres problèmes, allez à l'application Market feedback",
+    "email_error":
+        "Impossible de démarrer le programme de boîte aux lettres. Veuillez vérifier si le programme de boîte aux lettres est installé. Si vous avez d'autres problèmes, allez à l'application Market feedback",
     "theme_setting": "Définir le style du thème",
     "app_name": "Traitement",
     "create_project": "Créer un nouveau projet",
@@ -311,7 +332,8 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "code_theme": "Style de l'éditeur",
     "emtpy_pro": "Commencez votre programmation créative!",
     "loading": "Chargement...",
-    "slide_setting_font_size": "Glissez votre doigt pour définir la taille de la police",
+    "slide_setting_font_size":
+        "Glissez votre doigt pour définir la taille de la police",
     "project": "Projets",
     "sample": "Exemples",
     "createTimeDesc": "Heure de création:",
@@ -323,8 +345,10 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "delete": "Supprimer",
     "config_delete": "Êtes - vous sûr de vouloir supprimer X?",
     "tip": "Conseils chaleureux",
-    "limit_project_name_length": "Le nom du projet ne peut pas dépasser 15 caractères",
-    "limit_project_name_exist": "Le projet existe déjà, veuillez saisir à nouveau le nouveau nom du projet",
+    "limit_project_name_length":
+        "Le nom du projet ne peut pas dépasser 15 caractères",
+    "limit_project_name_exist":
+        "Le projet existe déjà, veuillez saisir à nouveau le nouveau nom du projet",
     "please_input_project_name": "Le nom du projet ne peut pas être vide",
     "language": "Multilingue",
     "language_setting": "Définir la langue",
@@ -337,7 +361,8 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "德语": "Allemand",
     "意大利语": "Italien",
     "韩语": "Coréen",
-    "language_desc": "S'il y a des erreurs dans la traduction du contenu ou si vous avez besoin d'ajouter une nouvelle langue, s'il vous plaît envoyez - moi un email et merci beaucoup pour votre soutien et votre compréhension!",
+    "language_desc":
+        "S'il y a des erreurs dans la traduction du contenu ou si vous avez besoin d'ajouter une nouvelle langue, s'il vous plaît envoyez - moi un email et merci beaucoup pour votre soutien et votre compréhension!",
     "send": "Envoyer"
   },
   "de": {
@@ -350,7 +375,8 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "system_mode": "Folgen des Systems",
     "reset": "Standardmodus wiederherstellen",
     "theme": "Stil des Designs",
-    "email_error": "Das Mailbox-Programm konnte nicht gestartet werden. Bitte überprüfen Sie, ob das Mailbox-Programm installiert ist. Wenn Sie weitere Fragen haben, wenden Sie sich bitte an den Application Market, um Feedback zu erhalten.",
+    "email_error":
+        "Das Mailbox-Programm konnte nicht gestartet werden. Bitte überprüfen Sie, ob das Mailbox-Programm installiert ist. Wenn Sie weitere Fragen haben, wenden Sie sich bitte an den Application Market, um Feedback zu erhalten.",
     "theme_setting": "Stil festlegen",
     "app_name": "Verarbeitung",
     "create_project": "Neues Projekt erstellen",
@@ -364,7 +390,8 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "code_theme": "Stil des Editors",
     "emtpy_pro": "Starten Sie Ihre kreative Programmierung!",
     "loading": "Laden",
-    "slide_setting_font_size": "Schieben Sie Ihren Finger, um die Schriftgröße einzustellen",
+    "slide_setting_font_size":
+        "Schieben Sie Ihren Finger, um die Schriftgröße einzustellen",
     "project": "Projekt",
     "sample": "Beispiel",
     "createTimeDesc": "Erstellt auf:",
@@ -376,8 +403,10 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "delete": "Löschen",
     "config_delete": "Sind Sie sicher, x zu löschen?",
     "tip": "Erinnerung",
-    "limit_project_name_length": "Der Projektname darf 15 Zeichen nicht überschreiten",
-    "limit_project_name_exist": "Das Projekt existiert bereits. Bitte geben Sie einen neuen Projektnamen ein",
+    "limit_project_name_length":
+        "Der Projektname darf 15 Zeichen nicht überschreiten",
+    "limit_project_name_exist":
+        "Das Projekt existiert bereits. Bitte geben Sie einen neuen Projektnamen ein",
     "please_input_project_name": "Projektname kann nicht leer sein",
     "language": "Mehrsprachigkeit",
     "language_setting": "Sprache festlegen",
@@ -390,7 +419,8 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "德语": "Deutsch",
     "意大利语": "Italienisch",
     "韩语": "Koreanisch",
-    "language_desc": "Wenn die Übersetzung von Inhalten falsch ist oder eine neue Sprache hinzugefügt werden muss, kontaktieren Sie mich bitte per E-Mail. Vielen Dank für Ihre Unterstützung und Verständnis!",
+    "language_desc":
+        "Wenn die Übersetzung von Inhalten falsch ist oder eine neue Sprache hinzugefügt werden muss, kontaktieren Sie mich bitte per E-Mail. Vielen Dank für Ihre Unterstützung und Verständnis!",
     "send": "Senden Sie"
   },
   "it": {
@@ -403,7 +433,8 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "system_mode": "Sistema di monitoraggio",
     "reset": "Ripristina la modalità predefinita",
     "theme": "Stile di tema",
-    "email_error": "Impossibile avviare il programma delle caselle postali. Controlla se il programma delle caselle postali è installato. Se hai altre domande, vai al mercato delle applicazioni per il feedback",
+    "email_error":
+        "Impossibile avviare il programma delle caselle postali. Controlla se il programma delle caselle postali è installato. Se hai altre domande, vai al mercato delle applicazioni per il feedback",
     "theme_setting": "Imposta stile di tema",
     "app_name": "Elaborazione",
     "create_project": "Creare un nuovo progetto",
@@ -417,7 +448,8 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "code_theme": "Editor stile",
     "emtpy_pro": "Iniziate la vostra programmazione creativa!",
     "loading": "Caricamento",
-    "slide_setting_font_size": "Far scorrere il dito per impostare la dimensione del carattere",
+    "slide_setting_font_size":
+        "Far scorrere il dito per impostare la dimensione del carattere",
     "project": "Progetto",
     "sample": "Esempio",
     "createTimeDesc": "Creato su:",
@@ -429,8 +461,10 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "delete": "Eliminare",
     "config_delete": "Sei sicuro di cancellare x?",
     "tip": "Promemoria",
-    "limit_project_name_length": "Il nome del progetto non può superare i quindici caratteri",
-    "limit_project_name_exist": "Il progetto esiste già. Inserisci un nuovo nome del progetto",
+    "limit_project_name_length":
+        "Il nome del progetto non può superare i quindici caratteri",
+    "limit_project_name_exist":
+        "Il progetto esiste già. Inserisci un nuovo nome del progetto",
     "please_input_project_name": "Il nome del progetto non può essere vuoto",
     "language": "Multilingue",
     "language_setting": "Imposta la lingua",
@@ -443,7 +477,8 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "德语": "Tedesco",
     "意大利语": "Italiano",
     "韩语": "Coreano",
-    "language_desc": "Se la traduzione di qualsiasi contenuto è errata o deve essere aggiunta una nuova lingua, per favore contattatemi via e-mail. Grazie mille per il vostro supporto e comprensione!",
+    "language_desc":
+        "Se la traduzione di qualsiasi contenuto è errata o deve essere aggiunta una nuova lingua, per favore contattatemi via e-mail. Grazie mille per il vostro supporto e comprensione!",
     "send": "Inviare fuori"
   },
   "kor": {
@@ -456,7 +491,8 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "system_mode": "시스템 따라가기",
     "reset": "기본 모드 복원",
     "theme": "주제 스타일",
-    "email_error": "메일박스 프로그램을 시작하는 데 실패했습니다. 메일박스 프로그램을 설치했는지 확인하십시오. 더 많은 문제가 있으면 응용 시장에 가서 피드백을 주십시오",
+    "email_error":
+        "메일박스 프로그램을 시작하는 데 실패했습니다. 메일박스 프로그램을 설치했는지 확인하십시오. 더 많은 문제가 있으면 응용 시장에 가서 피드백을 주십시오",
     "theme_setting": "테마 스타일 설정",
     "app_name": "Processing",
     "create_project": "새 항목 만들기",
@@ -496,7 +532,8 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "德语": "독일어",
     "意大利语": "이탈리아어",
     "韩语": "한국어 공부 해요.",
-    "language_desc": "만약 내용 번역이 잘못되거나 새로운 언어를 추가해야 한다면 메일로 저에게 연락을 주십시오. 당신의 지지와 이해에 매우 감사합니다!",
+    "language_desc":
+        "만약 내용 번역이 잘못되거나 새로운 언어를 추가해야 한다면 메일로 저에게 연락을 주십시오. 당신의 지지와 이해에 매우 감사합니다!",
     "send": "보내다"
   }
 };

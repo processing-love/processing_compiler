@@ -19,6 +19,8 @@ dependencies:
   url_launcher: 6.0.17
   shared_preferences: ^2.0.9
   google_fonts: ^2.1.0
+  share_plus: 3.0.4
+  open_store: 0.2.4
 
 dev_dependencies:
   flutter_test:

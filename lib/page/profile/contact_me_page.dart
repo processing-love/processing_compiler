@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
-import 'package:processing_compiler/page/profile/language_setting_page.dart';
+import 'package:processing_compiler/tools/launch_app.dart';
 import 'package:processing_compiler/widgets/item_widget.dart';
 import 'package:processing_compiler/widgets/talk_webview.dart';
 
@@ -22,16 +22,27 @@ class ContactMePage extends StatelessWidget {
             padding: EdgeInsets.zero,
             children: [
               itemListTile(
-                  title: "Processing中文论坛".tr,
+                  title: "Twitter",
                   onTap: () {
-                    Get.to(const TalkWebView(
-                      url: 'https://www.processing.love/u/peter',
-                    ));
+                    launchTwitter();
                   }),
               itemListTile(
                   title: "email".tr,
                   onTap: () {
-                    gotoEmail();
+                    launchEmail();
+                  }),
+              itemListTile(
+                  title: "Processing中文论坛".tr,
+                  onTap: () {
+                    Get.to(TalkWebView(
+                      title: "Processing中文论坛".tr,
+                      url: 'https://www.processing.love/u/peter',
+                    ));
+                  }),
+              itemListTile(
+                  title: "QQ".tr,
+                  onTap: () {
+                    launchQQ();
                   }),
             ],
           )),
