@@ -65,6 +65,6 @@ Widget itemWidgetForSlide(
         },
         haveNext: true,
         leading: Icons.folder_outlined,
-        subTitle: format(DateTime.fromMillisecondsSinceEpoch(project.time))),
+        subTitle: format(DateTime.fromMillisecondsSinceEpoch(project.modifyTime))),
   );
 }

@@ -25,7 +25,7 @@ class ContactMePage extends StatelessWidget {
                   title: "Processing中文论坛".tr,
                   onTap: () {
                     Get.to(const TalkWebView(
-                      url: 'https://www.processing.love/',
+                      url: 'https://www.processing.love/u/peter',
                     ));
                   }),
               itemListTile(

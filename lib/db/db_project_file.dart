@@ -16,19 +16,21 @@ class DbProjectFile extends HiveObject {
   int projectType;
 
   @HiveField(4)
-  int time;
+  int modifyTime;
 
   @HiveField(5)
   String htmlTemplate;
 
+  @HiveField(6)
+  String? nameKey;
+
   DbProjectFile(
-      {required this.name,
+      {required this.nameKey,
+      required this.name,
       required this.code,
       required this.htmlTemplate,
       required this.projectType,
-      required this.time});
+      required this.modifyTime});
 }
 
-enum ProjectType {
-  processing, p5js, py
-}
+enum ProjectType { processing, p5js, py }

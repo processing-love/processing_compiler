@@ -101,7 +101,7 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "loading": "加载中 ...",
     "slide_setting_font_size": "滑动手指进行字体大小设置",
     "project": "项目",
-    "sample": "示例",
+    "reference": "参考",
     "createTimeDesc": "创建时间：",
     "china_bbs": "Processing 中文社区",
     "official_bbs": "Processing 官方社区",

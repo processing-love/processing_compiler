@@ -22,7 +22,8 @@ class DbAdapterHelper {
     boxProjectFile = await Hive.openBox<DbProjectFile>(dbNameProjectFile);
 
     if (boxCodeMirrorConfig.isEmpty) {
-      await boxCodeMirrorConfig.put(dbNameCodeMirrorConfig, DbCodeMirrorConfig());
+      await boxCodeMirrorConfig.put(
+          dbNameCodeMirrorConfig, DbCodeMirrorConfig());
     }
   }
 
@@ -50,15 +51,18 @@ class DbAdapterHelper {
           htmlTemplate = 'assets/code_mirror.html';
           break;
       }
+      final nameKey = DateTime.now().millisecondsSinceEpoch.toString();
+      print('peter key '  + nameKey.toString());
       await boxProjectFile.put(
-          projectName,
+          nameKey,
           DbProjectFile(
+              nameKey: nameKey,
               name: projectName,
               code: code,
               htmlTemplate: htmlTemplate,
               projectType: projectType.index,
-              time: DateTime.now().millisecondsSinceEpoch));
-      return boxProjectFile.get(projectName)!;
+              modifyTime: DateTime.now().millisecondsSinceEpoch));
+      return boxProjectFile.get(nameKey)!;
     }
     return projectFile;
   }

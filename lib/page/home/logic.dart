@@ -33,7 +33,8 @@ class HomeLogic extends GetxController {
 
   deleteProject(int index) async {
     final name = state.projectFiles[index].name;
-    showDeleteProjectDialog('config_delete'.tr.replaceAll('x', name), 'delete'.tr, () {
+    showDeleteProjectDialog(
+        'config_delete'.tr.replaceAll('x', name), 'delete'.tr, () {
       state.deleteProject(name, index);
     });
   }

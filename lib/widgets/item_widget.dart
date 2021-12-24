@@ -64,6 +64,7 @@ itemListTile(
     onTap: () {
       onTap.call();
     },
+    minLeadingWidth: 0,
     leading: leading == null
         ? null
         : SizedBox(height: double.infinity, child: Icon(leading)),

@@ -23,7 +23,7 @@ class HomeState {
   Map<int, Widget> buildSegmentedWidget() {
     return {
       0: Text('project'.tr),
-      1: Text('sample'.tr),
+      1: Text('reference'.tr),
     };
   }
 

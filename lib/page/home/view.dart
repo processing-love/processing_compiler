@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/home/projcet_widget.dart';
+import 'package:processing_compiler/page/home/reference_widget.dart';
 import 'package:processing_compiler/page/main/logic.dart';
 import 'package:styled_widget/styled_widget.dart';
 
@@ -31,10 +32,7 @@ class HomePage extends StatelessWidget {
                   PageView(
                     controller: state.controller,
                     onPageChanged: logic.setCurrentIndex,
-                    children: [
-                      ProjectWidget(),
-                      const Text('没想好'),
-                    ],
+                    children: [ProjectWidget(), const ReferenceWidget()],
                   ).expanded()
                 ],
               );
@@ -44,7 +42,7 @@ class HomePage extends StatelessWidget {
 
   Widget buildEmptyWidget() {
     return Column(
-      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Icon(
           Icons.create_new_folder_outlined,
@@ -54,7 +52,7 @@ class HomePage extends StatelessWidget {
           style: Get.textTheme.bodyText1,
         ),
       ],
-    ).center().gestures(onTap: () {
+    ).gestures(onTap: () {
       Get.find<MainPageLogic>().state.createProjectList();
     }).center();
   }
