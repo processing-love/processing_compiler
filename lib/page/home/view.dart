@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/home/projcet_widget.dart';
-import 'package:processing_compiler/page/home/reference_widget.dart';
 import 'package:processing_compiler/page/main/logic.dart';
 import 'package:styled_widget/styled_widget.dart';
 
@@ -22,20 +21,7 @@ class HomePage extends StatelessWidget {
       body: Obx(() {
         return state.projectFiles.isEmpty
             ? buildEmptyWidget()
-            : Column(
-                children: [
-                  CupertinoSlidingSegmentedControl(
-                          children: state.buildSegmentedWidget(),
-                          groupValue: state.currentIndex.value,
-                          onValueChanged: logic.setCurrentIndex)
-                      .marginOnly(top: 24),
-                  PageView(
-                    controller: state.controller,
-                    onPageChanged: logic.setCurrentIndex,
-                    children: [ProjectWidget(), const ReferenceWidget()],
-                  ).expanded()
-                ],
-              );
+            : ProjectWidget();
       }),
     );
   }
@@ -57,3 +43,18 @@ class HomePage extends StatelessWidget {
     }).center();
   }
 }
+
+// Column(
+// children: [
+// CupertinoSlidingSegmentedControl(
+// children: state.buildSegmentedWidget(),
+// groupValue: state.currentIndex.value,
+// onValueChanged: logic.setCurrentIndex)
+// .marginOnly(top: 24),
+// PageView(
+// controller: state.controller,
+// onPageChanged: logic.setCurrentIndex,
+// children: [ProjectWidget(), const SampleWidget()],
+// ).expanded()
+// ],
+// )
