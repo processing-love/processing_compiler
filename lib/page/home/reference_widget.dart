@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/widgets/item_widget.dart';
 import 'package:styled_widget/styled_widget.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 /// @author u
 /// @date 2020/6/12.
@@ -19,10 +18,7 @@ class ReferenceWidget extends StatelessWidget {
         cardItemWidget(
             child: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
-            return const WebView(
-              javascriptMode: JavascriptMode.unrestricted,
-              initialUrl: 'https://processing.org/reference/FloatDict.html',
-            );
+            return Text('data');
           },
         ).constrained(width: Get.width, height: Get.height)),
       ],

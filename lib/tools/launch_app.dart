@@ -16,27 +16,14 @@ launchApp(String url, String errorMessage) async {
 launchQQ() {
   launchApp(
       'mqqapi://card/show_pslcard?src_type=internal&version=1&uin=${212547143}&card_type=group&source=qrcode',
-      'wechat_error'.tr);
-}
-
-launchTwitter() {
-  launchApp('weixin://yjh123weixin', 'wechat_error'.tr);
+      'qq_error'.tr);
 }
 
 launchEmail() {
   launchApp(
       Uri(
-          scheme: 'mailto',
-          path: '1611641037@qq.com',
-          query: encodeQueryParameters({
-            'subject': 'feedback'.tr,
-          })).toString(),
+        scheme: 'mailto',
+        path: '1611641037@qq.com',
+      ).toString(),
       'email_error'.tr);
-}
-
-String? encodeQueryParameters(Map<String, String> params) {
-  return params.entries
-      .map((e) =>
-          '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
-      .join('&');
 }

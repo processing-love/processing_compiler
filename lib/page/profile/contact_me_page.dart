@@ -22,11 +22,6 @@ class ContactMePage extends StatelessWidget {
             padding: EdgeInsets.zero,
             children: [
               itemListTile(
-                  title: "Twitter",
-                  onTap: () {
-                    launchTwitter();
-                  }),
-              itemListTile(
                   title: "email".tr,
                   onTap: () {
                     launchEmail();
