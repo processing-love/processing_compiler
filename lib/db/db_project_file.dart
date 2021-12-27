@@ -12,23 +12,19 @@ class DbProjectFile extends HiveObject {
   @HiveField(1)
   String code;
 
-  @HiveField(3)
+  @HiveField(2)
   int projectType;
 
-  @HiveField(4)
+  @HiveField(3)
   int modifyTime;
 
-  @HiveField(5)
-  String htmlTemplate;
-
-  @HiveField(6)
+  @HiveField(4)
   String? nameKey;
 
   DbProjectFile(
       {required this.nameKey,
       required this.name,
       required this.code,
-      required this.htmlTemplate,
       required this.projectType,
       required this.modifyTime});
 }

@@ -59,18 +59,6 @@ class EditorLogic extends GetxController {
 
   Future<String> buildPreviewCode() async {
     final String? code = await state.controller?.runJavascriptReturningResult('editor.getValue();');
-    String previewHTML = "";
-    ProjectType type = ProjectType.values.firstWhere((type) => type.index == state.currentProjectFile.projectType);
-    switch (type) {
-      case ProjectType.processing:
-        break;
-      case ProjectType.p5js:
-        previewHTML = p5PreviewHTML.replaceAll('<-script->', '');
-        break;
-      case ProjectType.py:
-        previewHTML = p5PreviewHTML.replaceAll('<-script->', gLibPyodide);
-        break;
-    }
-    return previewHTML.replaceAll('<-code->', code ?? "");
+    return gGetP5PreviewHtml(code ?? '');
   }
 }

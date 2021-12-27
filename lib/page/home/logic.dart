@@ -26,15 +26,12 @@ class HomeLogic extends GetxController {
   }
 
   getOrCreateProjectFile(String name, ProjectType projectType) async {
-    final DbProjectFile projectFile =
-        await gAdapterHelper.getOrCreateProjectFile(name, projectType);
-    return projectFile;
+    return await gAdapterHelper.getOrCreateProjectFile(name, projectType);
   }
 
   deleteProject(int index) async {
     final name = state.projectFiles[index].name;
-    showDeleteProjectDialog(
-        'config_delete'.tr.replaceAll('x', name), 'delete'.tr, () {
+    showDeleteProjectDialog('config_delete'.tr.replaceAll('x', name), 'delete'.tr, () {
       state.deleteProject(name, index);
     });
   }
@@ -48,4 +45,10 @@ class HomeLogic extends GetxController {
   }
 
   void deleteProjectFile() {}
+
+  List<DbProjectFile> sortProjectFiles() {
+    final sortResult = boxProjectFile.values.toList();
+    sortResult.sort((p,p1) => p1.modifyTime.compareTo(p.modifyTime));
+    return sortResult;
+  }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:processing_compiler/page/home/state.dart';
 
 /// @author u
 /// @date 2020/6/12.
@@ -26,5 +27,12 @@ class Responsive {
   static EdgeInsetsGeometry symmetricMiddle() {
     final double margins = Responsive.responsiveInsets();
     return EdgeInsets.symmetric(vertical: margins - 4, horizontal: margins);
+  }
+
+  static double buildCodeMirrorPreviewHeight() {
+    if (useMobileLayout) {
+      return 300;
+    }
+    return 400;
   }
 }

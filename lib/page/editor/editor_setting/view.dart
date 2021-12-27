@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:processing_compiler/compiler/core.dart';
 import 'package:processing_compiler/compiler/p5.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/editor/logic.dart';
@@ -7,6 +8,7 @@ import 'package:processing_compiler/tools/responsive.dart';
 import 'package:processing_compiler/widgets/code_mirror_web_view.dart';
 import 'package:processing_compiler/widgets/item_widget.dart';
 import 'package:styled_widget/styled_widget.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class EditorSettingPage extends StatelessWidget {
   final logic = Get.put(EditorLogic());
@@ -23,18 +25,28 @@ class EditorSettingPage extends StatelessWidget {
         LayoutBuilder(
                 builder: (BuildContext context, BoxConstraints constraints) {
           return CodeMirrorWebView(
-            htmlPath: 'assets/code_mirror.html',
+            rawCode: gCodeMirrorHtmlEditor,
+            javascriptChannel: {
+              JavascriptChannel(
+                  name: "MessageInvoker",
+                  onMessageReceived: (event) {
+                    logic.autoSaveCode(event.message);
+                  })
+            },
             onWebViewFinishCreated: (controller) {
               final raw = Uri.encodeComponent(gP5ExampleCode);
               state.setSettingWebController(controller);
               controller.runJavascript('''
                       editor.setOption('readOnly','nocursor',);
                       editor.setValue(decodeURIComponent("$raw"));
+                      editor.setSize("auto",(document.documentElement.clientHeight) + "px");
                       ''');
             },
           );
         })
-            .constrained(width: Get.width, height: Get.height / 3)
+            .constrained(
+                width: Get.width,
+                height: Responsive.buildCodeMirrorPreviewHeight())
             .marginOnly(bottom: Responsive.responsiveInsets()),
         Obx(() {
           return cardItemWidget(

@@ -35,7 +35,7 @@ class ContactMePage extends StatelessWidget {
                     ));
                   }),
               itemListTile(
-                  title: "QQ".tr,
+                  title: "QQ群",
                   onTap: () {
                     launchQQ();
                   }),

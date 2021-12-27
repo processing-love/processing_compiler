@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:processing_compiler/compiler/core.dart';
 import 'package:processing_compiler/db/db_project_file.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/editor/editor_setting/view.dart';
@@ -28,7 +29,7 @@ class EditorPage extends StatelessWidget {
             icon: const Icon(Icons.settings))
       ],
       body: CodeMirrorWebView(
-        htmlPath: projectFile.htmlTemplate,
+        rawCode: gCodeMirrorHtmlEditor,
         onWebViewFinishCreated: (controller) {
           logic.state.setWebController(controller);
           logic.initCodeMirror();

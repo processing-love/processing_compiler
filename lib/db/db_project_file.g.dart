@@ -17,30 +17,27 @@ class DbProjectFileAdapter extends TypeAdapter<DbProjectFile> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return DbProjectFile(
-      nameKey: fields[6] as String?,
+      nameKey: fields[4] as String?,
       name: fields[0] as String,
       code: fields[1] as String,
-      htmlTemplate: fields[5] as String,
-      projectType: fields[3] as int,
-      modifyTime: fields[4] as int,
+      projectType: fields[2] as int,
+      modifyTime: fields[3] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, DbProjectFile obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
       ..write(obj.code)
-      ..writeByte(3)
+      ..writeByte(2)
       ..write(obj.projectType)
-      ..writeByte(4)
+      ..writeByte(3)
       ..write(obj.modifyTime)
-      ..writeByte(5)
-      ..write(obj.htmlTemplate)
-      ..writeByte(6)
+      ..writeByte(4)
       ..write(obj.nameKey);
   }
 

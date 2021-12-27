@@ -32,34 +32,27 @@ class DbAdapterHelper {
     final DbProjectFile? projectFile = boxProjectFile.get(projectName);
     if (projectFile == null) {
       String code;
-      String htmlTemplate;
       switch (projectType) {
         case ProjectType.processing:
           code = gP5ExampleCode;
-          htmlTemplate = 'assets/code_mirror.html';
           break;
         case ProjectType.p5js: // javascript
           code = gP5ExampleCode;
-          htmlTemplate = 'assets/code_mirror.html';
           break;
         case ProjectType.py: // python
           code = gPyExampleCode;
-          htmlTemplate = 'assets/code_mirror.html';
           break;
         default:
           code = gP5ExampleCode;
-          htmlTemplate = 'assets/code_mirror.html';
           break;
       }
       final nameKey = DateTime.now().millisecondsSinceEpoch.toString();
-      print('peter key '  + nameKey.toString());
       await boxProjectFile.put(
           nameKey,
           DbProjectFile(
               nameKey: nameKey,
               name: projectName,
               code: code,
-              htmlTemplate: htmlTemplate,
               projectType: projectType.index,
               modifyTime: DateTime.now().millisecondsSinceEpoch));
       return boxProjectFile.get(nameKey)!;

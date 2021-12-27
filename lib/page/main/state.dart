@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:processing_compiler/compiler/core.dart';
 import 'package:processing_compiler/db/db_project_file.dart';
 import 'package:processing_compiler/tools/widget_utils.dart';
 import 'package:processing_compiler/widgets/dialog.dart';

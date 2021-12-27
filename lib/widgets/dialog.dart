@@ -103,7 +103,7 @@ showCreateProjectDialog(
                 controller: controller,
                 autocorrect: true,
                 autofocus: true,
-                decoration: InputDecoration(errorText: error),
+                decoration: InputDecoration(errorText: error, fillColor: Colors.transparent),
                 onSubmitted: (String content) {
                   onSubmit();
                 },
