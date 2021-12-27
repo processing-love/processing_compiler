@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:processing_compiler/compiler/core.dart';
 import 'package:processing_compiler/compiler/p5.dart';
 import 'package:processing_compiler/db/db_project_file.dart';
 

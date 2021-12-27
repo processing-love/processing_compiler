@@ -64,10 +64,9 @@ class MyApp extends StatelessWidget {
 }
 
 Locale getCurrentLocale() {
-  String localeCode =
-      boxCodeMirrorConfig.get(dbNameCodeMirrorConfig)?.language ?? "";
+  String localeCode = boxCodeMirrorConfig.get(dbNameCodeMirrorConfig)?.language ?? "";
   if (localeCode.isEmpty) {
-    return Get.locale ??
+    return Get.deviceLocale ??
         Locale.fromSubtags(
             languageCode: gSupportLanguages[0].code,
             scriptCode: gSupportLanguages[0].desc,

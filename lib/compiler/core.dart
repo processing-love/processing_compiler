@@ -1,4 +1,3 @@
-
 import 'package:processing_compiler/compiler/code_mirror/code_raw.dart';
 import 'package:processing_compiler/compiler/code_mirror/css_raw.dart';
 
@@ -8,16 +7,18 @@ import 'package:processing_compiler/compiler/code_mirror/css_raw.dart';
 String gCodeMirrorHtmlEditor = getCodeMirrorHtmlCore();
 
 String getCodeMirrorHtmlCore() {
-  CssRaw.cssThemes.add(CssRaw.cssShowHint);
+  final result = List.from(CssRaw.cssThemes);
+  result.add(CssRaw.cssShowHint);
   return CodeRaw.codeMirrorEditorHtml
+      .replaceAll('<x-link-x>', result.map((e) => e.raw).join(' '))
       .replaceAll(
           '<x-javascript-x>',
           CodeRaw.jsCodeMirror +
               CodeRaw.jsJavascript +
               CodeRaw.jsActiveLine +
               CodeRaw.jsMatchBrackets +
+              CodeRaw.jsCloseBrackets +
               CodeRaw.jsCloseTag +
               CodeRaw.jsShowHint +
-              CodeRaw.jsJavaScriptHint)
-      .replaceAll('<x-link-x>', CssRaw.cssThemes.map((e) => e.raw).join(' '));
+              CodeRaw.jsJavaScriptHint);
 }

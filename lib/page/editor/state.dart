@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:processing_compiler/compiler/code_mirror/css_raw.dart';
 import 'package:processing_compiler/db/db_adapter_helper.dart';
 import 'package:processing_compiler/db/db_code_mirror_config.dart';
 import 'package:processing_compiler/db/db_project_file.dart';
-import 'package:processing_compiler/lib/css.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class EditorState {
@@ -13,13 +13,10 @@ class EditorState {
   RxDouble codeFontSize = 13.0.obs;
   late DbCodeMirrorConfig dbCodeMirrorConfig;
   RxString codeThemeName = 'material'.obs;
-  final theme = CSSTheme.material().obs;
   final rawCode = ''.obs;
   String nameKey = '';
   ProjectType projectType = ProjectType.p5js;
   late DbProjectFile currentProjectFile;
-
-  CSS css = CSS();
 
   EditorState() {
     ///Initialize variables

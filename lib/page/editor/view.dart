@@ -30,6 +30,7 @@ class EditorPage extends StatelessWidget {
       ],
       body: CodeMirrorWebView(
         rawCode: gCodeMirrorHtmlEditor,
+        backgroundColor: Get.theme.scaffoldBackgroundColor,
         onWebViewFinishCreated: (controller) {
           logic.state.setWebController(controller);
           logic.initCodeMirror();
