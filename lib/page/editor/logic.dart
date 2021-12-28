@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:processing_compiler/compiler/core.dart';
 import 'package:processing_compiler/compiler/p5.dart';
+import 'package:processing_compiler/compiler/processing_js.dart';
 import 'package:processing_compiler/db/db_project_file.dart';
 
 import 'state.dart';
@@ -60,6 +60,16 @@ class EditorLogic extends GetxController {
 
   Future<String> buildPreviewCode() async {
     final String? code = await state.controller?.runJavascriptReturningResult('editor.getValue();');
-    return gGetP5PreviewHtml(code ?? '');
+    final projectType = ProjectTypeHelper.getValue(state.currentProjectFile.projectType);
+    switch (projectType) {
+      case ProjectType.processing:
+        return gGetProcessingJsPreviewHtml(code ?? "");
+      case ProjectType.p5js:
+        return gGetP5PreviewHtml(code ?? "");
+      case ProjectType.py:
+        return gGetProcessingJsPreviewHtml(code ?? "");
+      default:
+        return gGetProcessingJsPreviewHtml(code ?? "");
+    }
   }
 }

@@ -30,3 +30,18 @@ class DbProjectFile extends HiveObject {
 }
 
 enum ProjectType { processing, p5js, py }
+
+class ProjectTypeHelper {
+  static ProjectType getValue(int type) {
+    switch (type) {
+      case 0:
+        return ProjectType.processing;
+      case 1:
+        return ProjectType.p5js;
+      case 2:
+        return ProjectType.py;
+      default:
+        return ProjectType.processing;
+    }
+  }
+}

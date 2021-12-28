@@ -28,7 +28,7 @@ class HomeState {
   }
 
   void deleteProject(String projectName, index) async {
-    await boxProjectFile.delete(projectName);
+    await boxProjectFile.delete(projectFiles[index].nameKey);
     projectFiles.removeAt(index);
   }
 }

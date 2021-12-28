@@ -108,7 +108,7 @@ showCreateProjectDialog(
                   onSubmit();
                 },
                 onChanged: (String content) {
-                  if (content.length > 15) {
+                  if (content.length > 24) {
                     error = 'limit_project_name_length'.tr;
                   } else {
                     error = null;

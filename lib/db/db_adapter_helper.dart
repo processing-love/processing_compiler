@@ -1,5 +1,6 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:processing_compiler/compiler/p5.dart';
+import 'package:processing_compiler/compiler/processing_js.dart';
 import 'package:processing_compiler/db/db_code_mirror_config.dart';
 import 'package:processing_compiler/db/db_project_file.dart';
 
@@ -19,7 +20,10 @@ class DbAdapterHelper {
     Hive.registerAdapter(DbProjectFileAdapter());
     boxCodeMirrorConfig =
         await Hive.openBox<DbCodeMirrorConfig>(dbNameCodeMirrorConfig);
-    boxProjectFile = await Hive.openBox<DbProjectFile>(dbNameProjectFile);
+    boxProjectFile = await Hive.openBox<DbProjectFile>(dbNameProjectFile,
+        keyComparator: (dynamic key1, dynamic key2) {
+      return key2.compareTo(key1);
+    });
 
     if (boxCodeMirrorConfig.isEmpty) {
       await boxCodeMirrorConfig.put(
@@ -34,7 +38,7 @@ class DbAdapterHelper {
       String code;
       switch (projectType) {
         case ProjectType.processing:
-          code = gP5ExampleCode;
+          code = gProcessingExample;
           break;
         case ProjectType.p5js: // javascript
           code = gP5ExampleCode;
@@ -43,7 +47,7 @@ class DbAdapterHelper {
           code = gPyExampleCode;
           break;
         default:
-          code = gP5ExampleCode;
+          code = gProcessingExample;
           break;
       }
       final nameKey = DateTime.now().millisecondsSinceEpoch.toString();

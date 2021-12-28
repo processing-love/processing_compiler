@@ -122,7 +122,7 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "delete": "删除",
     "config_delete": "您确定删除x吗 ？",
     "tip": "温馨提示",
-    "limit_project_name_length": "名称不能超过15个字符",
+    "limit_project_name_length": "名称不能超过24个字符",
     "limit_project_name_exist": "该项目已经存在，请重新输入新的项目名称",
     "please_input_project_name": "项目名称不能为空",
     "language": "多语言",

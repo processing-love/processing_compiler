@@ -31,7 +31,8 @@ class HomeLogic extends GetxController {
 
   deleteProject(int index) async {
     final name = state.projectFiles[index].name;
-    showDeleteProjectDialog('config_delete'.tr.replaceAll('x', name), 'delete'.tr, () {
+    showDeleteProjectDialog(
+        'config_delete'.tr.replaceAll('x', name), 'delete'.tr, () {
       state.deleteProject(name, index);
     });
   }
@@ -42,13 +43,5 @@ class HomeLogic extends GetxController {
 
   void addProjectFile(projectFile) {
     state.projectFiles.add(projectFile);
-  }
-
-  void deleteProjectFile() {}
-
-  List<DbProjectFile> sortProjectFiles() {
-    final sortResult = boxProjectFile.values.toList();
-    sortResult.sort((p,p1) => p1.modifyTime.compareTo(p.modifyTime));
-    return sortResult;
   }
 }

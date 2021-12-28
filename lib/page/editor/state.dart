@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:processing_compiler/compiler/code_mirror/css_raw.dart';
 import 'package:processing_compiler/db/db_adapter_helper.dart';
 import 'package:processing_compiler/db/db_code_mirror_config.dart';
 import 'package:processing_compiler/db/db_project_file.dart';
