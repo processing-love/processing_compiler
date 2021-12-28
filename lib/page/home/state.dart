@@ -32,4 +32,11 @@ class HomeState {
     final findProject = projectFiles.firstWhere((element) => element.name == projectName);
     projectFiles.remove(findProject);
   }
+
+  void updateProjectName(String projectName, String nameKey) async {
+    final findProject = projectFiles.firstWhere((element) => element.nameKey == nameKey);
+    findProject.name = projectName;
+    findProject.save();
+    projectFiles.refresh();
+  }
 }

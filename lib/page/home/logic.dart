@@ -50,4 +50,8 @@ class HomeLogic extends GetxController {
     result.sort((p,p1) => p1.modifyTime.compareTo(p.modifyTime));
     return result;
   }
+
+  void updateProjectName(String projectName, String nameKey) async {
+    state.updateProjectName(projectName, nameKey);
+  }
 }

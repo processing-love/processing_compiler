@@ -79,11 +79,12 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "send": "Send out"
   },
   "zh": {
-    'app_share':'Processing&p5.js&Py by Compiler',
+    'app_share': 'Processing&p5.js&Py by Compiler',
     "about": "联系我",
-    'feedback':'Processing Compiler 相关问题反馈',
+    "share": '分享',
+    'feedback': 'Processing Compiler 相关问题反馈',
     'like_me': '鼓励我一下',
-    'ok':'确定',
+    'ok': '确定',
     'recommend': '推荐朋友',
     'wechat': '微信',
     'rename': '重新命名',

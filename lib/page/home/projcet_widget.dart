@@ -21,6 +21,7 @@ class ProjectWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('peter refresh');
     return BasePage(
       isContentList: true,
       isHaveAppBar: false,

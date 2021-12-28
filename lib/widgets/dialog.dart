@@ -165,8 +165,10 @@ showEditProjectDialog(DbProjectFile projectFile) {
 
               var statues = error ?? "";
               if (statues.isEmpty) {
-                projectFile.save();
                 Get.focusScope?.requestFocus(FocusNode());
+                final logic = Get.put(HomeLogic());
+                logic.updateProjectName(
+                    controller.text, projectFile.nameKey ?? '');
                 Get.back();
               }
             }
