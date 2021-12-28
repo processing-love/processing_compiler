@@ -27,7 +27,7 @@ class ProjectWidget extends StatelessWidget {
         cardItemListViewWidget(
             itemCount: logic.state.projectFiles.length,
             itemBuilder: (BuildContext context, int index) {
-              final project = logic.state.projectFiles[index];
+              final project = logic.buildSortResultProjectFiles()[index];
               return itemWidgetForSlide((projectFile) {
                 Get.to(EditorPage(
                   projectFile: projectFile,

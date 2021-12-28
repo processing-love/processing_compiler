@@ -20,10 +20,7 @@ class DbAdapterHelper {
     Hive.registerAdapter(DbProjectFileAdapter());
     boxCodeMirrorConfig =
         await Hive.openBox<DbCodeMirrorConfig>(dbNameCodeMirrorConfig);
-    boxProjectFile = await Hive.openBox<DbProjectFile>(dbNameProjectFile,
-        keyComparator: (dynamic key1, dynamic key2) {
-      return key2.compareTo(key1);
-    });
+    boxProjectFile = await Hive.openBox<DbProjectFile>(dbNameProjectFile);
 
     if (boxCodeMirrorConfig.isEmpty) {
       await boxCodeMirrorConfig.put(
