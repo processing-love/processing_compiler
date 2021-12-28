@@ -44,4 +44,18 @@ class ProjectTypeHelper {
         return ProjectType.processing;
     }
   }
+
+  static String getMode(int type) {
+    ProjectType projectType = getValue(type);
+    switch (projectType) {
+      case ProjectType.processing:
+        return 'text/x-java';
+      case ProjectType.p5js:
+        return 'javascript';
+      case ProjectType.py:
+        return "python";
+      default:
+        return 'text/x-java';
+    }
+  }
 }

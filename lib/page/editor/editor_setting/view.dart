@@ -39,6 +39,7 @@ class EditorSettingPage extends StatelessWidget {
               state.setSettingWebController(controller);
               controller.runJavascript('''
                       editor.setOption('readOnly','nocursor',);
+                      editor.setOption('mode','${logic.buildCodeMirrorMode()}',);
                       editor.setValue(decodeURIComponent("$raw"));
                       editor.setSize("auto",(document.documentElement.clientHeight) + "px");
                       ''');

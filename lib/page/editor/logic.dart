@@ -49,8 +49,13 @@ class EditorLogic extends GetxController {
     final raw = Uri.encodeComponent(state.currentProjectFile.code);
     state.controller?.runJavascript('''
         editor.setSize(${Get.width},${Get.height});
+        editor.setOption('mode','${buildCodeMirrorMode()}',);
         editor.setValue(decodeURIComponent("$raw"));
         ''');
+  }
+
+  String buildCodeMirrorMode() {
+    return ProjectTypeHelper.getMode(state.currentProjectFile.projectType);
   }
 
   void autoSaveCode(String code) {
@@ -60,7 +65,8 @@ class EditorLogic extends GetxController {
 
   Future<String> buildPreviewCode() async {
     final String? code = await state.controller?.runJavascriptReturningResult('editor.getValue();');
-    final projectType = ProjectTypeHelper.getValue(state.currentProjectFile.projectType);
+    final projectType =
+        ProjectTypeHelper.getValue(state.currentProjectFile.projectType);
     switch (projectType) {
       case ProjectType.processing:
         return gGetProcessingJsPreviewHtml(code ?? "");

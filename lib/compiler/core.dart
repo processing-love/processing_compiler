@@ -15,6 +15,7 @@ String getCodeMirrorHtmlCore() {
           '<x-javascript-x>',
           CodeRaw.jsCodeMirror +
               CodeRaw.jsJavascript +
+              CodeRaw.jsLike +
               CodeRaw.jsActiveLine +
               CodeRaw.jsMatchBrackets +
               CodeRaw.jsCloseBrackets +
