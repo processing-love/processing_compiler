@@ -62,20 +62,4 @@ class EditorLogic extends GetxController {
     state.currentProjectFile.code = code;
     state.currentProjectFile.save();
   }
-
-  Future<String> buildPreviewCode() async {
-    final String? code = await state.controller?.runJavascriptReturningResult('editor.getValue();');
-    final projectType =
-        ProjectTypeHelper.getValue(state.currentProjectFile.projectType);
-    switch (projectType) {
-      case ProjectType.processing:
-        return gGetProcessingJsPreviewHtml(code ?? "");
-      case ProjectType.p5js:
-        return gGetP5PreviewHtml(code ?? "");
-      case ProjectType.py:
-        return gGetProcessingJsPreviewHtml(code ?? "");
-      default:
-        return gGetProcessingJsPreviewHtml(code ?? "");
-    }
-  }
 }

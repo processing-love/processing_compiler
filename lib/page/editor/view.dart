@@ -56,7 +56,7 @@ class EditorPage extends StatelessWidget {
   }
 
   _run() async {
-    final String result = await logic.buildPreviewCode();
+    final String result = await state.buildPreviewCode();
     Get.bottomSheet(
       CodeMirrorWebView(
         rawCode: result,

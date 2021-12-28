@@ -86,6 +86,23 @@ def draw():
 ''';
 
 
+const String gCodeMirrorConfigP5Code = r'''
+var isDraw = false;
+var name = 'Processing for p5';
+var age = 18;
+
+function setup() {
+  createCanvas(400, 400);
+}
+
+function draw() {
+  background(220);
+  ellipse(50,50,80,80);
+}
+
+''';
+
+
 String gGetP5PreviewHtml(String code) {
  return  _p5PreviewHTML.replaceAll('<-javascript->', gJavaScriptP5)
      .replaceAll('<-processing-p5->', code);

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:processing_compiler/compiler/p5.dart';
+import 'package:processing_compiler/compiler/processing_js.dart';
+import 'package:processing_compiler/compiler/processing_py.dart';
 import 'package:processing_compiler/db/db_adapter_helper.dart';
 import 'package:processing_compiler/db/db_code_mirror_config.dart';
 import 'package:processing_compiler/db/db_project_file.dart';
@@ -49,5 +52,36 @@ class EditorState {
 
   Widget? getTrailingItemWidget(String theme) {
     return codeThemeName.value == theme ? const Icon(Icons.done) : null;
+  }
+
+  Future<String> buildPreviewCode() async {
+    final String? code = await controller?.runJavascriptReturningResult('editor.getValue();');
+    final projectType =
+    ProjectTypeHelper.getValue(currentProjectFile.projectType);
+    switch (projectType) {
+      case ProjectType.processing:
+        return gGetProcessingJsPreviewHtml(code ?? "");
+      case ProjectType.p5js:
+        return gGetP5PreviewHtml(code ?? "");
+      case ProjectType.py:
+        return gGetProcessingJsPreviewHtml(code ?? "");
+      default:
+        return gGetProcessingJsPreviewHtml(code ?? "");
+    }
+  }
+
+
+  String buildCodeMirrorConfigCode() {
+    final projectType = ProjectTypeHelper.getValue(currentProjectFile.projectType);
+    switch (projectType) {
+      case ProjectType.processing:
+        return gCodeMirrorConfigProcessingCode;
+      case ProjectType.p5js:
+        return gCodeMirrorConfigP5Code;
+      case ProjectType.py:
+        return gCodeMirrorConfigPythonCode;
+      default:
+        return gCodeMirrorConfigProcessingCode;
+    }
   }
 }

@@ -20,6 +20,7 @@ class EditorSettingLogic extends GetxController {
   void onInit() {
     super.onInit();
     Locale locale = getCurrentLocale();
-    state.currentLanguage.value = Language(locale.languageCode, locale.scriptCode ?? "", locale.languageCode);
+    Language language = gSupportLanguages.firstWhere((element) => element.code == locale.languageCode);
+    state.currentLanguage.value = Language(locale.languageCode, language.desc, locale.languageCode);
   }
 }

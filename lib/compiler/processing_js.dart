@@ -1498,3 +1498,19 @@ String gGetProcessingJsPreviewHtml(String code) {
       .replaceAll('<-javascript->', jsProcessing)
       .replaceAll('<-processing-js->', code);
 }
+
+const String gCodeMirrorConfigProcessingCode = r'''
+bool isDraw = false;
+String name = "Processing";
+int age = 18;
+
+void setup() {
+  createCanvas(400, 400);
+}
+
+void draw() {
+  background(220);
+  ellipse(50,50,80,80);
+}
+
+''';
