@@ -50,7 +50,7 @@ class EditorSettingPage extends StatelessWidget {
           return cardItemWidget(
               child: Column(
             children: [
-              SwitchListTile(
+              SwitchListTile.adaptive(
                 title: Text('show_code_line_number'.tr),
                 value: state.showCodeLineNumber.value,
                 onChanged: logic.setShowCodeLineNumber,

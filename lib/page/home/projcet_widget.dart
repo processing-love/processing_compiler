@@ -6,6 +6,7 @@ import 'package:processing_compiler/devices/messages.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/editor/view.dart';
 import 'package:processing_compiler/page/home/logic.dart';
+import 'package:processing_compiler/widgets/dialog.dart';
 import 'package:processing_compiler/widgets/item_widget.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:timeago/timeago.dart';
@@ -52,37 +53,21 @@ Widget itemWidgetForSlide(
       children: [
         SlidableAction(
           onPressed: (_) {
-            showCardBottomSheet(widgets: [
-              itemListTile(
-                  title: project.name,
-                  onTap: () {},
-                  leading: Icons.insert_drive_file_outlined,
-                  haveNext: true,
-                  subTitle: modifyTime,
-                  trailingDesc: 'rename'.tr),
-              itemListTile(
-                  title: '置顶',
-                  onTap: () {},
-                  leading: Icons.sticky_note_2_outlined,
-                  subTitle: 'p5js'),
-              itemListTile(
-                  title: '分享',
-                  onTap: () {
-                    Share.share(project.code);
-                  },
-                  leading: Icons.share_outlined,
-                  subTitle: 'p5js'),
-              itemListTile(
-                  title: '打印',
-                  onTap: () {},
-                  leading: Icons.print_outlined,
-                  subTitle: 'p5js'),
-            ]);
+            showEditProjectDialog(project);
           },
-          backgroundColor: Get.theme.primaryColor,
+          backgroundColor: Colors.blueGrey,
           foregroundColor: Colors.white,
-          icon: Icons.more_horiz,
-          label: 'more'.tr,
+          icon: Icons.insert_drive_file_outlined,
+          label: 'rename'.tr,
+        ),
+        SlidableAction(
+          onPressed: (_) {
+            Share.share(project.code);
+          },
+          backgroundColor: Colors.blueAccent,
+          foregroundColor: Colors.white,
+          icon: Icons.share_outlined,
+          label: 'share'.tr,
         ),
         SlidableAction(
           onPressed: (_) {

@@ -1,7 +1,6 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:processing_compiler/main.dart';
 import 'package:processing_compiler/theme/theme_service.dart';
 
 import 'theme_service.dart';
@@ -165,8 +164,6 @@ class ThemeController with ChangeNotifier {
     if (notify) notifyListeners();
     // Persist the change to whatever storage is used with the ThemeService.
     await _themeService.saveThemeMode(value);
-
-    print('index '  +gThemeController.schemeIndex.toString());
   }
 
   // Repeat above pattern for all other theme settings. The properties will

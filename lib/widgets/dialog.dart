@@ -103,7 +103,8 @@ showCreateProjectDialog(
                 controller: controller,
                 autocorrect: true,
                 autofocus: true,
-                decoration: InputDecoration(errorText: error, fillColor: Colors.transparent),
+                decoration: InputDecoration(
+                    errorText: error, fillColor: Colors.transparent),
                 onSubmitted: (String content) {
                   onSubmit();
                 },
@@ -125,6 +126,82 @@ showCreateProjectDialog(
                 ),
                 TextButton(
                   child: Text('create'.tr),
+                  onPressed: () async {
+                    onSubmit();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      });
+}
+
+showEditProjectDialog(DbProjectFile projectFile) {
+  TextEditingController controller = TextEditingController();
+  controller.text = projectFile.name;
+  String? error;
+  showDialog(
+      context: Get.context!,
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder:
+              (BuildContext context, void Function(void Function()) setState) {
+            onSubmit() async {
+              if (controller.text.isEmpty) {
+                setState(() {
+                  error = 'please_input_project_name'.tr;
+                });
+                return;
+              }
+
+              final logic = Get.put(HomeLogic());
+              if (logic.isExist(controller.text.trim())) {
+                setState(() {
+                  error = 'limit_project_name_exist'.tr;
+                });
+                return;
+              }
+
+              var statues = error ?? "";
+              if (statues.isEmpty) {
+                projectFile.save();
+                Get.focusScope?.requestFocus(FocusNode());
+                Get.back();
+              }
+            }
+
+            return AlertDialog(
+              title: Text('rename_project'.tr),
+              content: TextField(
+                controller: controller,
+                autocorrect: true,
+                autofocus: true,
+                decoration: InputDecoration(
+                    errorText: error,
+                    errorMaxLines: 2,
+                    fillColor: Colors.transparent),
+                onSubmitted: (String content) {
+                  onSubmit();
+                },
+                onChanged: (String content) {
+                  if (content.length > 24) {
+                    error = 'limit_project_name_length'.tr;
+                  } else {
+                    error = null;
+                  }
+                  setState(() {});
+                },
+              ),
+              actions: [
+                TextButton(
+                  child: Text('cancel'.tr),
+                  onPressed: () {
+                    Get.back();
+                  },
+                ),
+                TextButton(
+                  child: Text('ok'.tr),
                   onPressed: () async {
                     onSubmit();
                   },

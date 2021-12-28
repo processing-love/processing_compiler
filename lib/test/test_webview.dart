@@ -41,8 +41,6 @@ class _TestWebViewState extends State<TestWebView> {
 
   @override
   Widget build(BuildContext context) {
-    int start = DateTime.now().millisecondsSinceEpoch;
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('web view'),
@@ -57,13 +55,8 @@ class _TestWebViewState extends State<TestWebView> {
                   _controller.runJavascript('''
                       editor.setValue(decodeURIComponent("$raw"));
                       ''');
-                  print('peter sum html ' +
-                      (DateTime.now().millisecondsSinceEpoch - start)
-                          .toString());
                 },
-                onWebResourceError: (WebResourceError error) {
-                  print('peter error ' + error.toString());
-                },
+                onWebResourceError: (WebResourceError error) {},
                 onWebViewCreated: (controller) async {
                   controller.loadHtmlString(html);
                   _controller = controller;
