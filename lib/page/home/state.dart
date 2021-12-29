@@ -31,6 +31,7 @@ class HomeState {
     await boxProjectFile.delete(projectFiles[index].nameKey);
     final findProject = projectFiles.firstWhere((element) => element.name == projectName);
     projectFiles.remove(findProject);
+    projectFiles.refresh();
   }
 
   void updateProjectName(String projectName, String nameKey) async {

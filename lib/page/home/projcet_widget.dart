@@ -52,15 +52,15 @@ Widget itemWidgetForSlide(
     endActionPane: ActionPane(
       motion: const ScrollMotion(),
       children: [
-        SlidableAction(
-          onPressed: (_) {
-            showEditProjectDialog(project);
-          },
-          backgroundColor: Colors.blueGrey,
-          foregroundColor: Colors.white,
-          icon: Icons.insert_drive_file_outlined,
-          label: 'rename'.tr,
-        ),
+        // SlidableAction(
+        //   onPressed: (_) {
+        //     showEditProjectDialog(project);
+        //   },
+        //   backgroundColor: Colors.blueGrey,
+        //   foregroundColor: Colors.white,
+        //   icon: Icons.insert_drive_file_outlined,
+        //   label: 'rename'.tr,
+        // ),
         SlidableAction(
           onPressed: (_) {
             Share.share(project.code);

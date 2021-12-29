@@ -2,7 +2,7 @@
     package="com.processing.processing_compiler">
    <application
         android:label="Processing"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
