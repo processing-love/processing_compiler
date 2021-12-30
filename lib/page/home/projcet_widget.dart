@@ -66,7 +66,7 @@ Widget itemWidgetForSlide(
           },
           backgroundColor: Colors.blueAccent,
           foregroundColor: Colors.white,
-          icon: Icons.share_outlined,
+          icon: Icons.share_rounded,
           label: 'share'.tr,
         ),
         SlidableAction(
@@ -75,7 +75,7 @@ Widget itemWidgetForSlide(
           },
           backgroundColor: Colors.red,
           foregroundColor: Colors.white,
-          icon: Icons.delete_outline,
+          icon: Icons.delete_outline_rounded,
           label: 'delete'.tr,
         ),
       ],

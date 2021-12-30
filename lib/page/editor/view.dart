@@ -26,7 +26,7 @@ class EditorPage extends StatelessWidget {
             onPressed: () {
               Get.to(EditorSettingPage());
             },
-            icon: const Icon(Icons.settings))
+            icon: const Icon(Icons.settings_rounded))
       ],
       body: CodeMirrorWebView(
         rawCode: gCodeMirrorHtmlEditor,
@@ -49,7 +49,7 @@ class EditorPage extends StatelessWidget {
           _run();
         },
         child: const Icon(
-          Icons.play_arrow,
+          Icons.play_arrow_rounded,
         ),
       ),
     );

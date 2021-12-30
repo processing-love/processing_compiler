@@ -99,7 +99,7 @@ class EditorSettingPage extends StatelessWidget {
                         return ListTile(
                           title: Text(theme),
                           trailing: state.codeThemeName.value == theme
-                              ? const Icon(Icons.done)
+                              ? const Icon(Icons.done_rounded)
                               : null,
                           onTap: () {
                             Get.back();

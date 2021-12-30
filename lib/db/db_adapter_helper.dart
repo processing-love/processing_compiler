@@ -18,9 +18,10 @@ class DbAdapterHelper {
     await Hive.initFlutter();
     Hive.registerAdapter(DbCodeMirrorConfigAdapter());
     Hive.registerAdapter(DbProjectFileAdapter());
-    boxCodeMirrorConfig =
-        await Hive.openBox<DbCodeMirrorConfig>(dbNameCodeMirrorConfig);
-    boxProjectFile = await Hive.openBox<DbProjectFile>(dbNameProjectFile);
+    boxCodeMirrorConfig = await Hive.openBox<DbCodeMirrorConfig>(dbNameCodeMirrorConfig);
+    boxProjectFile = await Hive.openBox<DbProjectFile>(
+      dbNameProjectFile,
+    );
 
     if (boxCodeMirrorConfig.isEmpty) {
       await boxCodeMirrorConfig.put(

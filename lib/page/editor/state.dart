@@ -51,7 +51,7 @@ class EditorState {
   }
 
   Widget? getTrailingItemWidget(String theme) {
-    return codeThemeName.value == theme ? const Icon(Icons.done) : null;
+    return codeThemeName.value == theme ? const Icon(Icons.done_rounded) : null;
   }
 
   Future<String> buildPreviewCode() async {

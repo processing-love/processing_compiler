@@ -36,7 +36,7 @@ class LanguageSettingPage extends StatelessWidget {
                     title: Text(language.language),
                     subtitle: Text(language.desc.tr),
                     trailing: state.currentLanguage.value.code == language.code
-                        ? const Icon(Icons.done)
+                        ? const Icon(Icons.done_rounded)
                         : null,
                     onTap: () {
                       logic.setCurrentLanguageDesc(language);
