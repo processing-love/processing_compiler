@@ -40,10 +40,10 @@ class MainPageState {
       }),
       buildProjectItemWidget('create_p5'.tr, () {
         createProjectFile(ProjectType.p5js);
-      }),
-      buildProjectItemWidget('create_python'.tr, () {
-        createProjectFile(ProjectType.py);
       }).marginOnly(bottom: 12),
+      // buildProjectItemWidget('create_python'.tr, () {
+      //   createProjectFile(ProjectType.py);
+      // }).marginOnly(bottom: 12),
     ]));
   }
 

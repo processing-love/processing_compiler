@@ -31,10 +31,10 @@ class CodeRaw {
         lineNumbers: true,
         lineWrapping: true,
         styleActiveLine: true,
+        styleActiveSelected: true,
         smartIndent: true,
         matchTags: true,
         matchBrackets: this.matchBrackets || true,
-        lineWrapping: true,
         gutters: [
             "CodeMirror-linenumbers",
             "CodeMirror-foldgutter"
@@ -47,6 +47,7 @@ class CodeRaw {
         hintOptions: {
             completeSingle: false,
         },
+        indentWithTabs: true,
         indent: true,
         foldGutter: true,
         theme:'3024-day'

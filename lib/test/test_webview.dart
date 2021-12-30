@@ -24,7 +24,6 @@ class _TestWebViewState extends State<TestWebView> {
   }
 
   load() {
-    CssRaw.cssThemes.add(CssRaw.cssShowHint);
     html = CodeRaw.codeMirrorEditorHtml
         .replaceAll(
             '<x-javascript-x>',

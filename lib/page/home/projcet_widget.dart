@@ -6,7 +6,6 @@ import 'package:processing_compiler/devices/messages.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/editor/view.dart';
 import 'package:processing_compiler/page/home/logic.dart';
-import 'package:processing_compiler/widgets/dialog.dart';
 import 'package:processing_compiler/widgets/item_widget.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:timeago/timeago.dart';
