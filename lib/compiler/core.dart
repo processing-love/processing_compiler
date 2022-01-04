@@ -21,5 +21,5 @@ String getCodeMirrorHtmlCore() {
               CodeRaw.jsCloseBrackets +
               CodeRaw.jsCloseTag +
               CodeRaw.jsShowHint +
-              CodeRaw.jsJavaScriptHint);
+              CodeRaw.jsJavaScriptP5Hint);
 }

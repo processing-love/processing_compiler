@@ -41,6 +41,16 @@ cardItemWidget({required Widget child, bool? haveNext}) {
   );
 }
 
+cardItemRow({required Widget child}) {
+  return Card(
+    margin: EdgeInsets.zero,
+    child: Padding(
+      padding: Responsive.symmetric(),
+      child: child,
+    ),
+  );
+}
+
 itemListTile(
     {required String title,
     bool? haveNext,

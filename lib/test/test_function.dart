@@ -5,5 +5,4 @@ void main() {
   list.add('peter');
   list.add('peter');
   list.add('peter');
-  print(list.join(' '));
 }

@@ -4,14 +4,19 @@ import 'package:processing_compiler/compiler/processing_js.dart';
 import 'package:processing_compiler/db/db_code_mirror_config.dart';
 import 'package:processing_compiler/db/db_project_file.dart';
 
+import 'db_project_file.dart';
+
 /// @author u
 /// @date 2020/6/12.
 
 const String dbNameCodeMirrorConfig = 'db_code_mirror_config';
 const String dbNameProjectFile = 'db_project_file';
 const String dbNameTheme = 'db_theme';
+const String dbVersion = 'db_version';
 late Box<DbCodeMirrorConfig> boxCodeMirrorConfig;
 late Box<DbProjectFile> boxProjectFile;
+late Box boxVersion;
+const String currentBoxVersion = '1';
 
 class DbAdapterHelper {
   Future initAllAdapter() async {
@@ -19,13 +24,14 @@ class DbAdapterHelper {
     Hive.registerAdapter(DbCodeMirrorConfigAdapter());
     Hive.registerAdapter(DbProjectFileAdapter());
     boxCodeMirrorConfig = await Hive.openBox<DbCodeMirrorConfig>(dbNameCodeMirrorConfig);
-    boxProjectFile = await Hive.openBox<DbProjectFile>(
-      dbNameProjectFile,
-    );
-
+    boxProjectFile = await Hive.openBox<DbProjectFile>(dbNameProjectFile);
+    boxVersion = await Hive.openBox(dbVersion);
+    String version = boxVersion.get('currentVersion', defaultValue: "1");
+    if (version.compareTo(currentBoxVersion) > 0) {
+      // version update
+    }
     if (boxCodeMirrorConfig.isEmpty) {
-      await boxCodeMirrorConfig.put(
-          dbNameCodeMirrorConfig, DbCodeMirrorConfig());
+      await boxCodeMirrorConfig.put(dbNameCodeMirrorConfig, DbCodeMirrorConfig());
     }
   }
 

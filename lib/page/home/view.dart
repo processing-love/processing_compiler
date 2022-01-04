@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/home/projcet_widget.dart';
-import 'package:processing_compiler/page/main/logic.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 import 'logic.dart';
@@ -17,6 +16,12 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BasePage(
       title: 'app_name'.tr,
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () {
+          state.createProjectList();
+        },
+      ),
       body: Obx(() {
         return state.projectFiles.isEmpty
             ? buildEmptyWidget()
@@ -38,7 +43,7 @@ class HomePage extends StatelessWidget {
         ),
       ],
     ).gestures(onTap: () {
-      Get.find<MainPageLogic>().state.createProjectList();
+      Get.find<HomeLogic>().state.createProjectList();
     }).center();
   }
 }

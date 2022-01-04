@@ -58,16 +58,3 @@ class BasePage extends StatelessWidget {
     );
   }
 }
-
-Widget buildListViewContentWidget(
-    {required IndexedWidgetBuilder itemBuilder, required int itemCount}) {
-  return Card(
-    margin: EdgeInsets.all(Responsive.responsiveInsets()),
-    child: ListView.builder(
-      padding: EdgeInsets.zero,
-      shrinkWrap: true,
-      itemBuilder: itemBuilder,
-      itemCount: itemCount,
-    ),
-  );
-}

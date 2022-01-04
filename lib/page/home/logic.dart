@@ -10,13 +10,14 @@ class HomeLogic extends GetxController {
 
   void setCurrentIndex(index) {
     state.currentIndex.value = index;
-    state.controller?.jumpToPage(index);
+    state.controller.jumpToPage(index);
   }
 
   @override
   void onClose() {
     super.onClose();
-    state.controller?.dispose();
+    state.controller.dispose();
+    state.textEditingController.dispose();
   }
 
   @override
@@ -38,7 +39,8 @@ class HomeLogic extends GetxController {
   }
 
   bool isExist(String name) {
-    return -1 != state.projectFiles.indexWhere((element) => element.name == name);
+    return -1 !=
+        state.projectFiles.indexWhere((element) => element.name == name);
   }
 
   void addProjectFile(projectFile) {
@@ -47,7 +49,7 @@ class HomeLogic extends GetxController {
 
   List<DbProjectFile> buildSortResultProjectFiles() {
     final List<DbProjectFile> result = List.from(state.projectFiles);
-    result.sort((p,p1) => p1.modifyTime.compareTo(p.modifyTime));
+    result.sort((p, p1) => p1.modifyTime.compareTo(p.modifyTime));
     return result;
   }
 

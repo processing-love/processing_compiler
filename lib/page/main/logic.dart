@@ -8,10 +8,4 @@ class MainPageLogic extends GetxController {
   void changeTabIndex(int index) {
     state.currentIndex.value = index;
   }
-
-  @override
-  void onClose() {
-    super.onClose();
-    state.controller.dispose();
-  }
 }
