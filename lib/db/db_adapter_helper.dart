@@ -13,6 +13,7 @@ const String dbNameCodeMirrorConfig = 'db_code_mirror_config';
 const String dbNameProjectFile = 'db_project_file';
 const String dbNameTheme = 'db_theme';
 const String dbVersion = 'db_version';
+const String dbNameSearchRecord = 'db_search_record';
 late Box<DbCodeMirrorConfig> boxCodeMirrorConfig;
 late Box<DbProjectFile> boxProjectFile;
 late Box boxVersion;

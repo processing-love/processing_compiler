@@ -21,3 +21,14 @@ void wrapGetBottomSheet(Widget widget) {
       ),
       ignoreSafeArea: false);
 }
+
+void showGetBottomSheet(Widget widget) {
+  Get.bottomSheet(
+      Container(
+        decoration: BoxDecoration(
+            color: Get.theme.scaffoldBackgroundColor,
+            borderRadius: const BorderRadius.all(Radius.circular(7))),
+        child: widget,
+      ),
+      ignoreSafeArea: false);
+}

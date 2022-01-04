@@ -1,4 +1,6 @@
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:processing_compiler/compiler/p5.dart';
+import 'package:processing_compiler/compiler/processing_js.dart';
 
 part 'db_project_file.g.dart';
 
@@ -56,6 +58,20 @@ class ProjectTypeHelper {
         return "python";
       default:
         return 'text/x-java';
+    }
+  }
+
+  static String getFullHtml(int type, String code) {
+    final projectType = getValue(type);
+    switch (projectType) {
+      case ProjectType.processing:
+        return gGetProcessingJsPreviewHtml(code);
+      case ProjectType.p5js:
+        return gGetP5PreviewHtml(code);
+      case ProjectType.py:
+        return gGetProcessingJsPreviewHtml(code);
+      default:
+        return gGetProcessingJsPreviewHtml(code);
     }
   }
 }

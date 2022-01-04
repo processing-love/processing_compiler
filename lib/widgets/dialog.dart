@@ -59,8 +59,7 @@ showTalkErrorDialog(String error) {
       });
 }
 
-showCreateProjectDialog(
-    TextEditingController controller, ProjectType projectType) {
+showCreateProjectDialog(TextEditingController controller, ProjectType projectType) {
   controller.clear();
   String? error;
   showDialog(

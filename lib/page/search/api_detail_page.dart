@@ -183,7 +183,7 @@ class ApiRowWidget extends StatelessWidget {
         Text(
           title ?? '',
           style: Get.textTheme.headline5,
-        ).expanded(flex: 2),
+        ).expanded(flex: 4),
         Text(
           value ?? '',
           style: Get.textTheme.bodyText2,

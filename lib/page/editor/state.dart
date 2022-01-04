@@ -35,7 +35,6 @@ class EditorState {
   }
 
   initEditorConfig() async {
-
     dbCodeMirrorConfig = boxCodeMirrorConfig.get(dbNameCodeMirrorConfig)!;
 
     showCodeLineNumber.value = dbCodeMirrorConfig.showCodeLineNumber;
@@ -56,23 +55,12 @@ class EditorState {
 
   Future<String> buildPreviewCode() async {
     final String? code = await controller?.runJavascriptReturningResult('editor.getValue();');
-    final projectType =
-    ProjectTypeHelper.getValue(currentProjectFile.projectType);
-    switch (projectType) {
-      case ProjectType.processing:
-        return gGetProcessingJsPreviewHtml(code ?? "");
-      case ProjectType.p5js:
-        return gGetP5PreviewHtml(code ?? "");
-      case ProjectType.py:
-        return gGetProcessingJsPreviewHtml(code ?? "");
-      default:
-        return gGetProcessingJsPreviewHtml(code ?? "");
-    }
+    return ProjectTypeHelper.getFullHtml(currentProjectFile.projectType, code ?? '');
   }
 
-
   String buildCodeMirrorConfigCode() {
-    final projectType = ProjectTypeHelper.getValue(currentProjectFile.projectType);
+    final projectType =
+        ProjectTypeHelper.getValue(currentProjectFile.projectType);
     switch (projectType) {
       case ProjectType.processing:
         return gCodeMirrorConfigProcessingCode;

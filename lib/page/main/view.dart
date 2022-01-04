@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:processing_compiler/page/example/view.dart';
 import 'package:processing_compiler/page/home/view.dart';
 import 'package:processing_compiler/page/profile/view.dart';
+import 'package:processing_compiler/page/sample/view.dart';
 import 'package:processing_compiler/page/search/view.dart';
 
 import 'logic.dart';
@@ -20,22 +20,22 @@ class MainPage extends StatelessWidget {
       return Scaffold(
         body: IndexedStack(
           index: state.currentIndex.value,
-          children: [HomePage(), ExamplePage(), SearchPage(), ProfilePage()],
+          children: [HomePage(), SamplePage(), SearchPage(), ProfilePage()],
         ),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: state.currentIndex.value,
           showUnselectedLabels: false,
           type: BottomNavigationBarType.fixed,
-          showSelectedLabels: false,
+          showSelectedLabels: true,
           onTap: logic.changeTabIndex,
           items: [
             BottomNavigationBarItem(
               icon: const Icon(Icons.home_filled),
-              label: 'draw'.tr,
+              label: 'project'.tr,
             ),
             BottomNavigationBarItem(
               icon: const Icon(Icons.turned_in_rounded),
-              label: 'draw'.tr,
+              label: 'sample'.tr,
             ),
             BottomNavigationBarItem(
               icon: const Icon(Icons.search_rounded),
@@ -45,7 +45,7 @@ class MainPage extends StatelessWidget {
                 icon: const Icon(
                   Icons.person,
                 ),
-                label: 'main_setting'.tr)
+                label: 'setting'.tr)
           ],
         ),
       );

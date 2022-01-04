@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
+import 'package:processing_compiler/page/search/search_api_widget.dart';
 import 'package:processing_compiler/tools/responsive.dart';
+import 'package:processing_compiler/tools/widget_utils.dart';
 import 'package:processing_compiler/widgets/loading_widget.dart';
 import 'package:styled_widget/styled_widget.dart';
 
@@ -16,7 +18,14 @@ class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BasePage(
-      title: '搜索',
+      title: 'search'.tr,
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.search),
+        heroTag: 'search',
+        onPressed: () {
+          showGetBottomSheet(const SearchApiWidget());
+        },
+      ),
       body: Obx(() {
         return state.apiNodes.isEmpty
             ? const LoadingWidget().center()
@@ -24,7 +33,7 @@ class SearchPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Expanded(
-                      flex: 2,
+                      flex: 3,
                       child: Container(
                         decoration:
                             state.buildCategoryContainerDecorationWidgetColor(),
@@ -52,7 +61,7 @@ class SearchPage extends StatelessWidget {
                         ),
                       )),
                   Expanded(
-                      flex: 5,
+                      flex: 6,
                       child: Container(
                         margin: EdgeInsets.all(Responsive.responsiveInsets()),
                         padding: EdgeInsets.all(Responsive.responsiveInsets()),
@@ -83,7 +92,7 @@ class SearchPage extends StatelessWidget {
                 state.getNodes()[index].childJson?.name ?? "",
               ),
               onPressed: () {
-                logic.gotoDetail(state.getNodes()[index]);
+                state.gotoDetail(state.getNodes()[index]);
               })),
     );
   }
