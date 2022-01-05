@@ -28,11 +28,18 @@ class SearchState {
 
   BoxDecoration buildCategoryDecorationWidgetColor(int index) {
     return BoxDecoration(
-      borderRadius: const BorderRadius.all(Radius.circular(18.0)),
+      borderRadius: const BorderRadius.all(Radius.circular(30.0)),
       color: currentIndex.value != index
           ? Colors.transparent
           : AppColor.schemes[gThemeController.schemeIndex].light.primaryVariant,
     );
+  }
+
+  TextStyle buildSelectFontColor(int index) {
+    return TextStyle(
+        color: currentIndex.value != index
+            ? Get.textTheme.caption?.color ?? Colors.transparent
+            : Colors.white);
   }
 
   BoxDecoration buildCategoryContainerDecorationWidgetColor() {

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/tools/launch_app.dart';
 import 'package:processing_compiler/widgets/item_widget.dart';
-import 'package:processing_compiler/widgets/talk_webview.dart';
+import 'package:processing_compiler/widgets/talk_web_view.dart';
 
 /// @author u
 /// @date 2020/6/12.

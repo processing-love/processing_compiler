@@ -47,18 +47,3 @@ class HomePage extends StatelessWidget {
     }).center();
   }
 }
-
-// Column(
-// children: [
-// CupertinoSlidingSegmentedControl(
-// children: state.buildSegmentedWidget(),
-// groupValue: state.currentIndex.value,
-// onValueChanged: logic.setCurrentIndex)
-// .marginOnly(top: 24),
-// PageView(
-// controller: state.controller,
-// onPageChanged: logic.setCurrentIndex,
-// children: [ProjectWidget(), const SampleWidget()],
-// ).expanded()
-// ],
-// )

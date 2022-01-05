@@ -20,11 +20,11 @@ class MainPage extends StatelessWidget {
       return Scaffold(
         body: IndexedStack(
           index: state.currentIndex.value,
-          children: [HomePage(), SamplePage(), SearchPage(), ProfilePage()],
+          children: [HomePage(), const SamplePage(), SearchPage(), ProfilePage()],
         ),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: state.currentIndex.value,
-          showUnselectedLabels: false,
+          showUnselectedLabels: true,
           type: BottomNavigationBarType.fixed,
           showSelectedLabels: true,
           onTap: logic.changeTabIndex,

@@ -7,7 +7,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: 1.0.2
+  cupertino_icons: 1.0.3
   webview_flutter: 3.0.0
   styled_widget: 0.4.0+3
   get: 4.5.1
@@ -21,6 +21,10 @@ dependencies:
   google_fonts: 2.1.1
   share_plus: 3.0.4
   open_store: 0.2.4
+  flutter_markdown: 0.6.9
+  flutter_highlight: 0.7.0
+  flutter_html: ^3.0.0-alpha.1
+  markdown: ^4.0.1
 
 dev_dependencies:
   flutter_test:

@@ -7,9 +7,14 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 /// @author u
 /// @date 2020/6/12.
+
+typedef WebViewPageFinishedCallback = void Function(WebViewController controller);
+typedef WebViewCreatedCallback = void Function(WebViewController controller);
+
 class CodeMirrorWebView extends StatefulWidget {
   final String? rawCode;
-  final WebViewCreatedCallback? onWebViewFinishCreated;
+  final WebViewPageFinishedCallback? onWebViewFinishCreated;
+  final WebViewCreatedCallback? onWebViewCreated;
   final String? htmlPath;
   final String? url;
   final Map<String, String>? replaceMap;
@@ -19,6 +24,7 @@ class CodeMirrorWebView extends StatefulWidget {
   const CodeMirrorWebView(
       {this.rawCode,
       this.onWebViewFinishCreated,
+      this.onWebViewCreated,
       this.htmlPath,
       this.replaceMap,
       this.url,
@@ -74,6 +80,7 @@ class _CodeMirrorWebViewState extends State<CodeMirrorWebView> {
               controller.loadHtmlString(result);
             }
             webViewController = controller;
+            widget.onWebViewCreated?.call(controller);
           },
           onWebResourceError: (WebResourceError error) {
             showTip = error.description;

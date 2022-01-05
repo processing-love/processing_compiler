@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
+import 'package:markdown/markdown.dart' as markdown;
 import 'package:processing_compiler/data/api/model_api_node.dart';
 import 'package:processing_compiler/data/api/model_api_node_details.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/widgets/item_widget.dart';
-import 'package:styled_widget/styled_widget.dart';
+import 'package:processing_compiler/widgets/talk_web_view.dart';
 
 /// @author u
 /// @date 2020/6/12.
@@ -26,20 +28,17 @@ class ApiDetailPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ApiRowWidget(
+              ApiColumnWidget(
                 title: getTitleName(),
                 value: currentNodeDetails.json?.name ?? '',
-                textStyle: Get.textTheme.headline3,
               ),
-              ApiRowWidget(
+              ApiColumnWidget(
                 title: 'description'.tr,
                 value: currentNodeDetails.json?.description ?? '',
-                textStyle: Get.textTheme.headline4,
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: buildExampleWidget(),
+              ApiColumnWidget(
+                title: 'code_examples'.tr,
+                child: buildExampleWidget(),
               ),
               buildInitWidget(),
               buildFieldsWidget(),
@@ -71,17 +70,16 @@ class ApiDetailPage extends StatelessWidget {
       result.add(const SizedBox());
       return result;
     }
-
-    result.add(
-      Text(
-        'code_examples'.tr,
-        style: Get.textTheme.headline5,
-      ),
-    );
     result.add(Column(
-      children:
-          codes.map((e) => Text(e.node?.internal?.content ?? '')).toList(),
-    ).marginOnly(bottom: 16, top: 8));
+      children: codes.map((e) {
+        final codeRaw = e.node?.internal?.content ?? '';
+        final code = markdown.markdownToHtml("```\n$codeRaw```",
+            inlineSyntaxes: [markdown.CodeSyntax()]);
+        return Html(
+          data: code,
+        );
+      }).toList(),
+    ).marginSymmetric(vertical: 4));
     return result;
   }
 
@@ -102,9 +100,9 @@ class ApiDetailPage extends StatelessWidget {
     if (result.isEmpty) {
       return const SizedBox();
     }
-    return ApiRowWidget(
+    return ApiColumnWidget(
       title: 'constructors'.tr,
-      value: result.map((e) => e + "\n").toList().join(),
+      value: handlerEnterString(result),
     );
   }
 
@@ -113,11 +111,23 @@ class ApiDetailPage extends StatelessWidget {
     if (result.isEmpty) {
       return const SizedBox();
     }
-
-    return ApiRowWidget(
+    return ApiColumnWidget(
       title: 'syntax'.tr,
-      value: result.map((e) => e + "\n").toList().join(),
+      value: handlerEnterString(result),
     );
+  }
+
+  String handlerEnterString(List<String> resource) {
+    return resource
+        .map((e) {
+          int currentIndex = resource.indexOf(e);
+          if (currentIndex != resource.length - 1) {
+            return e + "\n";
+          }
+          return e;
+        })
+        .toList()
+        .join();
   }
 
   Widget buildFieldsWidget() {
@@ -125,13 +135,11 @@ class ApiDetailPage extends StatelessWidget {
     if (result.isEmpty) {
       return const SizedBox();
     }
-
-    return ApiRowWidget(
+    return ApiColumnWidget(
       title: 'fields'.tr,
-      value: result
-          .map((e) => e.name.toString() + '\t\t' + e.desc.toString() + "\n")
-          .toList()
-          .join(),
+      value: handlerEnterString(result
+          .map((e) => e.name.toString() + "\t\t" + e.desc.toString())
+          .toList()),
     );
   }
 
@@ -141,7 +149,7 @@ class ApiDetailPage extends StatelessWidget {
       return const SizedBox();
     }
 
-    return ApiRowWidget(
+    return ApiColumnWidget(
       title: 'methods'.tr,
       value: result
           .map((e) => e.name.toString() + '\t\t' + e.desc.toString() + "\n\n")
@@ -155,40 +163,53 @@ class ApiDetailPage extends StatelessWidget {
     if (result.isEmpty) {
       return const SizedBox();
     }
-
-    return ApiRowWidget(
+    return ApiColumnWidget(
       title: 'parameters'.tr,
-      value: result
-          .map((e) =>
-              e.name.toString() + '\t\t' + e.description.toString() + "\n")
-          .toList()
-          .join(),
+      value: handlerEnterString(result
+          .map((e) => e.name.toString() + "\t\t" + e.description.toString())
+          .toList()),
     );
   }
 }
 
-class ApiRowWidget extends StatelessWidget {
+class ApiColumnWidget extends StatelessWidget {
   final String? title;
-  final String? value;
+  final List<Widget>? child;
   final TextStyle? textStyle;
+  final String? value;
 
-  const ApiRowWidget({Key? key, this.title, this.value, this.textStyle})
+  const ApiColumnWidget(
+      {Key? key, this.title, this.child, this.value, this.textStyle})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title ?? '',
-          style: Get.textTheme.headline5,
-        ).expanded(flex: 4),
-        Text(
-          value ?? '',
-          style: Get.textTheme.bodyText2,
-        ).expanded(flex: 8),
-      ],
-    ).marginOnly(bottom: 26);
+    return Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: buildChildren())
+        .marginAll(8);
+  }
+
+  List<Widget> buildChildren() {
+    final List<Widget> result = [];
+    result.add(Text(
+      title ?? '',
+      style: Get.textTheme.headline6,
+    ));
+
+    if (value != null) {
+      result.add(Html(
+        data: value ?? '',
+        onLinkTap: (String? url, RenderContext context,
+            Map<String, String> attributes, _) {
+          Get.to(TalkWebView(
+            url: url.toString(),
+          ));
+        },
+      ).marginSymmetric(vertical: 4));
+    }
+    result.addAll(child ?? []);
+    return result;
   }
 }

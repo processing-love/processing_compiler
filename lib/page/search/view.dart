@@ -37,22 +37,21 @@ class SearchPage extends StatelessWidget {
                       child: Container(
                         decoration:
                             state.buildCategoryContainerDecorationWidgetColor(),
-                        margin: EdgeInsets.all(Responsive.responsiveInsets()),
                         child: ListView.builder(
                           padding: EdgeInsets.zero,
-                          shrinkWrap: true,
                           itemCount: state.getCategoryList().length,
                           itemBuilder: (BuildContext context, int index) {
                             return Container(
                               alignment: Alignment.center,
                               decoration: state
                                   .buildCategoryDecorationWidgetColor(index),
-                              padding: EdgeInsets.all(
-                                  Responsive.responsiveInsets() - 4),
+                              padding:
+                                  EdgeInsets.all(Responsive.responsiveInsets()),
                               margin:
                                   EdgeInsets.all(Responsive.responsiveInsets()),
                               child: Text(
                                 state.getCategoryList()[index],
+                                style: state.buildSelectFontColor(index),
                               ),
                             ).gestures(onTap: () {
                               logic.changeIndex(index);
@@ -63,7 +62,6 @@ class SearchPage extends StatelessWidget {
                   Expanded(
                       flex: 6,
                       child: Container(
-                        margin: EdgeInsets.all(Responsive.responsiveInsets()),
                         padding: EdgeInsets.all(Responsive.responsiveInsets()),
                         decoration:
                             state.buildCategoryContainerDecorationWidgetColor(),

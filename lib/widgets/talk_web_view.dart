@@ -48,7 +48,6 @@ class _TalkWebViewState extends State<TalkWebView> {
       body: Stack(
         children: [
           WebView(
-            debuggingEnabled: true,
             javascriptMode: JavascriptMode.unrestricted,
             onPageFinished: (String url) {
               isLoading = false;

@@ -4,6 +4,7 @@ import 'package:processing_compiler/db/db_project_file.dart';
 import 'package:processing_compiler/page/sample/state.dart';
 import 'package:processing_compiler/widgets/code_mirror_web_view.dart';
 import 'package:styled_widget/styled_widget.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 /// @author u
 /// @date 2020/6/12.
@@ -19,6 +20,8 @@ class PreviewSamplePage extends StatefulWidget {
 class _PreviewSampleWidgetState extends State<PreviewSamplePage> {
   int currentIndex = 0;
 
+  WebViewController? controller;
+
   @override
   void initState() {
     currentIndex = widget.index ?? 0;
@@ -31,13 +34,15 @@ class _PreviewSampleWidgetState extends State<PreviewSamplePage> {
     final code = ProjectTypeHelper.getFullHtml(
         sampleCode.projectType.index, sampleCode.code);
     print('peter name ' + sampleCode.name);
+    print('peter index ' + currentIndex.toString());
     return Scaffold(
       body: Column(
         children: [
           CodeMirrorWebView(
             rawCode: code,
-            onWebViewFinishCreated: (controller) {
-              controller.loadHtmlString(code);
+            onWebViewFinishCreated: (WebViewController controller) {
+              controller = controller;
+              print('peter ok');
             },
           ).expanded(),
           Row(
@@ -62,7 +67,6 @@ class _PreviewSampleWidgetState extends State<PreviewSamplePage> {
                     iconSize: 58,
                     onPressed: () {
                       currentIndex--;
-                      setState(() {});
                     },
                     icon: const Icon(Icons.chevron_left_outlined)),
               ),
@@ -72,7 +76,8 @@ class _PreviewSampleWidgetState extends State<PreviewSamplePage> {
                     iconSize: 58,
                     onPressed: () {
                       currentIndex++;
-                      setState(() {});
+                      controller?.loadHtmlString('<button>peter</button>');
+                      print('peter c' + controller!.toString());
                     },
                     icon: const Icon(Icons.chevron_right_outlined)),
               ),

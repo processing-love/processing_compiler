@@ -18,9 +18,9 @@ class SearchLogic extends GetxController {
     Map<String, List<ModeApiNode>> categoryMap = {};
     for (var node in apiNodes) {
       if (!categoryMap.containsKey(node.childJson?.category ?? '')) {
-        categoryMap[node.childJson?.category ?? ''] = [];
+        categoryMap[node.childJson?.category?.toLowerCase() ?? ''] = [];
       }
-      categoryMap[node.childJson?.category]?.add(node);
+      categoryMap[node.childJson?.category?.toLowerCase()]?.add(node);
     }
     state.apiNodes.addAll(categoryMap);
   }
