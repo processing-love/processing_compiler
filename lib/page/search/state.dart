@@ -31,7 +31,7 @@ class SearchState {
       borderRadius: const BorderRadius.all(Radius.circular(30.0)),
       color: currentIndex.value != index
           ? Colors.transparent
-          : AppColor.schemes[gThemeController.schemeIndex].light.primaryVariant,
+          : AppColor.schemes[gThemeController.schemeIndex].light.primary,
     );
   }
 

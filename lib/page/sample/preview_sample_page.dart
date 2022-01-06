@@ -1,90 +1,71 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:processing_compiler/data/api/model_example_node.dart'
+    as model_example_node;
 import 'package:processing_compiler/db/db_project_file.dart';
-import 'package:processing_compiler/page/sample/state.dart';
+import 'package:processing_compiler/page/base/base_page.dart';
+import 'package:processing_compiler/page/sample/more_code_widget.dart';
+import 'package:processing_compiler/page/search/api_detail_page.dart';
 import 'package:processing_compiler/widgets/code_mirror_web_view.dart';
+import 'package:processing_compiler/widgets/item_widget.dart';
 import 'package:styled_widget/styled_widget.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
-/// @author u
-/// @date 2020/6/12.
 class PreviewSamplePage extends StatefulWidget {
-  final int? index;
+  final model_example_node.ModelExampleNode? example;
 
-  const PreviewSamplePage(this.index, {Key? key}) : super(key: key);
+  const PreviewSamplePage(this.example, {Key? key}) : super(key: key);
 
   @override
-  _PreviewSampleWidgetState createState() => _PreviewSampleWidgetState();
+  _PreviewSamplePageState createState() => _PreviewSamplePageState();
 }
 
-class _PreviewSampleWidgetState extends State<PreviewSamplePage> {
-  int currentIndex = 0;
-
-  WebViewController? controller;
-
-  @override
-  void initState() {
-    currentIndex = widget.index ?? 0;
-    super.initState();
-  }
-
+class _PreviewSamplePageState extends State<PreviewSamplePage> {
   @override
   Widget build(BuildContext context) {
-    SampleCode sampleCode = SampleCode.getSampleCodes()[currentIndex];
-    final code = ProjectTypeHelper.getFullHtml(
-        sampleCode.projectType.index, sampleCode.code);
-    print('peter name ' + sampleCode.name);
-    print('peter index ' + currentIndex.toString());
-    return Scaffold(
-      body: Column(
-        children: [
-          CodeMirrorWebView(
-            rawCode: code,
-            onWebViewFinishCreated: (WebViewController controller) {
-              controller = controller;
-              print('peter ok');
-            },
-          ).expanded(),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconButton(
-                  iconSize: 58,
-                  onPressed: () {
-                    Get.back();
-                  },
-                  icon: const Icon(Icons.code)),
-              IconButton(
-                  iconSize: 58,
-                  onPressed: () {
-                    Get.back();
-                  },
-                  icon: const Icon(Icons.close)),
-              Visibility(
-                visible: currentIndex > 0,
-                child: IconButton(
-                    iconSize: 58,
-                    onPressed: () {
-                      currentIndex--;
-                    },
-                    icon: const Icon(Icons.chevron_left_outlined)),
-              ),
-              Visibility(
-                visible: currentIndex < SampleCode.getSampleCodes().length,
-                child: IconButton(
-                    iconSize: 58,
-                    onPressed: () {
-                      currentIndex++;
-                      controller?.loadHtmlString('<button>peter</button>');
-                      print('peter c' + controller!.toString());
-                    },
-                    icon: const Icon(Icons.chevron_right_outlined)),
-              ),
-            ],
-          ).marginAll(80),
-        ],
-      ),
+    var t = widget.example?.json?.buildFeatured() ?? '';
+    return BasePage(
+      title: widget.example?.json?.title ?? '',
+      isContentList: true,
+      contentListWidgets: [
+        cardItemWidget(
+            child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            ApiColumnWidget(
+              title: 'author'.tr,
+              value: widget.example?.json?.author ?? '',
+            ),
+            ApiColumnWidget(
+              title: 'description'.tr,
+              value: widget.example?.json?.description ?? '',
+            ),
+            buildPreviewCodeWidget(),
+            ApiColumnWidget(
+              title: 'feature'.tr,
+              value: widget.example?.json?.buildFeatured() ?? '',
+            ),
+            buildCodeWidget()
+          ],
+        )),
+      ],
     );
+  }
+
+  Widget buildCodeWidget() {
+    final codeMap = <String, String>{};
+    widget.example?.pdes?.nodes?.forEach((element) {
+      codeMap[element.name ?? ''] = element.internal?.content ?? '';
+    });
+    return MoreCodeWidget(codeMap).marginAll(8);
+  }
+
+  Widget buildPreviewCodeWidget() {
+    String code = widget.example?.liveSketch?.childRawCode?.content ?? '';
+    print('peter c' + code.toString());
+    return CodeMirrorWebView(
+            rawCode:
+                ProjectTypeHelper.getFullHtml(ProjectType.processing.index, code))
+        .constrained(height: 300, width: 300);
   }
 }

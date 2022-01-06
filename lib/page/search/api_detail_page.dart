@@ -193,6 +193,12 @@ class ApiColumnWidget extends StatelessWidget {
 
   List<Widget> buildChildren() {
     final List<Widget> result = [];
+
+    final valueDesc = value ?? '';
+
+    if (valueDesc.isEmpty) {
+      return [];
+    }
     result.add(Text(
       title ?? '',
       style: Get.textTheme.headline6,
@@ -200,7 +206,7 @@ class ApiColumnWidget extends StatelessWidget {
 
     if (value != null) {
       result.add(Html(
-        data: value ?? '',
+        data: valueDesc,
         onLinkTap: (String? url, RenderContext context,
             Map<String, String> attributes, _) {
           Get.to(TalkWebView(
