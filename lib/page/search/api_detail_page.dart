@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 import 'package:get/get.dart';
-import 'package:markdown/markdown.dart' as markdown;
 import 'package:processing_compiler/data/api/model_api_node.dart';
 import 'package:processing_compiler/data/api/model_api_node_details.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
+import 'package:processing_compiler/tools/responsive.dart';
 import 'package:processing_compiler/widgets/item_widget.dart';
 import 'package:processing_compiler/widgets/talk_web_view.dart';
 
@@ -36,10 +37,7 @@ class ApiDetailPage extends StatelessWidget {
                 title: 'description'.tr,
                 value: currentNodeDetails.json?.description ?? '',
               ),
-              ApiColumnWidget(
-                title: 'code_examples'.tr,
-                child: buildExampleWidget(),
-              ),
+              buildExampleWidget(),
               buildInitWidget(),
               buildFieldsWidget(),
               buildParametersWidget(),
@@ -63,24 +61,35 @@ class ApiDetailPage extends StatelessWidget {
     return 'name'.tr;
   }
 
-  List<Widget> buildExampleWidget() {
+  Widget buildExampleWidget() {
     final result = <Widget>[];
     final List<Edges> codes = currentNodeDetails.pdes?.edges ?? [];
     if (codes.isEmpty) {
-      result.add(const SizedBox());
-      return result;
+      return const SizedBox();
     }
-    result.add(Column(
-      children: codes.map((e) {
-        final codeRaw = e.node?.internal?.content ?? '';
-        final code = markdown.markdownToHtml("```\n$codeRaw```",
-            inlineSyntaxes: [markdown.CodeSyntax()]);
-        return Html(
-          data: code,
-        );
-      }).toList(),
-    ).marginSymmetric(vertical: 4));
-    return result;
+
+    result.add(Text(
+      'code_examples'.tr,
+      style: Get.textTheme.headline6,
+    ));
+
+    result.addAll(codes.map((e) {
+      return SyntaxView(
+        code: e.node?.internal?.content ?? '',
+        syntax: Syntax.JAVA,
+        syntaxTheme: SyntaxTheme.dracula(),
+        fontSize: Responsive.responsiveInsets() * 1.2,
+        withLinesCount: true,
+        withZoom: false,
+        expanded: false,
+      ).marginSymmetric(vertical: 4);
+    }).toList());
+
+    return Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: result)
+        .marginAll(8);
   }
 
   Widget buildInitWidget() {
@@ -122,7 +131,7 @@ class ApiDetailPage extends StatelessWidget {
         .map((e) {
           int currentIndex = resource.indexOf(e);
           if (currentIndex != resource.length - 1) {
-            return e + "\n";
+            return e + "<br/>";
           }
           return e;
         })
@@ -138,7 +147,7 @@ class ApiDetailPage extends StatelessWidget {
     return ApiColumnWidget(
       title: 'fields'.tr,
       value: handlerEnterString(result
-          .map((e) => e.name.toString() + "\t\t" + e.desc.toString())
+          .map((e) => '<b>${e.name.toString()}</b>&emsp;' + e.desc.toString())
           .toList()),
     );
   }
@@ -152,7 +161,10 @@ class ApiDetailPage extends StatelessWidget {
     return ApiColumnWidget(
       title: 'methods'.tr,
       value: result
-          .map((e) => e.name.toString() + '\t\t' + e.desc.toString() + "\n\n")
+          .map((e) =>
+              '<b>${e.name.toString()}</b><br/>' +
+              e.desc.toString() +
+              "<br/><br/>")
           .toList()
           .join(),
     );
@@ -166,7 +178,8 @@ class ApiDetailPage extends StatelessWidget {
     return ApiColumnWidget(
       title: 'parameters'.tr,
       value: handlerEnterString(result
-          .map((e) => e.name.toString() + "\t\t" + e.description.toString())
+          .map((e) =>
+              '<b>${e.name.toString()}</b>&emsp;' + e.description.toString())
           .toList()),
     );
   }

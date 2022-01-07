@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 import 'package:get/get.dart';
 import 'package:processing_compiler/main.dart';
 import 'package:processing_compiler/tools/const/app_color.dart';
+import 'package:processing_compiler/tools/responsive.dart';
 
 /// @author u
 /// @date 2020/6/12.
@@ -57,8 +59,15 @@ class _MoreCodeWidgetState extends State<MoreCodeWidget> {
   }
 
   Widget buildCodeContentWidget() {
-    String code =
-        widget.codeMap[currentTitle ?? widget.codeMap.keys.first] ?? '';
-    return Text(code);
+    String code = widget.codeMap[currentTitle ?? widget.codeMap.keys.first] ?? '';
+    return SyntaxView(
+      code: code,
+      syntax: Syntax.JAVA,
+      syntaxTheme: SyntaxTheme.dracula(),
+      fontSize: Responsive.responsiveInsets() * 1.2,
+      withLinesCount: true,
+      withZoom: false,
+      expanded: false,
+    ).marginSymmetric(vertical: 4);
   }
 }

@@ -43,7 +43,7 @@ class SamplePage extends StatelessWidget {
                         ),
                         state.buildFeaturedWidget(currentJson)
                       ],
-                    ).paddingAll(Responsive.responsiveInsets()),
+                    ).paddingAll(Responsive.responsiveInsets() * 1.2),
                   ).gestures(onTap: () {
                     Get.to(PreviewSamplePage(state.exampleNodes[index]));
                   });

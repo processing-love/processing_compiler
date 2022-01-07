@@ -24,7 +24,7 @@ class SampleState {
         Text(
           'feature'.tr,
           style: Get.textTheme.bodyText2,
-        ).marginOnly(top: Responsive.responsiveInsets()),
+        ).marginSymmetric(vertical: Responsive.responsiveInsets() / 2),
         Text(
           featured,
           style: Get.textTheme.caption,
