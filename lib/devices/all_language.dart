@@ -100,7 +100,7 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     'name': '名称',
     'fields': '字段',
     "sample": "示例",
-    'error_desc':'如果翻译或者出现已经，请及时联系我，感谢您的支持!',
+    'error_desc':'如果翻译内容不正确或者页面出现异常，请及时联系我，感谢您的支持!',
     "code":'源代码',
     'parameters': '参数',
     'constructors': '构造方法',

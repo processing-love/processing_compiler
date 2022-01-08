@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:processing_compiler/data/api/model_example_node.dart'
-    as model_example_node;
+import 'package:processing_compiler/data/api/model_example_node.dart' as model_example_node;
 import 'package:processing_compiler/db/db_project_file.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/profile/contact_me_page.dart';
@@ -84,6 +83,8 @@ class _PreviewSamplePageState extends State<PreviewSamplePage> {
       fullCode = handlerProcessingLoadImage(fullCode,liveCode);
     }
 
+    print('peter ' + fullCode.toString());
+
     return Container(
       height: Get.width * 0.45,
       width: Get.width,
@@ -92,7 +93,7 @@ class _PreviewSamplePageState extends State<PreviewSamplePage> {
       child: CodeMirrorWebView(
               backgroundColor: Colors.transparent,
               rawCode: ProjectTypeHelper.getFullHtml(projectType, fullCode))
-          .constrained(height: Get.width * 0.40, width: Get.width * 0.75),
+          .constrained(height: Get.width * 0.45, width: Get.width * 0.75),
     );
   }
 }
@@ -113,6 +114,5 @@ String handlerProcessingLoadImage(String fullUrl, String liveCode) {
   int start = fullUrl.indexOf("loadImage(");
   int end = fullUrl.indexOf('.jpg');
   String image = fullUrl.substring(start, end) + ".jpg\")";
-  final dataUrl = fullUrl.replaceAll(image, loadImage);
-  return dataUrl;
+  return fullUrl.replaceAll(image, loadImage);
 }

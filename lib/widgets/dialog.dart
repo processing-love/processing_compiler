@@ -66,8 +66,7 @@ showCreateProjectDialog(TextEditingController controller, ProjectType projectTyp
       context: Get.context!,
       builder: (BuildContext context) {
         return StatefulBuilder(
-          builder:
-              (BuildContext context, void Function(void Function()) setState) {
+          builder: (BuildContext context, void Function(void Function()) setState) {
             onSubmit() async {
               if (controller.text.isEmpty) {
                 setState(() {
@@ -102,8 +101,9 @@ showCreateProjectDialog(TextEditingController controller, ProjectType projectTyp
                 controller: controller,
                 autocorrect: true,
                 autofocus: true,
-                decoration: InputDecoration(
-                    errorText: error, fillColor: Colors.transparent),
+                decoration: InputDecoration(errorText: error,
+
+                    hintMaxLines: 2, fillColor: Colors.transparent),
                 onSubmitted: (String content) {
                   onSubmit();
                 },
