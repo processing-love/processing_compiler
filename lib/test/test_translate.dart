@@ -21,7 +21,6 @@ void main() async {
       query += value + "\n";
     }
   });
-
   File file = File('message.json');
   if (file.existsSync()) {
     file.deleteSync();
@@ -45,16 +44,16 @@ translate(String to, String query, File file) async {
   var result = appID + query + salt + secretKey;
   var sign = md5.convert(utf8.encode(result)).toString();
   HttpClient httpClient = HttpClient();
-  var request = await httpClient.getUrl(Uri.parse("http://api.fanyi.baidu.com/"
+  var url = Uri.parse("http://api.fanyi.baidu.com/"
       "api/trans/vip/translate?"
       "q=$query&"
-      "from=zh&"
+      "from=auto&"
       "to=$to&"
       "appid=$appID&"
       "salt=$salt&"
-      "sign=$sign"));
+      "sign=$sign");
+  var request = await httpClient.getUrl(url);
   var response = await request.close();
-
   print('peter 翻译 statue ' + to + " " + response.statusCode.toString());
   if (response.statusCode == 200) {
     var responseBody = await response.transform(utf8.decoder).join();
