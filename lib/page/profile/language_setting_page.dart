@@ -10,7 +10,7 @@ import 'package:processing_compiler/widgets/item_widget.dart';
 /// @author u
 /// @date 2020/6/12.
 class LanguageSettingPage extends StatelessWidget {
-  final logic = Get.put(EditorSettingLogic());
+  final logic = Get.find<EditorSettingLogic>();
   final state = Get.find<EditorSettingLogic>().state;
 
   LanguageSettingPage({Key? key}) : super(key: key);

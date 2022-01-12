@@ -75,7 +75,7 @@ showCreateProjectDialog(TextEditingController controller, ProjectType projectTyp
                 return;
               }
 
-              final logic = Get.put(HomeLogic());
+              final logic = Get.find<HomeLogic>();
               if (logic.isExist(controller.text.trim())) {
                 setState(() {
                   error = 'limit_project_name_exist'.tr;
@@ -154,7 +154,7 @@ showEditProjectDialog(DbProjectFile projectFile) {
                 return;
               }
 
-              final logic = Get.put(HomeLogic());
+              final logic = Get.find<HomeLogic>();
               if (logic.isExist(controller.text.trim())) {
                 setState(() {
                   error = 'limit_project_name_exist'.tr;
@@ -165,7 +165,7 @@ showEditProjectDialog(DbProjectFile projectFile) {
               var statues = error ?? "";
               if (statues.isEmpty) {
                 Get.focusScope?.requestFocus(FocusNode());
-                final logic = Get.put(HomeLogic());
+                final logic = Get.find<HomeLogic>();
                 logic.updateProjectName(
                     controller.text, projectFile.nameKey ?? '');
                 Get.back();

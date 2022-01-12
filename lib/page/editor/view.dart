@@ -10,7 +10,7 @@ import 'package:webview_flutter/platform_interface.dart';
 import 'logic.dart';
 
 class EditorPage extends StatelessWidget {
-  final logic = Get.put(EditorLogic());
+  final logic = Get.find<EditorLogic>();
   final state = Get.find<EditorLogic>().state;
   final DbProjectFile projectFile;
 

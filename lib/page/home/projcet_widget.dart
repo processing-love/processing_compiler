@@ -14,7 +14,7 @@ import 'package:timeago/timeago.dart';
 /// @date 2020/6/12.
 
 class ProjectWidget extends StatelessWidget {
-  final logic = Get.put(HomeLogic());
+  final logic = Get.find<HomeLogic>();
 
   ProjectWidget({Key? key}) : super(key: key);
 

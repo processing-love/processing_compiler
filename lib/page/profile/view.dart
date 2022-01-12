@@ -13,7 +13,7 @@ import 'package:share_plus/share_plus.dart';
 import 'contact_me_page.dart';
 
 class ProfilePage extends StatelessWidget {
-  final logic = Get.put(EditorSettingLogic());
+  final logic = Get.find<EditorSettingLogic>();
   final state = Get.find<EditorSettingLogic>().state;
 
   ProfilePage({Key? key}) : super(key: key);

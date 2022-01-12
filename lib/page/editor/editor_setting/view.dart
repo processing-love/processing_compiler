@@ -11,7 +11,7 @@ import 'package:styled_widget/styled_widget.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class EditorSettingPage extends StatelessWidget {
-  final logic = Get.put(EditorLogic());
+  final logic = Get.find<EditorLogic>();
   final state = Get.find<EditorLogic>().state;
 
   EditorSettingPage({Key? key}) : super(key: key);

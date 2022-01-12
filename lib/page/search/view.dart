@@ -10,7 +10,7 @@ import 'package:styled_widget/styled_widget.dart';
 import 'logic.dart';
 
 class SearchPage extends StatelessWidget {
-  final logic = Get.put(SearchLogic());
+  final logic = Get.find<SearchLogic>();
   final state = Get.find<SearchLogic>().state;
 
   SearchPage({Key? key}) : super(key: key);

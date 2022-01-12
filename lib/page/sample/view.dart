@@ -11,7 +11,7 @@ import 'package:processing_compiler/widgets/loading_widget.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 class SamplePage extends StatelessWidget {
-  final logic = Get.put(SampleLogic());
+  final logic = Get.find<SampleLogic>();
   final state = Get.find<SampleLogic>().state;
 
   SamplePage({Key? key}) : super(key: key);

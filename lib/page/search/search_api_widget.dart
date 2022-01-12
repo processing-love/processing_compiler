@@ -18,7 +18,7 @@ class _SearchApiWidgetState extends State<SearchApiWidget> {
   TextEditingController textEditingController = TextEditingController();
   String? error;
   List<ModeApiNode> searchApiNodeResult = [];
-  final logic = Get.put(SearchLogic());
+  final logic = Get.find<SearchLogic>();
 
   @override
   Widget build(BuildContext context) {

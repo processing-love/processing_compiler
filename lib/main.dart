@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:processing_compiler/db/db_adapter_helper.dart';
 import 'package:processing_compiler/devices/all_language.dart';
 import 'package:processing_compiler/devices/messages.dart';
+import 'package:processing_compiler/page/all_controller_binding.dart';
 import 'package:processing_compiler/page/main/view.dart';
 import 'package:processing_compiler/theme/theme_controller.dart';
 import 'package:processing_compiler/theme/theme_service.dart';
@@ -13,13 +14,16 @@ import 'package:processing_compiler/tools/const/app_color.dart';
 
 late ThemeController gThemeController;
 
+var start = 0;
 void main() async {
+  start = DateTime.now().millisecondsSinceEpoch;
   WidgetsFlutterBinding.ensureInitialized();
   await gAdapterHelper.initAllAdapter();
   final ThemeService themeService = ThemeServiceHive(dbNameTheme);
   await themeService.init();
   gThemeController = ThemeController(themeService);
   await gThemeController.loadAll();
+  AllControllerBinding().dependencies();
   runApp(const MyApp());
 }
 
@@ -39,6 +43,7 @@ class MyApp extends StatelessWidget {
           translations: Messages(),
           home: MainPage(),
           defaultTransition: Transition.rightToLeft,
+          initialBinding: AllControllerBinding(),
           theme: FlexThemeData.light(
             colors: AppColor.schemes[gThemeController.schemeIndex].light,
             surfaceMode: FlexSurfaceMode.highScaffoldLowSurfaces,

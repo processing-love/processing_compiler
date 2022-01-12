@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:processing_compiler/main.dart';
 import 'package:processing_compiler/page/home/view.dart';
 import 'package:processing_compiler/page/profile/view.dart';
 import 'package:processing_compiler/page/sample/view.dart';
@@ -9,13 +10,16 @@ import 'logic.dart';
 import 'state.dart';
 
 class MainPage extends StatelessWidget {
-  final MainPageLogic logic = Get.put(MainPageLogic());
+
+  final MainPageLogic logic = Get.find<MainPageLogic>();
   final MainPageState state = Get.find<MainPageLogic>().state;
 
   MainPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var end = DateTime.now().millisecondsSinceEpoch;
+    print('peter 花费 ' + (end - start).toString());
     return Obx(() {
       return Scaffold(
         body: IndexedStack(

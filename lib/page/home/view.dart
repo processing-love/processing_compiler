@@ -7,7 +7,7 @@ import 'package:styled_widget/styled_widget.dart';
 import 'logic.dart';
 
 class HomePage extends StatelessWidget {
-  final logic = Get.put(HomeLogic());
+  final logic = Get.find<HomeLogic>();
   final state = Get.find<HomeLogic>().state;
 
   HomePage({Key? key}) : super(key: key);
