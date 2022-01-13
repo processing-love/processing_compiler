@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
-import 'package:processing_compiler/data/api/model_example_node.dart';
+import 'package:processing_compiler/data/api/model_example_detail_node.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
+import 'package:processing_compiler/page/example/logic.dart';
 import 'package:processing_compiler/page/home/state.dart';
-import 'package:processing_compiler/page/sample/logic.dart';
-import 'package:processing_compiler/page/sample/preview_sample_page.dart';
+import 'package:processing_compiler/page/example/preview_example_page.dart';
 import 'package:processing_compiler/tools/responsive.dart';
 import 'package:processing_compiler/widgets/loading_widget.dart';
 import 'package:styled_widget/styled_widget.dart';
 
-class SamplePage extends StatelessWidget {
-  final logic = Get.find<SampleLogic>();
-  final state = Get.find<SampleLogic>().state;
+class ExamplePage extends StatelessWidget {
+  final logic = Get.find<ExampleLogic>();
+  final state = Get.find<ExampleLogic>().state;
 
-  SamplePage({Key? key}) : super(key: key);
+  ExamplePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BasePage(
-      title: 'sample'.tr,
+      title: 'example'.tr,
       body: Obx(() {
         return state.exampleNodes.isEmpty
             ? const LoadingWidget().center()
@@ -45,28 +45,11 @@ class SamplePage extends StatelessWidget {
                       ],
                     ).paddingAll(Responsive.responsiveInsets() * 1.2),
                   ).gestures(onTap: () {
-                    Get.to(PreviewSamplePage(state.exampleNodes[index]));
+                    Get.to(PreviewExamplePage(state.exampleNodes[index]));
                   });
                 },
               );
       }),
-    );
-  }
-
-  Widget getApiNodeWidget() {
-    return Wrap(
-      spacing: 10.0,
-      runSpacing: 10.0,
-      direction: Axis.horizontal,
-      alignment: WrapAlignment.start,
-      children: List<Widget>.generate(
-          state.exampleNodes.length,
-          (index) => ActionChip(
-              padding: const EdgeInsets.all(10),
-              label: Text(
-                state.exampleNodes()[index].json?.name ?? "",
-              ),
-              onPressed: () {})),
     );
   }
 }

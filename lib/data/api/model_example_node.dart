@@ -1,275 +1,326 @@
-/// json : {"name":"Array","title":"Array","author":"","description":"An array is a list of data. Each piece of data in an array \n  is identified by an index number representing its position in \n  the array. Arrays are zero based, which means that the first \n  element in the array is [0], the second element is [1], and so on. \n  In this example, an array named \"coswave\" is created and\n  filled with the cosine values. This data is displayed three \n  separate ways on the screen.","featured":["Array","cos_"]}
-/// pdes : {"nodes":[{"name":"Array","internal":{"content":"/**\n * Array. \n * \n * An array is a list of data. Each piece of data in an array \n * is identified by an index number representing its position in \n * the array. Arrays are zero based, which means that the first \n * element in the array is [0], the second element is [1], and so on. \n * In this example, an array named \"coswave\" is created and\n * filled with the cosine values. This data is displayed three \n * separate ways on the screen.  \n */\n\n\nfloat[] coswave; \n\nvoid setup() {\n  size(640, 360);\n  coswave = new float[width];\n  for (int i = 0; i < width; i++) {\n    float amount = map(i, 0, width, 0, PI);\n    coswave[i] = abs(cos(amount));\n  }\n  background(255);\n  noLoop();\n}\n\nvoid draw() {\n\n  int y1 = 0;\n  int y2 = height/3;\n  for (int i = 0; i < width; i++) {\n    stroke(coswave[i]*255);\n    line(i, y1, i, y2);\n  }\n\n  y1 = y2;\n  y2 = y1 + y1;\n  for (int i = 0; i < width; i++) {\n    stroke(coswave[i]*255 / 4);\n    line(i, y1, i, y2);\n  }\n  \n  y1 = y2;\n  y2 = height;\n  for (int i = 0; i < width; i++) {\n    stroke(255 - coswave[i]*255);\n    line(i, y1, i, y2);\n  }\n  \n}\n"}}]}
-/// liveSketch : {"name":"liveSketch","childRawCode":{"content":"function runLiveSketch(s) {\n  var coswave;\n\n  s.setup = () => {\n    s.createCanvas(640, 360);\n    coswave = [];\n    for (var i = 0; i < s.width; i++) {\n      var amount = s.map(i, 0, s.width, 0, s.PI);\n      coswave[i] = s.abs(s.cos(amount));\n    }\n    s.background(255);\n    s.noLoop();\n  };\n\n  s.draw = () => {\n    var y1 = 0;\n    var y2 = s.height / 3;\n    for (var i = 0; i < s.width; i += 2) {\n      s.stroke(coswave[i] * 255);\n      s.line(i, y1, i, y2);\n    }\n\n    y1 = y2;\n    y2 = y1 + y1;\n    for (var i = 0; i < s.width; i += 2) {\n      s.stroke((coswave[i] * 255) / 4);\n      s.line(i, y1, i, y2);\n    }\n\n    y1 = y2;\n    y2 = s.height;\n    for (var i = 0; i < s.width; i += 2) {\n      s.stroke(255 - coswave[i] * 255);\n      s.line(i, y1, i, y2);\n    }\n  };\n}\n"}}
-
 class ModelExampleNode {
-  ModelExampleNode({
-    Json? json,
-    Pdes? pdes,
-    LiveSketch? liveSketch,
-  }) {
-    _json = json;
-    _pdes = pdes;
-    _liveSketch = liveSketch;
-  }
-
   ModelExampleNode.fromJson(dynamic json) {
-    _json = json['json'] != null ? Json.fromJson(json['json']) : null;
-    _pdes = json['pdes'] != null ? Pdes.fromJson(json['pdes']) : null;
-    _liveSketch = json['liveSketch'] != null
-        ? LiveSketch.fromJson(json['liveSketch'])
+    _examples = json['examples'] != null
+        ? ExampleNodes.fromJson(json['examples'])
         : null;
+    _images =
+        json['images'] != null ? ImageNode.fromJson(json['images']) : null;
   }
 
-  Json? _json;
-  Pdes? _pdes;
-  LiveSketch? _liveSketch;
+  ExampleNodes? _examples;
+  ImageNode? _images;
 
-  Json? get json => _json;
+  ExampleNodes? get examples => _examples;
 
-  Pdes? get pdes => _pdes;
-
-  LiveSketch? get liveSketch => _liveSketch;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    if (_json != null) {
-      map['json'] = _json?.toJson();
-    }
-    if (_pdes != null) {
-      map['pdes'] = _pdes?.toJson();
-    }
-    if (_liveSketch != null) {
-      map['liveSketch'] = _liveSketch?.toJson();
-    }
-    return map;
-  }
+  ImageNode? get images => _images;
 }
 
-/// name : "liveSketch"
-/// childRawCode : {"content":"function runLiveSketch(s) {\n  var coswave;\n\n  s.setup = () => {\n    s.createCanvas(640, 360);\n    coswave = [];\n    for (var i = 0; i < s.width; i++) {\n      var amount = s.map(i, 0, s.width, 0, s.PI);\n      coswave[i] = s.abs(s.cos(amount));\n    }\n    s.background(255);\n    s.noLoop();\n  };\n\n  s.draw = () => {\n    var y1 = 0;\n    var y2 = s.height / 3;\n    for (var i = 0; i < s.width; i += 2) {\n      s.stroke(coswave[i] * 255);\n      s.line(i, y1, i, y2);\n    }\n\n    y1 = y2;\n    y2 = y1 + y1;\n    for (var i = 0; i < s.width; i += 2) {\n      s.stroke((coswave[i] * 255) / 4);\n      s.line(i, y1, i, y2);\n    }\n\n    y1 = y2;\n    y2 = s.height;\n    for (var i = 0; i < s.width; i += 2) {\n      s.stroke(255 - coswave[i] * 255);\n      s.line(i, y1, i, y2);\n    }\n  };\n}\n"}
-
-class LiveSketch {
-  LiveSketch({
-    String? name,
-    ChildRawCode? childRawCode,
-  }) {
-    _name = name;
-    _childRawCode = childRawCode;
-  }
-
-  LiveSketch.fromJson(dynamic json) {
-    _name = json['name'];
-    _childRawCode = json['childRawCode'] != null
-        ? ChildRawCode.fromJson(json['childRawCode'])
-        : null;
-  }
-
-  String? _name;
-  ChildRawCode? _childRawCode;
-
-  String? get name => _name;
-
-  ChildRawCode? get childRawCode => _childRawCode;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['name'] = _name;
-    if (_childRawCode != null) {
-      map['childRawCode'] = _childRawCode?.toJson();
-    }
-    return map;
-  }
-}
-
-/// content : "function runLiveSketch(s) {\n  var coswave;\n\n  s.setup = () => {\n    s.createCanvas(640, 360);\n    coswave = [];\n    for (var i = 0; i < s.width; i++) {\n      var amount = s.map(i, 0, s.width, 0, s.PI);\n      coswave[i] = s.abs(s.cos(amount));\n    }\n    s.background(255);\n    s.noLoop();\n  };\n\n  s.draw = () => {\n    var y1 = 0;\n    var y2 = s.height / 3;\n    for (var i = 0; i < s.width; i += 2) {\n      s.stroke(coswave[i] * 255);\n      s.line(i, y1, i, y2);\n    }\n\n    y1 = y2;\n    y2 = y1 + y1;\n    for (var i = 0; i < s.width; i += 2) {\n      s.stroke((coswave[i] * 255) / 4);\n      s.line(i, y1, i, y2);\n    }\n\n    y1 = y2;\n    y2 = s.height;\n    for (var i = 0; i < s.width; i += 2) {\n      s.stroke(255 - coswave[i] * 255);\n      s.line(i, y1, i, y2);\n    }\n  };\n}\n"
-
-class ChildRawCode {
-  ChildRawCode({
-    String? content,
-  }) {
-    _content = content;
-  }
-
-  ChildRawCode.fromJson(dynamic json) {
-    _content = json['content'];
-  }
-
-  String? _content;
-
-  String? get content => _content;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['content'] = _content;
-    return map;
-  }
-}
-
-/// nodes : [{"name":"Array","internal":{"content":"/**\n * Array. \n * \n * An array is a list of data. Each piece of data in an array \n * is identified by an index number representing its position in \n * the array. Arrays are zero based, which means that the first \n * element in the array is [0], the second element is [1], and so on. \n * In this example, an array named \"coswave\" is created and\n * filled with the cosine values. This data is displayed three \n * separate ways on the screen.  \n */\n\n\nfloat[] coswave; \n\nvoid setup() {\n  size(640, 360);\n  coswave = new float[width];\n  for (int i = 0; i < width; i++) {\n    float amount = map(i, 0, width, 0, PI);\n    coswave[i] = abs(cos(amount));\n  }\n  background(255);\n  noLoop();\n}\n\nvoid draw() {\n\n  int y1 = 0;\n  int y2 = height/3;\n  for (int i = 0; i < width; i++) {\n    stroke(coswave[i]*255);\n    line(i, y1, i, y2);\n  }\n\n  y1 = y2;\n  y2 = y1 + y1;\n  for (int i = 0; i < width; i++) {\n    stroke(coswave[i]*255 / 4);\n    line(i, y1, i, y2);\n  }\n  \n  y1 = y2;\n  y2 = height;\n  for (int i = 0; i < width; i++) {\n    stroke(255 - coswave[i]*255);\n    line(i, y1, i, y2);\n  }\n  \n}\n"}}]
-
-class Pdes {
-  Pdes({
-    List<Nodes>? nodes,
+class ImageNode {
+  ImageNode({
+    List<ImageDescNodes>? nodes,
   }) {
     _nodes = nodes;
   }
 
-  Pdes.fromJson(dynamic json) {
+  ImageNode.fromJson(dynamic json) {
     if (json['nodes'] != null) {
       _nodes = [];
       json['nodes'].forEach((v) {
-        _nodes?.add(Nodes.fromJson(v));
+        _nodes?.add(ImageDescNodes.fromJson(v));
       });
     }
   }
 
-  List<Nodes>? _nodes;
+  List<ImageDescNodes>? _nodes;
 
-  List<Nodes>? get nodes => _nodes;
+  List<ImageDescNodes>? get nodes => _nodes;
+}
+
+class ImageDescNodes {
+  ImageDescNodes({
+    String? name,
+    String? relativeDirectory,
+    ChildImageSharp? childImageSharp,
+  }) {
+    _name = name;
+    _relativeDirectory = relativeDirectory;
+    _childImageSharp = childImageSharp;
+  }
+
+  ImageDescNodes.fromJson(dynamic json) {
+    _name = json['name'];
+    _relativeDirectory = json['relativeDirectory'];
+    _childImageSharp = json['childImageSharp'] != null
+        ? ChildImageSharp.fromJson(json['childImageSharp'])
+        : null;
+  }
+
+  String? _name;
+  String? _relativeDirectory;
+  ChildImageSharp? _childImageSharp;
+
+  String? get name => _name;
+
+  String? get relativeDirectory => _relativeDirectory;
+
+  ChildImageSharp? get childImageSharp => _childImageSharp;
+}
+
+class ChildImageSharp {
+  ChildImageSharp({
+    GatsbyImageData? gatsbyImageData,
+  }) {
+    _gatsbyImageData = gatsbyImageData;
+  }
+
+  ChildImageSharp.fromJson(dynamic json) {
+    _gatsbyImageData = json['gatsbyImageData'] != null
+        ? GatsbyImageData.fromJson(json['gatsbyImageData'])
+        : null;
+  }
+
+  GatsbyImageData? _gatsbyImageData;
+
+  GatsbyImageData? get gatsbyImageData => _gatsbyImageData;
+}
+
+class GatsbyImageData {
+
+  GatsbyImageData.fromJson(dynamic json) {
+    _layout = json['layout'];
+    _backgroundColor = json['backgroundColor'];
+    _images =
+        json['images'] != null ? Images.fromJson(json['images']) : null;
+    _width = json['width'];
+    _height = json['height'];
+  }
+
+  String? _layout;
+  String? _backgroundColor;
+  Images? _images;
+  int? _width;
+  int? _height;
+
+  String? get layout => _layout;
+
+  String? get backgroundColor => _backgroundColor;
+
+  Images? get images => _images;
+
+  int? get width => _width;
+
+  int? get height => _height;
+}
+
+class Images {
+  Images({
+    Fallback? fallback,
+    List<Sources>? sources,
+  }) {
+    _fallback = fallback;
+    _sources = sources;
+  }
+
+  Images.fromJson(dynamic json) {
+    _fallback =
+        json['fallback'] != null ? Fallback.fromJson(json['fallback']) : null;
+    if (json['sources'] != null) {
+      _sources = [];
+      json['sources'].forEach((v) {
+        _sources?.add(Sources.fromJson(v));
+      });
+    }
+  }
+
+  Fallback? _fallback;
+  List<Sources>? _sources;
+
+  Fallback? get fallback => _fallback;
+
+  List<Sources>? get sources => _sources;
+}
+
+/// srcSet : "/static/94f6712bde2d56e16ea252dc9223f8d5/b2036/Histogram.webp 100w,\n/static/94f6712bde2d56e16ea252dc9223f8d5/b6124/Histogram.webp 200w,\n/static/94f6712bde2d56e16ea252dc9223f8d5/dff21/Histogram.webp 400w,\n/static/94f6712bde2d56e16ea252dc9223f8d5/b2a35/Histogram.webp 800w"
+/// type : "image/webp"
+/// sizes : "(min-width: 400px) 400px, 100vw"
+
+class Sources {
+  Sources({
+    String? srcSet,
+    String? type,
+    String? sizes,
+  }) {
+    _srcSet = srcSet;
+    _type = type;
+    _sizes = sizes;
+  }
+
+  Sources.fromJson(dynamic json) {
+    _srcSet = json['srcSet'];
+    _type = json['type'];
+    _sizes = json['sizes'];
+  }
+
+  String? _srcSet;
+  String? _type;
+  String? _sizes;
+
+  String? get srcSet => _srcSet;
+
+  String? get type => _type;
+
+  String? get sizes => _sizes;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    if (_nodes != null) {
-      map['nodes'] = _nodes?.map((v) => v.toJson()).toList();
-    }
+    map['srcSet'] = _srcSet;
+    map['type'] = _type;
+    map['sizes'] = _sizes;
     return map;
   }
 }
 
-/// name : "Array"
-/// internal : {"content":"/**\n * Array. \n * \n * An array is a list of data. Each piece of data in an array \n * is identified by an index number representing its position in \n * the array. Arrays are zero based, which means that the first \n * element in the array is [0], the second element is [1], and so on. \n * In this example, an array named \"coswave\" is created and\n * filled with the cosine values. This data is displayed three \n * separate ways on the screen.  \n */\n\n\nfloat[] coswave; \n\nvoid setup() {\n  size(640, 360);\n  coswave = new float[width];\n  for (int i = 0; i < width; i++) {\n    float amount = map(i, 0, width, 0, PI);\n    coswave[i] = abs(cos(amount));\n  }\n  background(255);\n  noLoop();\n}\n\nvoid draw() {\n\n  int y1 = 0;\n  int y2 = height/3;\n  for (int i = 0; i < width; i++) {\n    stroke(coswave[i]*255);\n    line(i, y1, i, y2);\n  }\n\n  y1 = y2;\n  y2 = y1 + y1;\n  for (int i = 0; i < width; i++) {\n    stroke(coswave[i]*255 / 4);\n    line(i, y1, i, y2);\n  }\n  \n  y1 = y2;\n  y2 = height;\n  for (int i = 0; i < width; i++) {\n    stroke(255 - coswave[i]*255);\n    line(i, y1, i, y2);\n  }\n  \n}\n"}
+/// src : "/static/94f6712bde2d56e16ea252dc9223f8d5/aeb79/Histogram.png"
+/// srcSet : "/static/94f6712bde2d56e16ea252dc9223f8d5/c636e/Histogram.png 100w,\n/static/94f6712bde2d56e16ea252dc9223f8d5/a1453/Histogram.png 200w,\n/static/94f6712bde2d56e16ea252dc9223f8d5/aeb79/Histogram.png 400w,\n/static/94f6712bde2d56e16ea252dc9223f8d5/47126/Histogram.png 800w"
+/// sizes : "(min-width: 400px) 400px, 100vw"
 
-class Nodes {
-  Nodes({
-    String? name,
-    Internal? internal,
+class Fallback {
+  Fallback({
+    String? src,
+    String? srcSet,
+    String? sizes,
   }) {
-    _name = name;
-    _internal = internal;
+    _src = src;
+    _srcSet = srcSet;
+    _sizes = sizes;
   }
 
-  Nodes.fromJson(dynamic json) {
+  Fallback.fromJson(dynamic json) {
+    _src = json['src'];
+    _srcSet = json['srcSet'];
+    _sizes = json['sizes'];
+  }
+
+  String? _src;
+  String? _srcSet;
+  String? _sizes;
+
+  String? get src => _src;
+
+  String? get srcSet => _srcSet;
+
+  String? get sizes => _sizes;
+
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['src'] = _src;
+    map['srcSet'] = _srcSet;
+    map['sizes'] = _sizes;
+    return map;
+  }
+}
+
+/// nodes : [{"name":"VectorMath","relativeDirectory":"Topics/Vectors/VectorMath","childJson":{"name":"Vector Math","title":"Vector","order":"1","level":"Intermediate"}}]
+
+class ExampleNodes {
+  ExampleNodes.fromJson(dynamic json) {
+    if (json['nodes'] != null) {
+      _nodes = [];
+      json['nodes'].forEach((v) {
+        _nodes?.add(ExampleNode.fromJson(v));
+      });
+    }
+  }
+
+  List<ExampleNode>? _nodes;
+
+  List<ExampleNode>? get nodes => _nodes;
+}
+
+class ExampleNode {
+  ExampleNode({
+    String? name,
+    String? relativeDirectory,
+    ChildJson? childJson,
+  }) {
+    _name = name;
+    _relativeDirectory = relativeDirectory;
+    _childJson = childJson;
+  }
+
+  ExampleNode.fromJson(dynamic json) {
     _name = json['name'];
-    _internal =
-        json['internal'] != null ? Internal.fromJson(json['internal']) : null;
+    _relativeDirectory = json['relativeDirectory'];
+    _childJson = json['childJson'] != null
+        ? ChildJson.fromJson(json['childJson'])
+        : null;
   }
 
   String? _name;
-  Internal? _internal;
+  String? _relativeDirectory;
+  ChildJson? _childJson;
 
   String? get name => _name;
 
-  Internal? get internal => _internal;
+  String? get relativeDirectory => _relativeDirectory;
+
+  ChildJson? get childJson => _childJson;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['name'] = _name;
-    if (_internal != null) {
-      map['internal'] = _internal?.toJson();
+    map['relativeDirectory'] = _relativeDirectory;
+    if (_childJson != null) {
+      map['childJson'] = _childJson?.toJson();
     }
     return map;
   }
 }
 
-/// content : "/**\n * Array. \n * \n * An array is a list of data. Each piece of data in an array \n * is identified by an index number representing its position in \n * the array. Arrays are zero based, which means that the first \n * element in the array is [0], the second element is [1], and so on. \n * In this example, an array named \"coswave\" is created and\n * filled with the cosine values. This data is displayed three \n * separate ways on the screen.  \n */\n\n\nfloat[] coswave; \n\nvoid setup() {\n  size(640, 360);\n  coswave = new float[width];\n  for (int i = 0; i < width; i++) {\n    float amount = map(i, 0, width, 0, PI);\n    coswave[i] = abs(cos(amount));\n  }\n  background(255);\n  noLoop();\n}\n\nvoid draw() {\n\n  int y1 = 0;\n  int y2 = height/3;\n  for (int i = 0; i < width; i++) {\n    stroke(coswave[i]*255);\n    line(i, y1, i, y2);\n  }\n\n  y1 = y2;\n  y2 = y1 + y1;\n  for (int i = 0; i < width; i++) {\n    stroke(coswave[i]*255 / 4);\n    line(i, y1, i, y2);\n  }\n  \n  y1 = y2;\n  y2 = height;\n  for (int i = 0; i < width; i++) {\n    stroke(255 - coswave[i]*255);\n    line(i, y1, i, y2);\n  }\n  \n}\n"
+/// name : "Vector Math"
+/// title : "Vector"
+/// order : "1"
+/// level : "Intermediate"
 
-class Internal {
-  Internal({
-    String? content,
-  }) {
-    _content = content;
-  }
-
-  Internal.fromJson(dynamic json) {
-    _content = json['content'];
-  }
-
-  String? _content;
-
-  String? get content => _content;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['content'] = _content;
-    return map;
-  }
-}
-
-/// name : "Array"
-/// title : "Array"
-/// author : ""
-/// description : "An array is a list of data. Each piece of data in an array \n  is identified by an index number representing its position in \n  the array. Arrays are zero based, which means that the first \n  element in the array is [0], the second element is [1], and so on. \n  In this example, an array named \"coswave\" is created and\n  filled with the cosine values. This data is displayed three \n  separate ways on the screen."
-/// featured : ["Array","cos_"]
-
-class Json {
-  Json({
+class ChildJson {
+  ChildJson({
     String? name,
     String? title,
-    String? author,
-    String? description,
-    List<String>? featured,
+    String? order,
+    String? level,
   }) {
     _name = name;
     _title = title;
-    _author = author;
-    _description = description;
-    _featured = featured;
+    _order = order;
+    _level = level;
   }
 
-  Json.fromJson(dynamic json) {
+  ChildJson.fromJson(dynamic json) {
     _name = json['name'];
     _title = json['title'];
-    _author = json['author'];
-    _description = json['description'];
-    _featured = json['featured'] != null ? json['featured'].cast<String>() : [];
+    _order = json['order'];
+    _level = json['level'];
   }
 
   String? _name;
   String? _title;
-  String? _author;
-  String? _description;
-  List<String>? _featured;
+  String? _order;
+  String? _level;
 
   String? get name => _name;
 
   String? get title => _title;
 
-  String? get author => _author;
+  String? get order => _order;
 
-  String? get description => _description;
-
-  List<String>? get featured => _featured;
-
-  String? buildFeatured() {
-    return featured
-            ?.map((e) {
-              if (e.contains("_")) {
-                List<String> result = e.split("_");
-                final data = <String>[];
-                for (int index = 0; index < result.length; index++) {
-                  if (index == 0) {
-                    data.add(result[index] + " ");
-                  } else {
-                    data.add(result[index] + "()");
-                  }
-                }
-                return data.join("");
-              }
-              return e;
-            })
-            .toList()
-            .join("\n") ??
-        '';
-  }
+  String? get level => _level;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['name'] = _name;
     map['title'] = _title;
-    map['author'] = _author;
-    map['description'] = _description;
-    map['featured'] = _featured;
+    map['order'] = _order;
+    map['level'] = _level;
     return map;
   }
 }

@@ -26,7 +26,7 @@ handlerExampleDetails() async {
   }
   apiExampleDetailsJsonFile.createSync();
   failFile.createSync();
-  var apiNodes = jsonDecode(processingExampleNodeJson);
+  var apiNodes = jsonDecode(processingExampleDetailNodesJson);
   List result = apiNodes['examples']['nodes'];
   for (var element in result) {
     String name = element['childJson']['name'];
@@ -35,7 +35,7 @@ handlerExampleDetails() async {
   }
 
   String apiDetailsDartTemp = '''
-  class ApiExampleDetailsJson {
+  class ApiExampleDetailNodesJson {
   Map<String, String> details = {
     $content
   };

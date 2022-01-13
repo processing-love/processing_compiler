@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:processing_compiler/data/api/model_example_node.dart' as model_example_node;
+import 'package:processing_compiler/data/api/model_example_detail_node.dart' as model_example_node;
 import 'package:processing_compiler/db/db_project_file.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
+import 'package:processing_compiler/page/example/more_code_widget.dart';
 import 'package:processing_compiler/page/profile/contact_me_page.dart';
-import 'package:processing_compiler/page/sample/more_code_widget.dart';
 import 'package:processing_compiler/page/search/api_detail_page.dart';
 import 'package:processing_compiler/widgets/code_mirror_web_view.dart';
 import 'package:processing_compiler/widgets/dialog.dart';
 import 'package:processing_compiler/widgets/item_widget.dart';
 import 'package:styled_widget/styled_widget.dart';
 
-class PreviewSamplePage extends StatefulWidget {
-  final model_example_node.ModelExampleNode? example;
+class PreviewExamplePage extends StatefulWidget {
+  final model_example_node.ModelExampleDetailNode? example;
 
-  const PreviewSamplePage(this.example, {Key? key}) : super(key: key);
+  const PreviewExamplePage(this.example, {Key? key}) : super(key: key);
 
   @override
-  _PreviewSamplePageState createState() => _PreviewSamplePageState();
+  _PreviewExamplePageState createState() => _PreviewExamplePageState();
 }
 
-class _PreviewSamplePageState extends State<PreviewSamplePage> {
+class _PreviewExamplePageState extends State<PreviewExamplePage> {
   @override
   Widget build(BuildContext context) {
     return BasePage(

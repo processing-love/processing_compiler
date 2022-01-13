@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
 import 'package:processing_compiler/page/editor/editor_setting/logic.dart';
 import 'package:processing_compiler/page/editor/logic.dart';
+import 'package:processing_compiler/page/example/logic.dart';
 import 'package:processing_compiler/page/home/logic.dart';
 import 'package:processing_compiler/page/main/logic.dart';
 import 'package:processing_compiler/page/profile/logic.dart';
-import 'package:processing_compiler/page/sample/logic.dart';
 import 'package:processing_compiler/page/search/logic.dart';
 
 /// @author u
@@ -18,6 +18,6 @@ class AllControllerBinding extends Bindings {
     Get.lazyPut(() => EditorSettingLogic());
     Get.lazyPut(() => EditorLogic());
     Get.lazyPut(() => HomeLogic());
-    Get.lazyPut(() => SampleLogic());
+    Get.lazyPut(() => ExampleLogic());
   }
 }

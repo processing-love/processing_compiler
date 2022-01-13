@@ -3,13 +3,14 @@ import 'package:processing_compiler/data/api_example_nodes_fetch.dart';
 
 import 'state.dart';
 
-class SampleLogic extends GetxController {
-  final SampleState state = SampleState();
+class ExampleLogic extends GetxController {
+  final ExampleState state = ExampleState();
 
   @override
   void onInit() async {
     super.onInit();
-    final apiNodes = await ApiExampleNodesFetch.getApiExampleNodes();
+    state.imagesMap = await ApiExampleNodesFetch.getApiExampleNodes();
+    final apiNodes = await ApiExampleNodesFetch.getApiExampleDetailNodes();
     state.exampleNodes.addAll(apiNodes);
   }
 }
