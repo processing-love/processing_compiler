@@ -105,6 +105,7 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
   "zh": {
     "app_share": "Processing or p5.js or Py by Compiler",
     "about": "联系我",
+    'try_it':'快来尝试一下',
     "feature": "知识点",
     "search": "速查",
     "search_result_empty": "没有搜索到相关信息，请试试其他关键字",

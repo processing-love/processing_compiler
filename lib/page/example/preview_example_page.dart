@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:processing_compiler/data/api/model_example_detail_node.dart' as model_example_node;
+import 'package:processing_compiler/data/api/model_example_detail_node.dart'
+    as model_example_node;
 import 'package:processing_compiler/db/db_project_file.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/example/more_code_widget.dart';
@@ -49,11 +50,12 @@ class _PreviewExamplePageState extends State<PreviewExamplePage> {
               title: 'description'.tr,
               value: widget.example?.json?.description ?? '',
             ),
-            buildPreviewCodeWidget(),
+            // buildPreviewCodeWidget(),
             ApiColumnWidget(
               title: 'feature'.tr,
               value: widget.example?.json?.buildFeatured() ?? '',
             ),
+            buildRunCodeWidget(),
             buildCodeWidget()
           ],
         )),
@@ -80,10 +82,8 @@ class _PreviewExamplePageState extends State<PreviewExamplePage> {
         : ProjectType.processing.index;
     if (fullCode.contains(" loadImage(")) {
       String liveCode = widget.example?.liveSketch?.childRawCode?.content ?? '';
-      fullCode = handlerProcessingLoadImage(fullCode,liveCode);
+      fullCode = handlerProcessingLoadImage(fullCode, liveCode);
     }
-
-    print('peter ' + fullCode.toString());
 
     return Container(
       height: Get.width * 0.45,
@@ -96,14 +96,36 @@ class _PreviewExamplePageState extends State<PreviewExamplePage> {
           .constrained(height: Get.width * 0.45, width: Get.width * 0.75),
     );
   }
+
+  Widget buildRunCodeWidget() {
+    final List<Widget> result = [];
+    result.add(Text(
+      'try_it'.tr,
+      style: Get.textTheme.headline6,
+    ));
+
+    result.add(Row(
+      children: [
+        ElevatedButton(onPressed: () {}, child: Text('运行看看'))
+            .marginOnly(right: 40),
+        ElevatedButton(onPressed: () {}, child: Text('编辑代码')),
+      ],
+    ));
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: result,
+    ).marginAll(8);
+  }
 }
 
 String handlerProcessingLoadImage(String fullUrl, String liveCode) {
   int imageStartIndex = liveCode.indexOf('loadImage(');
   int imageEndIndex = liveCode.indexOf('.jpg\')');
-  String loadImageString = liveCode.substring(imageStartIndex, imageEndIndex) + ".jpg')";
+  String loadImageString =
+      liveCode.substring(imageStartIndex, imageEndIndex) + ".jpg')";
   List<String> url = [];
-  for (int index = 0; index < loadImageString.split("/").length; index ++) {
+  for (int index = 0; index < loadImageString.split("/").length; index++) {
     if (index == 0) {
       url.add(loadImageString.split("/")[index] + 'https://processing.org');
     } else {
