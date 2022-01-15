@@ -4,9 +4,9 @@ class Sample {
   Map info = {
     'zh': '''
     
-      Processing Compiler是用于在手机上编写Processing艺术代码，支持Java语言的Processing,JavaScript版本的P5js,Ruby版本的Processing,Pthon版本的Processing。
+      Processing Compiler是用于在手机上编写Processing艺术代码，支持Java语言的Processing,JavaScript版本的P5js,Ruby版本的Processing,Python版本的Processing。
       
-      此应用程序提供Precessing相关丰富的学习示例和超全面的API查询文档，更有超过40种风格主题，本地化支持9种国家语言，希望提供一个好的创意编程环境，为Procesing贡献一份力量！
+      此应用程序提供Precessing相关丰富的学习示例和超全面的API查询文档，更有超过40种风格主题，本地化支持9种国家语言，希望提供一个好的创意编程环境，为Processing贡献一份力量！
             
       超强大的Processing手机编辑器
       • 支持Java,Javascript,Python,Ruby版本的Processing
@@ -26,7 +26,7 @@ class Sample {
       
       API速查
       • 提供最新最全面的Precessing API文档的查询
-      • 可对Procesing API进行快速搜索
+      • 可对Processing API进行快速搜索
       • 可对Processing API进行运行和编辑
   
       丰富的设置选项

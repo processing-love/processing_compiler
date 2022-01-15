@@ -1448,6 +1448,13 @@ const String _jsProcessingPreview = r'''
             -o-user-select: none;
             user-select: none;
         }
+        
+        
+        canvas {
+          max-width: 100%;
+          height: auto;
+        }
+        
     </style>
 </head>
 <body>

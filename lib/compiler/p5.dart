@@ -23,6 +23,11 @@ const String _p5PreviewHTML = r'''
             -o-user-select: none;
             user-select: none;
         }
+        
+        canvas {
+          max-width: 100%;
+          height: auto;
+        }
     </style>
 </head>
 <body>
@@ -39,7 +44,10 @@ const String _p5PreviewHTML = r'''
     window.onerror = function (message, url, line, column, error) {
         ErrorMessageInvoker.postMessage(message.toString());
     }
+    
+    
     <-processing-p5->
+    
 </script>
 </html>
 
@@ -92,7 +100,8 @@ var name = 'Processing for p5';
 var age = 18;
 
 function setup() {
-  createCanvas(400, 400);
+  var canvas = createCanvas(400, 400);
+  canvas.parent('p);
 }
 
 function draw() {

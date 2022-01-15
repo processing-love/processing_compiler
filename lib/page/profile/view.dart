@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:open_store/open_store.dart';
-import 'package:processing_compiler/devices/third_platform.dart';
 import 'package:processing_compiler/main.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/editor/editor_setting/logic.dart';
 import 'package:processing_compiler/page/profile/language_setting_page.dart';
 import 'package:processing_compiler/page/profile/theme_setting_page.dart';
+import 'package:processing_compiler/tools/launch_app.dart';
 import 'package:processing_compiler/widgets/item_widget.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -52,10 +51,7 @@ class ProfilePage extends StatelessWidget {
             itemListTile(
                 title: 'like_me'.tr,
                 onTap: () {
-                  OpenStore.instance.open(
-                    appStoreId: ThirdPlatform.appStoreAppId,
-                    androidAppBundleId: ThirdPlatform.googlePlayId,
-                  );
+                  launchMarket();
                 }),
             itemListTile(
                 title: 'recommend'.tr,

@@ -40,9 +40,7 @@ class _MoreCodeWidgetState extends State<MoreCodeWidget> {
       spacing: 12,
       children: widget.codeMap.keys.map((title) {
         return ActionChip(
-          backgroundColor: currentTitle == title
-              ? AppColor.schemes[gThemeController.schemeIndex].light.primary
-              : null,
+          backgroundColor: getActionChipColor(title),
           label: Text(
             title,
             style: currentTitle == title
@@ -58,15 +56,22 @@ class _MoreCodeWidgetState extends State<MoreCodeWidget> {
     );
   }
 
+  Color? getActionChipColor(String title) {
+    currentTitle = currentTitle ?? widget.codeMap.keys.first;
+    return currentTitle == title ? AppColor.schemes[gThemeController.schemeIndex].light.primary
+        : null;
+  }
+
   Widget buildCodeContentWidget() {
-    String code = widget.codeMap[currentTitle ?? widget.codeMap.keys.first] ?? '';
+    String code =
+        widget.codeMap[currentTitle ?? widget.codeMap.keys.first] ?? '';
     return SyntaxView(
       code: code,
       syntax: Syntax.JAVA,
       syntaxTheme: SyntaxTheme.dracula(),
       fontSize: Responsive.responsiveInsets() * 1.2,
       withLinesCount: true,
-      withZoom: false,
+      withZoom: true,
       expanded: false,
     ).marginSymmetric(vertical: 4);
   }

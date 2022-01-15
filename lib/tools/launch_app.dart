@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:processing_compiler/devices/third_platform.dart';
 import 'package:processing_compiler/widgets/dialog.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -26,4 +27,10 @@ launchEmail() {
         path: '1611641037@qq.com',
       ).toString(),
       'email_error'.tr);
+}
+
+launchMarket() {
+  launchApp(
+      'https://itunes.apple.com/us/app/twitter/id${ThirdPlatform.appStoreAppId}?mt=8&action=write-review',
+      'open_error'.tr);
 }

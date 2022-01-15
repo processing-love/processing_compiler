@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:processing_compiler/data/api/model_example_detail_node.dart'
-    as model_example_node;
+import 'package:processing_compiler/data/api/model_example_detail_node.dart' as model_example_node;
 import 'package:processing_compiler/db/db_project_file.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/example/more_code_widget.dart';
@@ -24,6 +23,8 @@ class PreviewExamplePage extends StatefulWidget {
 class _PreviewExamplePageState extends State<PreviewExamplePage> {
   @override
   Widget build(BuildContext context) {
+    print('peter ' + Get.window.devicePixelRatio.toString());
+
     return BasePage(
       title: widget.example?.json?.title ?? '',
       actions: [
@@ -50,12 +51,11 @@ class _PreviewExamplePageState extends State<PreviewExamplePage> {
               title: 'description'.tr,
               value: widget.example?.json?.description ?? '',
             ),
-            // buildPreviewCodeWidget(),
+            buildPreviewCodeWidget(),
             ApiColumnWidget(
               title: 'feature'.tr,
               value: widget.example?.json?.buildFeatured() ?? '',
             ),
-            buildRunCodeWidget(),
             buildCodeWidget()
           ],
         )),
@@ -85,43 +85,22 @@ class _PreviewExamplePageState extends State<PreviewExamplePage> {
       fullCode = handlerProcessingLoadImage(fullCode, liveCode);
     }
 
-    return Container(
-      height: Get.width * 0.45,
-      width: Get.width,
-      color: Colors.grey,
-      alignment: Alignment.center,
-      child: CodeMirrorWebView(
-              backgroundColor: Colors.transparent,
-              rawCode: ProjectTypeHelper.getFullHtml(projectType, fullCode))
-          .constrained(height: Get.width * 0.45, width: Get.width * 0.75),
-    );
-  }
+    if (fullCode.contains(" loadShape(")) {
+      String liveCode = widget.example?.liveSketch?.childRawCode?.content ?? '';
+      fullCode = handlerProcessingLoadShape(fullCode, liveCode);
+    }
 
-  Widget buildRunCodeWidget() {
-    final List<Widget> result = [];
-    result.add(Text(
-      'try_it'.tr,
-      style: Get.textTheme.headline6,
-    ));
-
-    result.add(Row(
-      children: [
-        ElevatedButton(onPressed: () {}, child: Text('运行看看'))
-            .marginOnly(right: 40),
-        ElevatedButton(onPressed: () {}, child: Text('编辑代码')),
-      ],
-    ));
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: result,
-    ).marginAll(8);
+    return CodeMirrorWebView(
+            backgroundColor: Colors.transparent,
+            rawCode: ProjectTypeHelper.getFullHtml(projectType, fullCode))
+        .constrained(height: Get.width > 640 ? 360 : 225, width: 640);
   }
 }
 
 String handlerProcessingLoadImage(String fullUrl, String liveCode) {
   int imageStartIndex = liveCode.indexOf('loadImage(');
   int imageEndIndex = liveCode.indexOf('.jpg\')');
+  print('peter fll ' + liveCode.toString());
   String loadImageString =
       liveCode.substring(imageStartIndex, imageEndIndex) + ".jpg')";
   List<String> url = [];
@@ -135,6 +114,28 @@ String handlerProcessingLoadImage(String fullUrl, String liveCode) {
   final String loadImage = url.join("/");
   int start = fullUrl.indexOf("loadImage(");
   int end = fullUrl.indexOf('.jpg');
+  print('peter end ' + end.toString());
   String image = fullUrl.substring(start, end) + ".jpg\")";
+  return fullUrl.replaceAll(image, loadImage);
+}
+
+String handlerProcessingLoadShape(String fullUrl, String liveCode) {
+  int imageStartIndex = liveCode.indexOf('loadShape(');
+  int imageEndIndex = liveCode.indexOf('.svg\')');
+  print('peter ' + liveCode.toString());
+  String loadImageString =
+      liveCode.substring(imageStartIndex, imageEndIndex) + ".svg')";
+  List<String> url = [];
+  for (int index = 0; index < loadImageString.split("/").length; index++) {
+    if (index == 0) {
+      url.add(loadImageString.split("/")[index] + 'https://processing.org');
+    } else {
+      url.add(loadImageString.split("/")[index]);
+    }
+  }
+  final String loadImage = url.join("/");
+  int start = fullUrl.indexOf("loadShape(");
+  int end = fullUrl.indexOf('.svg');
+  String image = fullUrl.substring(start, end) + ".svg\")";
   return fullUrl.replaceAll(image, loadImage);
 }
