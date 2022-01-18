@@ -74,7 +74,7 @@ class HomeState {
       }),
       buildProjectItemWidget('create_p5'.tr, () {
         createProjectFile(ProjectType.p5js);
-      }).marginOnly(bottom: 12),
+      }).marginOnly(bottom: 38),
       // buildProjectItemWidget('create_python'.tr, () {
       //   createProjectFile(ProjectType.py);
       // }).marginOnly(bottom: 12),

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:get/get.dart';
 import 'package:processing_compiler/devices/third_platform.dart';
 import 'package:processing_compiler/widgets/dialog.dart';
@@ -30,7 +32,11 @@ launchEmail() {
 }
 
 launchMarket() {
-  launchApp(
-      'https://itunes.apple.com/us/app/twitter/id${ThirdPlatform.appStoreAppId}?mt=8&action=write-review',
-      'open_error'.tr);
+  if (Platform.isAndroid) {
+    launchApp('market://details?id=com.processing.compiler', 'open_error'.tr);
+  } else {
+    launchApp(
+        'https://itunes.apple.com/us/app/twitter/id${ThirdPlatform.appStoreAppId}?mt=8&action=write-review',
+        'open_error'.tr);
+  }
 }

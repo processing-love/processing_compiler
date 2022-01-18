@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:processing_compiler/devices/third_platform.dart';
 import 'package:processing_compiler/main.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/editor/editor_setting/logic.dart';
@@ -56,7 +57,7 @@ class ProfilePage extends StatelessWidget {
             itemListTile(
                 title: 'recommend'.tr,
                 onTap: () {
-                  Share.share('app_share'.tr);
+                  Share.share(ThirdPlatform.appStoreUrl);
                 }),
             itemListTile(
                 title: 'about'.tr,

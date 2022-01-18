@@ -1482,7 +1482,6 @@ void setup() {
   textAlign(CENTER, CENTER);
   background(0, 0, 100);
   fill(255, 230, 75);
-  text("Processing.js", width / 2, height / 2);
   noLoop();
 }
 

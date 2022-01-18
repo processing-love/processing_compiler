@@ -103,7 +103,6 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "send": "Send out"
   },
   "zh": {
-    "app_share": "Processing or p5.js or Py by Compiler",
     "about": "联系我",
     'open_error':'启动失败，请稍后重试',
     "feature": "知识点",

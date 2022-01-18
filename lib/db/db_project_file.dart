@@ -63,6 +63,13 @@ class ProjectTypeHelper {
 
   static String getFullHtml(int type, String code) {
     final projectType = getValue(type);
+    code = code.trim();
+    if (code.substring(0, 1) == '"') {
+      // 我也不知道为什么Android部分手机会自动加上""  \n等问题
+      code = code.substring(1, code.length - 1);
+      code = code.replaceAll("\\n", ' ');
+    }
+
     switch (projectType) {
       case ProjectType.processing:
         return gGetProcessingJsPreviewHtml(code);

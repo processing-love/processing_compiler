@@ -59,8 +59,7 @@ class EditorState {
   }
 
   String buildCodeMirrorConfigCode() {
-    final projectType =
-        ProjectTypeHelper.getValue(currentProjectFile.projectType);
+    final projectType = ProjectTypeHelper.getValue(currentProjectFile.projectType);
     switch (projectType) {
       case ProjectType.processing:
         return gCodeMirrorConfigProcessingCode;

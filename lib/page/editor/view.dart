@@ -6,7 +6,6 @@ import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/editor/editor_setting/view.dart';
 import 'package:processing_compiler/widgets/code_mirror_web_view.dart';
 import 'package:webview_flutter/platform_interface.dart';
-
 import 'logic.dart';
 
 class EditorPage extends StatelessWidget {

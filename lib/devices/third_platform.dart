@@ -3,4 +3,8 @@
 class ThirdPlatform {
   static String appStoreAppId = '1601799933';
   static String googlePlayId = '';
+  static String appStoreUrl = 'https://apps.apple.com/cn/app/processing-p5-js-compiler/id1601799933';
+  static String googlePlayUrl = 'https://apps.apple.com/cn/app/processing-p5-js-compiler/id1601799933';
+
+
 }
