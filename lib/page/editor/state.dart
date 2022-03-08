@@ -19,9 +19,39 @@ class EditorState {
   String nameKey = '';
   ProjectType projectType = ProjectType.p5js;
   late DbProjectFile currentProjectFile;
+  RxString currentInsertCodeSymbol = ''.obs;
+
+  RxList<String> codeSymbols = RxList(['java', 'kotlin']);
 
   EditorState() {
     ///Initialize variables
+  }
+
+  List<Widget> buildCodeSymbolWidget() {
+    return List.generate(codeSymbols.length, (index) {
+      return ChoiceChip(
+          label: Text(codeSymbols[index]),
+          onSelected: (v) {
+            currentInsertCodeSymbol.value = codeSymbols[index];
+            insertCodeSymbol();
+          },
+          selected: codeSymbols[index] == currentInsertCodeSymbol.value);
+    });
+  }
+
+
+  void insertCodeSymbol() {
+    controller?.runJavascript('''
+    var currentCursor = editor.getCursor();
+    console.log(typeof currentCursor.ch);
+    console.log(currentCursor.ch != 0);
+    if (currentCursor.ch != 0) {
+      var insertCursor = {};
+      insertCursor.line = currentCursor.line;
+      insertCursor.ch = currentCursor.ch;
+      editor.replaceRange('${currentInsertCodeSymbol.value}',insertCursor);                 
+    }                      
+    ''');
   }
 
   setWebController(WebViewController webViewController) {
@@ -54,12 +84,15 @@ class EditorState {
   }
 
   Future<String> buildPreviewCode() async {
-    final String? code = await controller?.runJavascriptReturningResult('editor.getValue();');
-    return ProjectTypeHelper.getFullHtml(currentProjectFile.projectType, code ?? '');
+    final String? code =
+        await controller?.runJavascriptReturningResult('editor.getValue();');
+    return ProjectTypeHelper.getFullHtml(
+        currentProjectFile.projectType, code ?? '');
   }
 
   String buildCodeMirrorConfigCode() {
-    final projectType = ProjectTypeHelper.getValue(currentProjectFile.projectType);
+    final projectType =
+        ProjectTypeHelper.getValue(currentProjectFile.projectType);
     switch (projectType) {
       case ProjectType.processing:
         return gCodeMirrorConfigProcessingCode;

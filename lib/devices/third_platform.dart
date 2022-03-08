@@ -6,5 +6,7 @@ class ThirdPlatform {
   static String appStoreUrl = 'https://apps.apple.com/cn/app/processing-p5-js-compiler/id1601799933';
   static String googlePlayUrl = 'https://apps.apple.com/cn/app/processing-p5-js-compiler/id1601799933';
 
-
+  static String umengIosKey = "622229c22b8de26e11e221ef";
+  static String umengAndroidKey = "";
+  static String umengChannel = "";
 }

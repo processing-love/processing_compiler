@@ -26,6 +26,7 @@ dependencies:
   flutter_syntax_view: 4.0.0
   flutter_easyloading: 3.0.3
   cached_network_image: 3.2.0
+  umeng_common_sdk: 1.2.4
 
 dev_dependencies:
   flutter_test:

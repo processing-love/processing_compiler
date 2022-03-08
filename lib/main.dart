@@ -5,13 +5,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:processing_compiler/db/db_adapter_helper.dart';
 import 'package:processing_compiler/devices/all_language.dart';
 import 'package:processing_compiler/devices/messages.dart';
+import 'package:processing_compiler/devices/third_platform.dart';
 import 'package:processing_compiler/page/all_controller_binding.dart';
 import 'package:processing_compiler/page/main/view.dart';
 import 'package:processing_compiler/theme/theme_controller.dart';
 import 'package:processing_compiler/theme/theme_service.dart';
 import 'package:processing_compiler/theme/theme_service_hive.dart';
 import 'package:processing_compiler/tools/const/app_color.dart';
-
+import 'package:umeng_common_sdk/umeng_common_sdk.dart';
 late ThemeController gThemeController;
 
 var start = 0;
@@ -23,7 +24,8 @@ void main() async {
   await themeService.init();
   gThemeController = ThemeController(themeService);
   await gThemeController.loadAll();
-  AllControllerBinding().dependencies();
+  UmengCommonSdk.initCommon(ThirdPlatform.umengAndroidKey, ThirdPlatform.umengIosKey, ThirdPlatform.umengChannel);
+  UmengCommonSdk.setPageCollectionModeAuto();
   runApp(const MyApp());
 }
 

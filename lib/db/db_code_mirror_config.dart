@@ -6,7 +6,6 @@ part 'db_code_mirror_config.g.dart';
 /// @date 2020/6/12.
 @HiveType(typeId: 0)
 class DbCodeMirrorConfig extends HiveObject {
-
   bool showCodeLineNumber;
 
   @HiveField(1)

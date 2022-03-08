@@ -11,7 +11,7 @@ import 'state.dart';
 
 class MainPage extends StatelessWidget {
 
-  final MainPageLogic logic = Get.find<MainPageLogic>();
+  final MainPageLogic logic = Get.put(MainPageLogic());
   final MainPageState state = Get.find<MainPageLogic>().state;
 
   MainPage({Key? key}) : super(key: key);
