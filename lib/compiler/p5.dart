@@ -54,30 +54,35 @@ const String _p5PreviewHTML = r'''
 ''';
 
 const String gP5ExampleCode = '''
+// simple emulation of gravity
+
+var x;
+var y;    // y(t)
+var speed = 0;
+var g = 0.1;  // gravity
+
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+    createCanvas(windowWidth, windowHeight);
+    x = width/2;
+    y = height/3; // start from half height
 }
 
-function draw() {
-  if (mouseIsPressed) {
-    fill(0);
-  } else {
-    fill(255);
+function draw(){
+  // draw the ball
+  background(255);
+  fill(255,0,0);
+  noStroke();
+  ellipse(x,y,50,50);
+
+  // move and accelerate
+  y += speed;
+  speed += g;
+
+  // bounce back up
+  if(y>height){
+    speed *= -0.95;  // add resistance to each bounce
+    y = height;      // make sure that the ball can bounce back up
   }
-  if (mouseX > 0 && mouseY > 0) {
-    ellipse(mouseX, mouseY, 80, 80);
-  }
-}
-''';
-
-const String gP5ExampleFontCode = '''
-function setup() {
-  createCanvas(400, 400);
-}
-
-function draw() {
-  background(220);
-  ellipse(50,50,80,80);
 }
 ''';
 

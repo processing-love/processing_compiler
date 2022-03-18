@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,6 +15,7 @@ import 'package:processing_compiler/theme/theme_service.dart';
 import 'package:processing_compiler/theme/theme_service_hive.dart';
 import 'package:processing_compiler/tools/const/app_color.dart';
 import 'package:umeng_common_sdk/umeng_common_sdk.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 late ThemeController gThemeController;
 
 var start = 0;
@@ -24,8 +27,11 @@ void main() async {
   await themeService.init();
   gThemeController = ThemeController(themeService);
   await gThemeController.loadAll();
-  UmengCommonSdk.initCommon(ThirdPlatform.umengAndroidKey, ThirdPlatform.umengIosKey, ThirdPlatform.umengChannel);
+  UmengCommonSdk.initCommon(ThirdPlatform.umengAndroidKey, ThirdPlatform.umengIosKey, Platform.operatingSystem);
   UmengCommonSdk.setPageCollectionModeAuto();
+  if (Platform.isAndroid) {
+    WebView.platform = SurfaceAndroidWebView();
+  }
   runApp(const MyApp());
 }
 

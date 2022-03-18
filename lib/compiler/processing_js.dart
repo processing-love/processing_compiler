@@ -1477,25 +1477,35 @@ const String _jsProcessingPreview = r'''
 </html>
 ''';
 const String gProcessingExample = r'''
-void setup() {
-  size(400, 200);
-  textAlign(CENTER, CENTER);
-  background(0, 0, 100);
-  fill(255, 230, 75);
-  noLoop();
+// simple emulation of gravity
+
+float x;
+float y;    // y(t)
+float speed = 0;
+float g = 0.1;  // gravity
+
+void setup(){
+  size(1024, 1024);
+  x = width/2;
+  y = height/3;  // start from half height
 }
 
-void draw() {}
+void draw(){
+  // draw the ball
+  background(255);
+  fill(255,0,0);
+  noStroke();
+  ellipse(x,y,50,50);
 
-void mouseMoved() {
-  stroke(255);
-  point(mouseX, mouseY);
-  redraw();
-}
+  // move and accelerate
+  y += speed;
+  speed += g;
 
-void mousePressed() {
-  line(0, mouseY, width, mouseY);
-  line(mouseX, 0, mouseX, height);
+  // bounce back up
+  if(y>height){
+    speed *= -0.95;  // add resistance to each bounce
+    y = height;      // make sure that the ball can bounce back up
+  }
 }
 ''';
 
