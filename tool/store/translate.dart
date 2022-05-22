@@ -12,12 +12,9 @@ import 'sample.dart';
 /// @date 2020/6/12.
 
 void main() async {
-  for (var language in gSupportLanguages) {
-  }
   await translate('en', Sample().info['zh']);
   File file = File('tool/store/app_desc.json');
   file.writeAsStringSync(jsonEncode(message));
-  print('peter 翻译结束 ');
 }
 
 final data = {};
@@ -40,13 +37,11 @@ translate(String to, String query) async {
       "sign=$sign");
   var request = await httpClient.getUrl(url);
   var response = await request.close();
-  print('peter 翻译 statue ' + to + " " + response.statusCode.toString());
   if (response.statusCode == 200) {
     var responseBody = await response.transform(utf8.decoder).join();
     var data = json.decode(responseBody) as Map<String, dynamic>;
     List<dynamic> results = data['trans_result'];
     final keyValue = {};
-    print('peter result ' + data.toString());
     for (int index = 0; index < results.length; index++) {
       final key = gAllSupportLanguage['zh']!.keys.toList()[index];
       keyValue[key] = results[index]['dst'].toString().capitalize();

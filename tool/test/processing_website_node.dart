@@ -25,9 +25,6 @@ Future<void> main() async {
   if (response.statusCode == 200) {
     var responseBody = await response.transform(utf8.decoder).join();
     var data = json.decode(responseBody) as Map<String, dynamic>;
-    print('peter 成功了 ' + request.uri.toString());
     file.writeAsStringSync(data.toString());
-  } else {
-    print('peter 失败了 ' + request.uri.toString());
   }
 }

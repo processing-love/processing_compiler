@@ -88,10 +88,8 @@ httpExampleDetailsRequest(String name, String wName) async {
       'pdes': nodeDetails['pdes'],
       'liveSketch': nodeDetails['liveSketch']
     };
-    print('peter 成功了 ' + request.uri.toString());
     writeDartFile(name, json.encode(selfNeed));
   } else {
-    print('peter 失败了 ' + name.toString());
     failFile.writeAsStringSync(name + " \n", mode: FileMode.append);
   }
 }
@@ -110,10 +108,8 @@ httpRequest(String name) async {
       'json': nodeDetails['json']['childJson'],
       'pdes': nodeDetails['pdes']
     };
-    print('peter 成功了 ' + request.uri.toString());
     writeDartFile(name, json.encode(selfNeed));
   } else {
-    print('peter 失败了 ' + name.toString());
     failFile.writeAsStringSync(name + " \n", mode: FileMode.append);
   }
 }

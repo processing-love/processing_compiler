@@ -54,7 +54,6 @@ translate(String to, String query, File file) async {
       "sign=$sign");
   var request = await httpClient.getUrl(url);
   var response = await request.close();
-  print('peter 翻译 statue ' + to + " " + response.statusCode.toString());
   if (response.statusCode == 200) {
     var responseBody = await response.transform(utf8.decoder).join();
     var data = json.decode(responseBody) as Map<String, dynamic>;

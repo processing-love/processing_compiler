@@ -123,8 +123,8 @@ class ShowThemeColors extends StatelessWidget {
               ),
               ThemeCard(
                 label: 'Primary\nVariant',
-                color: colorScheme.primaryVariant,
-                textColor: _onColor(colorScheme.primaryVariant),
+                color: colorScheme.primaryContainer,
+                textColor: _onColor(colorScheme.primaryContainer),
               ),
               ThemeCard(
                 label: 'Secondary',
@@ -138,8 +138,8 @@ class ShowThemeColors extends StatelessWidget {
               ),
               ThemeCard(
                 label: 'Secondary\nVariant',
-                color: colorScheme.secondaryVariant,
-                textColor: _onColor(colorScheme.secondaryVariant),
+                color: colorScheme.secondaryContainer,
+                textColor: _onColor(colorScheme.secondaryContainer),
               ),
               ThemeCard(
                 label: 'Background$backTooHigh',

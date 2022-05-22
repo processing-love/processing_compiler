@@ -19,9 +19,6 @@ class ExampleState {
   buildFeaturedWidget(model_example_node.Json? currentJson) {
     var featured = currentJson?.buildFeatured() ?? '';
     var title = currentJson?.title ?? '';
-    String backgroundColorHex =
-        imagesMap[title]?.childImageSharp?.gatsbyImageData?.backgroundColor ??
-            '#000000';
     String imageUrl200w = imagesMap[title]
             ?.childImageSharp
             ?.gatsbyImageData

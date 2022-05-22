@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:processing_compiler/main.dart';
 import 'package:processing_compiler/page/example/view.dart';
 import 'package:processing_compiler/page/home/view.dart';
 import 'package:processing_compiler/page/profile/view.dart';
@@ -18,8 +17,6 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var end = DateTime.now().millisecondsSinceEpoch;
-    print('peter 花费 ' + (end - start).toString());
     return Obx(() {
       return Scaffold(
         body: IndexedStack(

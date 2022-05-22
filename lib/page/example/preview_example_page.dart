@@ -23,8 +23,6 @@ class PreviewExamplePage extends StatefulWidget {
 class _PreviewExamplePageState extends State<PreviewExamplePage> {
   @override
   Widget build(BuildContext context) {
-    print('peter ' + Get.window.devicePixelRatio.toString());
-
     return BasePage(
       title: widget.example?.json?.title ?? '',
       actions: [
@@ -100,7 +98,6 @@ class _PreviewExamplePageState extends State<PreviewExamplePage> {
 String handlerProcessingLoadImage(String fullUrl, String liveCode) {
   int imageStartIndex = liveCode.indexOf('loadImage(');
   int imageEndIndex = liveCode.indexOf('.jpg\')');
-  print('peter fll ' + liveCode.toString());
   String loadImageString =
       liveCode.substring(imageStartIndex, imageEndIndex) + ".jpg')";
   List<String> url = [];
@@ -114,7 +111,6 @@ String handlerProcessingLoadImage(String fullUrl, String liveCode) {
   final String loadImage = url.join("/");
   int start = fullUrl.indexOf("loadImage(");
   int end = fullUrl.indexOf('.jpg');
-  print('peter end ' + end.toString());
   String image = fullUrl.substring(start, end) + ".jpg\")";
   return fullUrl.replaceAll(image, loadImage);
 }
@@ -122,7 +118,6 @@ String handlerProcessingLoadImage(String fullUrl, String liveCode) {
 String handlerProcessingLoadShape(String fullUrl, String liveCode) {
   int imageStartIndex = liveCode.indexOf('loadShape(');
   int imageEndIndex = liveCode.indexOf('.svg\')');
-  print('peter ' + liveCode.toString());
   String loadImageString =
       liveCode.substring(imageStartIndex, imageEndIndex) + ".svg')";
   List<String> url = [];
