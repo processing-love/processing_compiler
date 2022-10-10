@@ -1,9 +1,7 @@
-import 'dart:io';
-
 import 'package:flex_color_scheme/flex_color_scheme.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:processing_compiler/db/db_adapter_helper.dart';
 import 'package:processing_compiler/devices/all_language.dart';
 import 'package:processing_compiler/devices/messages.dart';
@@ -13,10 +11,12 @@ import 'package:processing_compiler/theme/theme_controller.dart';
 import 'package:processing_compiler/theme/theme_service.dart';
 import 'package:processing_compiler/theme/theme_service_hive.dart';
 import 'package:processing_compiler/tools/const/app_color.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import 'package:processing_compiler/tools/const/app_data.dart';
+
 late ThemeController gThemeController;
 
 var start = 0;
+
 void main() async {
   start = DateTime.now().millisecondsSinceEpoch;
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,24 +46,55 @@ class MyApp extends StatelessWidget {
           defaultTransition: Transition.rightToLeft,
           initialBinding: AllControllerBinding(),
           theme: FlexThemeData.light(
-            colors: AppColor.schemes[gThemeController.schemeIndex].light,
+            useMaterial3: true,
+            colors: AppColor.customSchemes[gThemeController.schemeIndex].light,
             surfaceMode: FlexSurfaceMode.highScaffoldLowSurfaces,
             blendLevel: 5,
             appBarElevation: 0.5,
-            visualDensity: FlexColorScheme.comfortablePlatformDensity,
-            fontFamily: GoogleFonts.notoSans().fontFamily,
-            useMaterial3: true
+            subThemesData: gThemeController.useSubThemes
+                ? FlexSubThemesData(
+                    defaultRadius: gThemeController.defaultRadius,
+                  )
+                : null,
+            keyColors: FlexKeyColors(
+              useKeyColors: gThemeController.useKeyColors,
+              useSecondary: gThemeController.useSecondary,
+              useTertiary: gThemeController.useTertiary,
+              keepPrimary: gThemeController.keepPrimary,
+              keepSecondary: gThemeController.keepSecondary,
+              keepTertiary: gThemeController.keepTertiary,
+            ),
+            visualDensity: AppData.visualDensity,
+            fontFamily: AppData.font,
+            typography: Typography.material2021(
+              platform: defaultTargetPlatform,
+            ),
           ),
           darkTheme: FlexThemeData.dark(
-            colors: AppColor.schemes[gThemeController.schemeIndex].dark,
+            useMaterial3: true,
+            colors: AppColor.customSchemes[gThemeController.schemeIndex].dark,
             surfaceMode: FlexSurfaceMode.highScaffoldLowSurfaces,
             blendLevel: 7,
             appBarElevation: 0.5,
-            useMaterial3: true,
-            visualDensity: FlexColorScheme.comfortablePlatformDensity,
-            fontFamily: GoogleFonts.notoSans().fontFamily,
+            keyColors: FlexKeyColors(
+              useKeyColors: gThemeController.useKeyColors,
+              useSecondary: gThemeController.useSecondary,
+              useTertiary: gThemeController.useTertiary,
+              keepPrimary: gThemeController.keepDarkPrimary,
+              keepSecondary: gThemeController.keepDarkSecondary,
+              keepTertiary: gThemeController.keepDarkTertiary,
+            ),
+            subThemesData: gThemeController.useSubThemes
+                ? FlexSubThemesData(
+                    defaultRadius: gThemeController.defaultRadius,
+                  )
+                : null,
+            visualDensity: AppData.visualDensity,
+            fontFamily: AppData.font,
+            typography: Typography.material2021(
+              platform: defaultTargetPlatform,
+            ),
           ),
-          // Use the dark or light theme based on controller editor_setting.
           themeMode: gThemeController.themeMode,
         );
       },
@@ -74,12 +105,8 @@ class MyApp extends StatelessWidget {
 Locale getCurrentLocale() {
   String localeCode = boxCodeMirrorConfig.get(dbNameCodeMirrorConfig)?.language ?? "";
   if (localeCode.isEmpty) {
-    return Get.deviceLocale ??
-        Locale.fromSubtags(
-            languageCode: gSupportLanguages[0].code,
-            scriptCode: gSupportLanguages[0].desc,
-            countryCode: gSupportLanguages[0].code);
+    return Get.deviceLocale ?? Locale.fromSubtags(languageCode: gSupportLanguages[0].code, scriptCode: gSupportLanguages[0].desc, countryCode: gSupportLanguages[0].code);
   }
   Language language = gSupportLanguages.firstWhere((element) => element.code == localeCode);
-  return Locale.fromSubtags(languageCode: language.code,scriptCode: language.desc,countryCode: language.code);
+  return Locale.fromSubtags(languageCode: language.code, scriptCode: language.desc, countryCode: language.code);
 }
