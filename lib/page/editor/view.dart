@@ -43,7 +43,6 @@ class EditorPage extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.green,
         onPressed: () {
           _run();
         },

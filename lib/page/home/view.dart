@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
           Icons.create_new_folder_outlined,
         ).marginOnly(bottom: 12),
         Text(
-          'emtpy_pro'.tr,
+          'empty_pro'.tr,
           style: Get.textTheme.bodyText1,
         ),
       ],

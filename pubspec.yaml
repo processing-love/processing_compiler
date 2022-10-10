@@ -10,22 +10,21 @@ dependencies:
   cupertino_icons: 1.0.4
   webview_flutter: 3.0.4
   styled_widget: 0.4.0+3
-  get: 4.6.3
+  get: 4.6.5
   hive_flutter: 1.1.0
-  flex_color_scheme: 5.0.1
-  flutter_slidable: 1.1.0
+  flex_color_scheme: 6.0.1
+  flutter_slidable: 2.0.0
   flutter_svg:
-  timeago: 3.2.2
-  url_launcher: 6.1.2
+  timeago: 3.3.0
+  url_launcher: 6.1.6
   shared_preferences: 2.0.15
-  google_fonts: 3.0.0
-  share_plus: 4.0.4
+  google_fonts: 3.0.1
+  share_plus: 4.5.3
   flutter_highlight: 0.7.0
-  flutter_html: 3.0.0-alpha.3
-  flutter_staggered_grid_view: 0.6.0
+  flutter_html: 3.0.0-alpha.6
+  flutter_staggered_grid_view: 0.6.2
   flutter_syntax_view: 4.0.0
-  cached_network_image: 3.2.1
-  umeng_common_sdk: 1.2.4
+  cached_network_image: 3.2.2
   dart_code_metrics: 4.15.2
 
 dev_dependencies:

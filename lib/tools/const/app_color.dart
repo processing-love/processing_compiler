@@ -6,24 +6,22 @@ class AppColor {
 
   static const FlexSchemeColor _myScheme1Light = FlexSchemeColor(
     primary: Color(0xFF00296B),
-    primaryVariant: Color(0xFF2F5C91),
+    primaryContainer: Color(0xFF2F5C91),
     secondary: Color(0xFFFF7B00),
-    secondaryVariant: Color(0xFFFDB100),
+    secondaryContainer: Color(0xFFFDB100),
     appBarColor: Color(0xFFf95738),
   );
 
   static const FlexSchemeColor _myScheme1Dark = FlexSchemeColor(
     primary: Color(0xFF6B8BC3),
-    primaryVariant: Color(0xFF4874AA),
+    primaryContainer: Color(0xFF4874AA),
     secondary: Color(0xffff7155),
-    secondaryVariant: Color(0xFFF1CB9D),
+    secondaryContainer: Color(0xFFF1CB9D),
     appBarColor: Color(0xFF892807),
   );
 
-  static final FlexSchemeColor _myScheme2Light =
-      FlexSchemeColor.from(primary: const Color(0xFF055C34));
-  static final FlexSchemeColor _myScheme2Dark =
-      FlexSchemeColor.from(primary: const Color(0xFF629F80));
+  static final FlexSchemeColor _myScheme2Light = FlexSchemeColor.from(primary: const Color(0xFF055C34));
+  static final FlexSchemeColor _myScheme2Dark = FlexSchemeColor.from(primary: const Color(0xFF629F80));
 
   static final FlexSchemeColor _myScheme3Light = FlexSchemeColor.from(
     primary: const Color(0xFF04368E),

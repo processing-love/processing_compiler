@@ -7,9 +7,7 @@ import 'package:get/get.dart';
 void wrapGetBottomSheet(Widget widget) {
   Get.bottomSheet(
       Container(
-        decoration: BoxDecoration(
-            color: Get.theme.scaffoldBackgroundColor,
-            borderRadius: const BorderRadius.all(Radius.circular(7))),
+        decoration: BoxDecoration(color: Get.theme.scaffoldBackgroundColor, borderRadius: const BorderRadius.vertical(top: Radius.circular(8))),
         child: widget,
       ),
       ignoreSafeArea: false);
@@ -18,9 +16,7 @@ void wrapGetBottomSheet(Widget widget) {
 void showGetBottomSheet(Widget widget) {
   Get.bottomSheet(
       Container(
-        decoration: BoxDecoration(
-            color: Get.theme.scaffoldBackgroundColor,
-            borderRadius: const BorderRadius.all(Radius.circular(7))),
+        decoration: BoxDecoration(color: Get.theme.scaffoldBackgroundColor, borderRadius: const BorderRadius.all(Radius.circular(7))),
         child: widget,
       ),
       ignoreSafeArea: false);
