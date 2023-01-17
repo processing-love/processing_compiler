@@ -22,18 +22,14 @@ class EditorSettingPage extends StatelessWidget {
       title: 'editor_setting'.tr,
       isContentList: true,
       contentListWidgets: [
-        LayoutBuilder(
-                builder: (BuildContext context, BoxConstraints constraints) {
+        LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
           return CodeMirrorWebView(
             rawCode: gCodeMirrorHtmlEditor,
-            javascriptChannel: {
-              JavascriptChannel(
-                  name: "MessageInvoker", onMessageReceived: (event) => {})
-            },
+            jsCallName: "MessageInvoker",
             onWebViewFinishCreated: (controller) {
               final raw = Uri.encodeComponent(state.buildCodeMirrorConfigCode());
               state.setSettingWebController(controller);
-              controller.runJavascript('''
+              controller.runJavaScript('''
                       editor.setOption('readOnly','nocursor',);
                       editor.setOption('mode','${logic.buildCodeMirrorMode()}',);
                       editor.setValue(decodeURIComponent("$raw"));
@@ -41,19 +37,20 @@ class EditorSettingPage extends StatelessWidget {
                       ''');
             },
           );
-        })
-            .constrained(
-                width: Get.width,
-                height: Responsive.buildCodeMirrorPreviewHeight())
-            .marginOnly(bottom: Responsive.responsiveInsets()),
+        }).constrained(width: Get.width, height: Responsive.buildCodeMirrorPreviewHeight()).marginOnly(bottom: Responsive.responsiveInsets()),
         Obx(() {
           return cardItemWidget(
               child: Column(
             children: [
-              SwitchListTile.adaptive(
+              SwitchListTile(
                 title: Text('show_code_line_number'.tr),
                 value: state.showCodeLineNumber.value,
                 onChanged: logic.setShowCodeLineNumber,
+              ),
+              SwitchListTile(
+                title: Text('setting_code_full_screen'.tr),
+                value: state.isFullScreen.value,
+                onChanged: logic.setFullScreen,
               ),
               itemListTile(
                   title: 'setting_code_font_size'.tr,
@@ -82,10 +79,7 @@ class EditorSettingPage extends StatelessWidget {
                           ],
                         ),
                       ],
-                    ).decorated(
-                        color: Get.theme.scaffoldBackgroundColor,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(8))));
+                    ).decorated(color: Get.theme.scaffoldBackgroundColor, borderRadius: const BorderRadius.all(Radius.circular(8))));
                   }),
               itemListTile(
                 title: 'code_theme'.tr,
@@ -98,9 +92,7 @@ class EditorSettingPage extends StatelessWidget {
                         String theme = CssRaw.cssThemes[index].name;
                         return ListTile(
                           title: Text(theme),
-                          trailing: state.codeThemeName.value == theme
-                              ? const Icon(Icons.done_rounded)
-                              : null,
+                          trailing: state.codeThemeName.value == theme ? const Icon(Icons.done_rounded) : null,
                           onTap: () {
                             Get.back();
                             logic.setCodeTheme(theme);
@@ -109,10 +101,7 @@ class EditorSettingPage extends StatelessWidget {
                       },
                       itemCount: CssRaw.cssThemes.length,
                     ),
-                  ).decorated(
-                      color: Get.theme.scaffoldBackgroundColor,
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(8))));
+                  ).decorated(color: Get.theme.scaffoldBackgroundColor, borderRadius: const BorderRadius.all(Radius.circular(8))));
                 },
               )
             ],

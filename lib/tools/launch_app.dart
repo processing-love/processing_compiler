@@ -17,9 +17,7 @@ launchApp(String url, String errorMessage) async {
 }
 
 launchQQ() {
-  launchApp(
-      'mqqapi://card/show_pslcard?src_type=internal&version=1&uin=${212547143}&card_type=group&source=qrcode',
-      'qq_error'.tr);
+  launchApp('mqqapi://card/show_pslcard?src_type=internal&version=1&uin=${212547143}&card_type=group&source=qrcode', 'qq_error'.tr);
 }
 
 launchEmail() {
@@ -35,8 +33,6 @@ launchMarket() {
   if (Platform.isAndroid) {
     launchApp('market://details?id=com.processing.compiler', 'open_error'.tr);
   } else {
-    launchApp(
-        'https://itunes.apple.com/us/app/twitter/id${ThirdPlatform.appStoreAppId}?mt=8&action=write-review',
-        'open_error'.tr);
+    launchApp('https://itunes.apple.com/us/app/twitter/id${ThirdPlatform.appStoreAppId}?mt=8&action=write-review', 'open_error'.tr);
   }
 }

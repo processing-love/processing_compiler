@@ -57,7 +57,8 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "system_mode": "Follow system",
     "reset": "Restore default mode",
     "theme": "Theme style",
-    "email_error": "Failed to start the mailbox program. Please check whether the mailbox program is installed. If you have more questions, please go to the application market for feedback",
+    "email_error":
+        "Failed to start the mailbox program. Please check whether the mailbox program is installed. If you have more questions, please go to the application market for feedback",
     "qq_error": "Failed to start the QQ program. Please check whether the QQ program is installed. If you have more questions, please go to the application market for feedback",
     "theme_setting": "Set theme style",
     "app_name": "Processing",
@@ -69,6 +70,7 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "setting": "Set up",
     "show_code_line_number": "Display code line number",
     "setting_code_font_size": "Set code font size",
+    "setting_code_full_screen": "Whether it is full screen",
     "code_theme": "Editor style",
     "empty_pro": "Start your creative programming!",
     "loading": "Loading",
@@ -99,12 +101,13 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "德语": "German",
     "意大利语": "Italian",
     "韩语": "Korean",
-    "language_desc": "If the translation of any content is incorrect or a new language needs to be added, please contact me by email. Thank you very much for your support and understanding!",
+    "language_desc":
+        "If the translation of any content is incorrect or a new language needs to be added, please contact me by email. Thank you very much for your support and understanding!",
     "send": "Send out"
   },
   "zh": {
     "about": "联系我",
-    'open_error':'启动失败，请稍后重试',
+    'open_error': '启动失败，请稍后重试',
     "feature": "知识点",
     "search": "速查",
     "search_result_empty": "没有搜索到相关信息，请试试其他关键字",
@@ -137,6 +140,7 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "system_mode": "跟随系统",
     "reset": "恢复默认模式",
     "theme": "主题风格",
+    "setting_code_full_screen": "是否全屏",
     "email_error": "启动邮箱程序失败，请检查是否安装邮箱程序，如有更多问题，请前往应用市场反馈",
     "qq_error": "启动QQ程序失败，请检查是否安装QQ程序，如有更多问题，请前往应用市场反馈",
     "theme_setting": "设置主题风格",
@@ -377,7 +381,8 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "system_mode": "Sistema de seguimiento",
     "reset": "Restaurar el modo predeterminado",
     "theme": "Estilo temático",
-    "email_error": "Fallo al iniciar el programa de buzón de correo. Compruebe si el programa de buzón de correo está instalado. Para más preguntas, vaya a la aplicación de retroalimentación del mercado",
+    "email_error":
+        "Fallo al iniciar el programa de buzón de correo. Compruebe si el programa de buzón de correo está instalado. Para más preguntas, vaya a la aplicación de retroalimentación del mercado",
     "qq_error": "Qq Start Program failed, Please check if the QQ program is installed, if there are more Questions, please go to the Application Market feedback",
     "theme_setting": "Establecer estilo de tema",
     "app_name": "Procesamiento",
@@ -419,7 +424,8 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "德语": "Alemán",
     "意大利语": "Italiano",
     "韩语": "Coreano",
-    "language_desc": "¡Si el contenido no está traducido correctamente o necesita a ñadir un nuevo idioma, por favor póngase en contacto conmigo por correo electrónico, muchas gracias por su apoyo y comprensión!",
+    "language_desc":
+        "¡Si el contenido no está traducido correctamente o necesita a ñadir un nuevo idioma, por favor póngase en contacto conmigo por correo electrónico, muchas gracias por su apoyo y comprensión!",
     "send": "Enviar"
   },
   "fra": {
@@ -457,8 +463,10 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "system_mode": "Système de suivi",
     "reset": "Restaurer le mode par défaut",
     "theme": "Style thématique",
-    "email_error": "Impossible de démarrer le programme de boîte aux lettres. Veuillez vérifier si le programme de boîte aux lettres est installé. Si vous avez d'autres problèmes, allez à l'application Market feedback",
-    "qq_error": "Impossible de démarrer le programme QQ. Veuillez vérifier si le programme QQ est installé. Si vous avez d'autres questions, veuillez vous rendre au marché de l'application pour obtenir des commentaires.",
+    "email_error":
+        "Impossible de démarrer le programme de boîte aux lettres. Veuillez vérifier si le programme de boîte aux lettres est installé. Si vous avez d'autres problèmes, allez à l'application Market feedback",
+    "qq_error":
+        "Impossible de démarrer le programme QQ. Veuillez vérifier si le programme QQ est installé. Si vous avez d'autres questions, veuillez vous rendre au marché de l'application pour obtenir des commentaires.",
     "theme_setting": "Définir le style du thème",
     "app_name": "Traitement",
     "create_project": "Créer un nouveau projet",
@@ -499,7 +507,8 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "德语": "Allemand",
     "意大利语": "Italien",
     "韩语": "Coréen",
-    "language_desc": "S'il y a des erreurs dans la traduction du contenu ou si vous avez besoin d'ajouter une nouvelle langue, s'il vous plaît envoyez - moi un email et merci beaucoup pour votre soutien et votre compréhension!",
+    "language_desc":
+        "S'il y a des erreurs dans la traduction du contenu ou si vous avez besoin d'ajouter une nouvelle langue, s'il vous plaît envoyez - moi un email et merci beaucoup pour votre soutien et votre compréhension!",
     "send": "Envoyer"
   },
   "de": {
@@ -537,8 +546,10 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "system_mode": "Folgen des Systems",
     "reset": "Standardmodus wiederherstellen",
     "theme": "Stil des Designs",
-    "email_error": "Das Mailbox-Programm konnte nicht gestartet werden. Bitte überprüfen Sie, ob das Mailbox-Programm installiert ist. Wenn Sie weitere Fragen haben, wenden Sie sich bitte an den Application Market, um Feedback zu erhalten.",
-    "qq_error": "Das QQ-Programm konnte nicht gestartet werden. Bitte überprüfen Sie, ob das QQ-Programm installiert ist. Wenn Sie weitere Fragen haben, gehen Sie bitte zum Anwendungsmarkt, um Feedback zu erhalten.",
+    "email_error":
+        "Das Mailbox-Programm konnte nicht gestartet werden. Bitte überprüfen Sie, ob das Mailbox-Programm installiert ist. Wenn Sie weitere Fragen haben, wenden Sie sich bitte an den Application Market, um Feedback zu erhalten.",
+    "qq_error":
+        "Das QQ-Programm konnte nicht gestartet werden. Bitte überprüfen Sie, ob das QQ-Programm installiert ist. Wenn Sie weitere Fragen haben, gehen Sie bitte zum Anwendungsmarkt, um Feedback zu erhalten.",
     "theme_setting": "Stil festlegen",
     "app_name": "Verarbeitung",
     "create_project": "Neues Projekt erstellen",
@@ -579,7 +590,8 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "德语": "Deutsch",
     "意大利语": "Italienisch",
     "韩语": "Koreanisch",
-    "language_desc": "Wenn die Übersetzung von Inhalten falsch ist oder eine neue Sprache hinzugefügt werden muss, kontaktieren Sie mich bitte per E-Mail. Vielen Dank für Ihre Unterstützung und Verständnis!",
+    "language_desc":
+        "Wenn die Übersetzung von Inhalten falsch ist oder eine neue Sprache hinzugefügt werden muss, kontaktieren Sie mich bitte per E-Mail. Vielen Dank für Ihre Unterstützung und Verständnis!",
     "send": "Senden Sie"
   },
   "it": {
@@ -617,7 +629,8 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "system_mode": "Sistema di monitoraggio",
     "reset": "Ripristina la modalità predefinita",
     "theme": "Stile di tema",
-    "email_error": "Impossibile avviare il programma delle caselle postali. Controlla se il programma delle caselle postali è installato. Se hai altre domande, vai al mercato delle applicazioni per il feedback",
+    "email_error":
+        "Impossibile avviare il programma delle caselle postali. Controlla se il programma delle caselle postali è installato. Se hai altre domande, vai al mercato delle applicazioni per il feedback",
     "qq_error": "Impossibile avviare il programma QQ. Controlla se il programma QQ è installato. Se hai altre domande, vai al mercato applicativo per il feedback",
     "theme_setting": "Imposta stile di tema",
     "app_name": "Elaborazione",
@@ -659,7 +672,8 @@ Map<String, Map<String, String>> gAllSupportLanguage = {
     "德语": "Tedesco",
     "意大利语": "Italiano",
     "韩语": "Coreano",
-    "language_desc": "Se la traduzione di qualsiasi contenuto è errata o deve essere aggiunta una nuova lingua, per favore contattatemi via e-mail. Grazie mille per il vostro supporto e comprensione!",
+    "language_desc":
+        "Se la traduzione di qualsiasi contenuto è errata o deve essere aggiunta una nuova lingua, per favore contattatemi via e-mail. Grazie mille per il vostro supporto e comprensione!",
     "send": "Inviare fuori"
   },
   "kor": {

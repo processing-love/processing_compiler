@@ -31,16 +31,21 @@ class HomeState {
   }
 
   void deleteProject(String projectName, index) async {
+    print('peter db all ' + projectFiles[index].nameKey.toString() + " name " + projectName);
+    boxProjectFile.values.forEach((element) {
+      print('删除之前peter xx ' + element.nameKey.toString() + " " + element.name);
+    });
     await boxProjectFile.delete(projectFiles[index].nameKey);
-    final findProject =
-        projectFiles.firstWhere((element) => element.name == projectName);
+    boxProjectFile.values.forEach((element) {
+      print('删除之后peter xx ' + element.nameKey.toString() + " " + element.name);
+    });
+    final findProject = projectFiles.firstWhere((element) => element.name == projectName);
     projectFiles.remove(findProject);
     projectFiles.refresh();
   }
 
   void updateProjectName(String projectName, String nameKey) async {
-    final findProject =
-        projectFiles.firstWhere((element) => element.nameKey == nameKey);
+    final findProject = projectFiles.firstWhere((element) => element.nameKey == nameKey);
     findProject.name = projectName;
     findProject.save();
     projectFiles.refresh();

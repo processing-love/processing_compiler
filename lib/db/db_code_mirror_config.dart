@@ -17,8 +17,7 @@ class DbCodeMirrorConfig extends HiveObject {
   @HiveField(3)
   String? language;
 
-  DbCodeMirrorConfig(
-      {this.showCodeLineNumber = true,
-      this.codeFontSize = 13,
-      this.codeThemeName = 'material'});
+  bool isFullScreen;
+
+  DbCodeMirrorConfig({this.showCodeLineNumber = true, this.codeFontSize = 13, this.isFullScreen = true, this.codeThemeName = 'material'});
 }

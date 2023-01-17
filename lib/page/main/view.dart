@@ -26,11 +26,11 @@ class MainPage extends StatelessWidget {
           selectedIndex: state.currentIndex.value,
           destinations: [
             NavigationDestination(
-              icon: const Icon(Icons.home_filled),
+              icon: const Icon(Icons.home_outlined),
               label: 'project'.tr,
             ),
             NavigationDestination(
-              icon: const Icon(Icons.turned_in_rounded),
+              icon: const Icon(Icons.turned_in_not_rounded),
               label: 'example'.tr,
             ),
             NavigationDestination(
@@ -39,7 +39,7 @@ class MainPage extends StatelessWidget {
             ),
             NavigationDestination(
                 icon: const Icon(
-                  Icons.person,
+                  Icons.person_outline_rounded,
                 ),
                 label: 'setting'.tr)
           ],

@@ -12,6 +12,7 @@ class EditorState {
   WebViewController? controller;
   WebViewController? settingController;
   RxBool showCodeLineNumber = true.obs;
+  RxBool isFullScreen = true.obs;
   RxDouble codeFontSize = 13.0.obs;
   late DbCodeMirrorConfig dbCodeMirrorConfig;
   RxString codeThemeName = 'material'.obs;
@@ -39,9 +40,8 @@ class EditorState {
     });
   }
 
-
   void insertCodeSymbol() {
-    controller?.runJavascript('''
+    controller?.runJavaScript('''
     var currentCursor = editor.getCursor();
     console.log(typeof currentCursor.ch);
     console.log(currentCursor.ch != 0);
@@ -75,8 +75,8 @@ class EditorState {
       editor.setOption('theme','${dbCodeMirrorConfig.codeThemeName}');
       document.getElementsByClassName("CodeMirror")[0].style.fontSize = "${dbCodeMirrorConfig.codeFontSize.toInt()}px"
     ''';
-    controller?.runJavascript(result);
-    settingController?.runJavascript(result);
+    controller?.runJavaScript(result);
+    settingController?.runJavaScript(result);
   }
 
   Widget? getTrailingItemWidget(String theme) {
@@ -84,15 +84,12 @@ class EditorState {
   }
 
   Future<String> buildPreviewCode() async {
-    final String? code =
-        await controller?.runJavascriptReturningResult('editor.getValue();');
-    return ProjectTypeHelper.getFullHtml(
-        currentProjectFile.projectType, code ?? '');
+    final String? code = (await controller?.runJavaScriptReturningResult('editor.getValue();')) as String?;
+    return ProjectTypeHelper.getFullHtml(currentProjectFile.projectType, code ?? '');
   }
 
   String buildCodeMirrorConfigCode() {
-    final projectType =
-        ProjectTypeHelper.getValue(currentProjectFile.projectType);
+    final projectType = ProjectTypeHelper.getValue(currentProjectFile.projectType);
     switch (projectType) {
       case ProjectType.processing:
         return gCodeMirrorConfigProcessingCode;

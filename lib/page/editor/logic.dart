@@ -13,8 +13,14 @@ class EditorLogic extends GetxController {
     final String result = '''
     editor.setOption("lineNumbers",$isSelect);
     ''';
-    state.controller?.runJavascript(result);
-    state.settingController?.runJavascript(result);
+    state.controller?.runJavaScript(result);
+    state.settingController?.runJavaScript(result);
+  }
+
+  void setFullScreen(bool isFullScreen) {
+    state.isFullScreen.value = isFullScreen;
+    state.dbCodeMirrorConfig.isFullScreen = isFullScreen;
+    state.dbCodeMirrorConfig.save();
   }
 
   void setCodeFontSize(double? fontSize) {
@@ -24,8 +30,8 @@ class EditorLogic extends GetxController {
     final String result = '''
     document.getElementsByClassName("CodeMirror")[0].style.fontSize = "${fontSize}px"
     ''';
-    state.controller?.runJavascript(result);
-    state.settingController?.runJavascript(result);
+    state.controller?.runJavaScript(result);
+    state.settingController?.runJavaScript(result);
   }
 
   void setCodeTheme(String codeTheme) {
@@ -35,8 +41,8 @@ class EditorLogic extends GetxController {
     final String result = '''
     editor.setOption('theme','$codeTheme');
     ''';
-    state.controller?.runJavascript(result);
-    state.settingController?.runJavascript(result);
+    state.controller?.runJavaScript(result);
+    state.settingController?.runJavaScript(result);
   }
 
   initExternalParameter(DbProjectFile projectFile) {
@@ -45,7 +51,7 @@ class EditorLogic extends GetxController {
 
   initCodeMirror() {
     final raw = Uri.encodeComponent(state.currentProjectFile.code);
-    state.controller?.runJavascript('''
+    state.controller?.runJavaScript('''
         editor.setSize(${Get.width},${Get.height});
         editor.setOption('mode','${buildCodeMirrorMode()}',);
         editor.setValue(decodeURIComponent("$raw"));

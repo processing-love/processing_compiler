@@ -41,24 +41,13 @@ class ProjectWidget extends StatelessWidget {
   }
 }
 
-Widget itemWidgetForSlide(
-    Function onPressed, Function slideTapFunction, DbProjectFile project) {
+Widget itemWidgetForSlide(Function onPressed, Function slideTapFunction, DbProjectFile project) {
   DateMessage().buildCurrentDateMessage();
-  final modifyTime =
-      format(DateTime.fromMillisecondsSinceEpoch(project.modifyTime));
+  final modifyTime = format(DateTime.fromMillisecondsSinceEpoch(project.modifyTime));
   return Slidable(
     endActionPane: ActionPane(
       motion: const ScrollMotion(),
       children: [
-        // SlidableAction(
-        //   onPressed: (_) {
-        //     showEditProjectDialog(project);
-        //   },
-        //   backgroundColor: Colors.blueGrey,
-        //   foregroundColor: Colors.white,
-        //   icon: Icons.insert_drive_file_outlined,
-        //   label: 'rename'.tr,
-        // ),
         SlidableAction(
           onPressed: (_) {
             Share.share(project.code);

@@ -66,7 +66,7 @@ itemListTile(
             children: [
               Text(
                 trailingDesc ?? "",
-                style: Get.textTheme.caption,
+                style: Get.textTheme.bodySmall,
               ),
               const Icon(Icons.keyboard_arrow_right)
             ],

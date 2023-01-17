@@ -10,25 +10,30 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 typedef WebViewPageFinishedCallback = void Function(WebViewController controller);
 typedef WebViewCreatedCallback = void Function(WebViewController controller);
+typedef WebViewJSCallback = void Function(JavaScriptMessage message);
 
 class CodeMirrorWebView extends StatefulWidget {
   final String? rawCode;
+  final bool? isClose;
   final WebViewPageFinishedCallback? onWebViewFinishCreated;
+  final WebViewJSCallback? webViewJSCallback;
   final WebViewCreatedCallback? onWebViewCreated;
   final String? htmlPath;
   final String? url;
+  final String? jsCallName;
   final Map<String, String>? replaceMap;
-  final Set<JavascriptChannel>? javascriptChannel;
   final Color? backgroundColor;
 
   const CodeMirrorWebView(
       {this.rawCode,
+      this.isClose,
       this.onWebViewFinishCreated,
+      this.jsCallName,
+      this.webViewJSCallback,
       this.onWebViewCreated,
       this.htmlPath,
       this.replaceMap,
       this.url,
-      this.javascriptChannel,
       this.backgroundColor,
       Key? key})
       : super(key: key);
@@ -40,56 +45,74 @@ class CodeMirrorWebView extends StatefulWidget {
 class _CodeMirrorWebViewState extends State<CodeMirrorWebView> {
   bool isLoading = true;
   String showTip = 'loading'.tr;
-  WebViewController? webViewController;
+  late final WebViewController webViewController;
 
   @override
   void initState() {
     super.initState();
+    webViewController = WebViewController()
+      ..setBackgroundColor(widget.backgroundColor ?? Colors.white)
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setNavigationDelegate(NavigationDelegate(onPageFinished: (_) {
+        isLoading = false;
+        widget.onWebViewFinishCreated?.call(webViewController);
+        if (mounted) {
+          setState(() {});
+        }
+      }, onPageStarted: (_) async {
+        widget.onWebViewCreated?.call(webViewController);
+      }, onWebResourceError: (error) {
+        showTip = error.description;
+        isLoading = false;
+        if (mounted) {
+          setState(() {});
+        }
+      }));
+
+    if (widget.webViewJSCallback != null) {
+      webViewController.addJavaScriptChannel(widget.jsCallName ?? "", onMessageReceived: widget.webViewJSCallback!);
+    }
+    final url = widget.url ?? "";
+    if (url.isNotEmpty) {
+      webViewController.loadRequest(Uri.parse(url));
+    }
+    final stringContentHtml = widget.rawCode ?? "";
+    if (stringContentHtml.isNotEmpty) {
+      webViewController.loadHtmlString(stringContentHtml);
+    }
+    final String resultFileHtml = widget.htmlPath ?? "";
+    if (resultFileHtml.isNotEmpty) {
+      rootBundle.loadString(resultFileHtml).then((result) {
+        widget.replaceMap?.forEach((from, replace) {
+          result = result.replaceAll(from, replace);
+        });
+        webViewController.loadHtmlString(result);
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        WebView(
-          debuggingEnabled: true,
-          javascriptMode: JavascriptMode.unrestricted,
-          javascriptChannels: widget.javascriptChannel,
-          backgroundColor: widget.backgroundColor ?? Colors.white,
-          onPageFinished: (String url) {
-            isLoading = false;
-            setState(() {});
-            widget.onWebViewFinishCreated?.call(webViewController!);
-          },
-          onWebViewCreated: (WebViewController controller) async {
-            final String result = widget.rawCode ?? "";
-            if (result.isNotEmpty) {
-              controller.loadHtmlString(widget.rawCode!);
-            }
-
-            final url = widget.url ?? "";
-            if (url.isNotEmpty) {
-              controller.loadUrl(url);
-            }
-            final String resultFileHtml = widget.htmlPath ?? "";
-            if (resultFileHtml.isNotEmpty) {
-              var result = await rootBundle.loadString(resultFileHtml);
-              widget.replaceMap?.forEach((from, replace) {
-                result = result.replaceAll(from, replace);
-              });
-              controller.loadHtmlString(result);
-            }
-            webViewController = controller;
-            widget.onWebViewCreated?.call(controller);
-          },
-          onWebResourceError: (WebResourceError error) {
-            showTip = error.description;
-            isLoading = false;
-            setState(() {});
-          },
-        ),
-        Visibility(visible: isLoading, child: const LoadingWidget()).center()
-      ],
+    return Material(
+      child: Stack(
+        children: [
+          WebViewWidget(controller: webViewController),
+          Visibility(visible: isLoading, child: const LoadingWidget()).center(),
+          Positioned(
+              child: Visibility(
+                  visible: widget.isClose ?? false,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
+                    child: IconButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      style: IconButton.styleFrom(backgroundColor: Get.theme.colorScheme.surfaceVariant),
+                      icon: const Icon(Icons.close),
+                    ),
+                  )))
+        ],
+      ),
     );
   }
 }

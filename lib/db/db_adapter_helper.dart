@@ -6,8 +6,6 @@ import 'package:processing_compiler/db/db_code_mirror_config.dart';
 import 'package:processing_compiler/db/db_pre_config.dart';
 import 'package:processing_compiler/db/db_project_file.dart';
 
-import 'db_project_file.dart';
-
 /// @author u
 /// @date 2020/6/12.
 
@@ -44,8 +42,7 @@ class DbAdapterHelper {
     await DbPreConfig.loadDefaultAppConfig();
   }
 
-  Future<DbProjectFile> getOrCreateProjectFile(
-      String projectName, ProjectType projectType) async {
+  Future<DbProjectFile> getOrCreateProjectFile(String projectName, ProjectType projectType) async {
     final DbProjectFile? projectFile = boxProjectFile.get(projectName);
     if (projectFile == null) {
       String code;
@@ -65,13 +62,7 @@ class DbAdapterHelper {
       }
       final nameKey = DateTime.now().millisecondsSinceEpoch.toString();
       await boxProjectFile.put(
-          nameKey,
-          DbProjectFile(
-              nameKey: nameKey,
-              name: projectName,
-              code: code,
-              projectType: projectType.index,
-              modifyTime: DateTime.now().millisecondsSinceEpoch));
+          nameKey, DbProjectFile(nameKey: nameKey, name: projectName, code: code, projectType: projectType.index, modifyTime: DateTime.now().millisecondsSinceEpoch));
       return boxProjectFile.get(nameKey)!;
     }
     return projectFile;

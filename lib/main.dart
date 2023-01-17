@@ -65,7 +65,6 @@ class MyApp extends StatelessWidget {
               keepTertiary: gThemeController.keepTertiary,
             ),
             visualDensity: AppData.visualDensity,
-            fontFamily: AppData.font,
             typography: Typography.material2021(
               platform: defaultTargetPlatform,
             ),
@@ -90,7 +89,6 @@ class MyApp extends StatelessWidget {
                   )
                 : null,
             visualDensity: AppData.visualDensity,
-            fontFamily: AppData.font,
             typography: Typography.material2021(
               platform: defaultTargetPlatform,
             ),

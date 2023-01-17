@@ -23,7 +23,10 @@ class HomeLogic extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    state.projectFiles.addAll(boxProjectFile.values);
+    List<DbProjectFile> data = boxProjectFile.values.toList();
+    data.sort((p, p1) => p1.modifyTime.compareTo(p.modifyTime));
+    state.projectFiles.clear();
+    state.projectFiles.addAll(data);
   }
 
   getOrCreateProjectFile(String name, ProjectType projectType) async {
@@ -32,24 +35,26 @@ class HomeLogic extends GetxController {
 
   deleteProject(int index) async {
     final name = buildSortResultProjectFiles()[index].name;
-    showDeleteProjectDialog(
-        'config_delete'.tr.replaceAll('x', name), 'delete'.tr, () {
+    showDeleteProjectDialog('config_delete'.tr.replaceAll('x', name), 'delete'.tr, () {
       state.deleteProject(name, index);
     });
   }
 
   bool isExist(String name) {
-    return -1 !=
-        state.projectFiles.indexWhere((element) => element.name == name);
+    return -1 != state.projectFiles.indexWhere((element) => element.name == name);
   }
 
   void addProjectFile(projectFile) {
-    state.projectFiles.add(projectFile);
+    if (state.projectFiles.isNotEmpty) {
+      state.projectFiles.insert(0, projectFile);
+    } else {
+      state.projectFiles.add(projectFile);
+    }
   }
 
   List<DbProjectFile> buildSortResultProjectFiles() {
     final List<DbProjectFile> result = List.from(state.projectFiles);
-    result.sort((p, p1) => p1.modifyTime.compareTo(p.modifyTime));
+    // result.sort((p, p1) => p1.modifyTime.compareTo(p.modifyTime));
     return result;
   }
 

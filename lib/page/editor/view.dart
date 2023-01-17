@@ -5,7 +5,7 @@ import 'package:processing_compiler/db/db_project_file.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/editor/editor_setting/view.dart';
 import 'package:processing_compiler/widgets/code_mirror_web_view.dart';
-import 'package:webview_flutter/platform_interface.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import 'logic.dart';
 
 class EditorPage extends StatelessWidget {
@@ -28,20 +28,16 @@ class EditorPage extends StatelessWidget {
             icon: const Icon(Icons.settings_rounded))
       ],
       body: CodeMirrorWebView(
-        rawCode: gCodeMirrorHtmlEditor,
-        backgroundColor: Get.theme.scaffoldBackgroundColor,
-        onWebViewFinishCreated: (controller) {
-          logic.state.setWebController(controller);
-          logic.initCodeMirror();
-        },
-        javascriptChannel: {
-          JavascriptChannel(
-              name: "MessageInvoker",
-              onMessageReceived: (event) {
-                logic.autoSaveCode(event.message);
-              })
-        },
-      ),
+          rawCode: gCodeMirrorHtmlEditor,
+          backgroundColor: Get.theme.scaffoldBackgroundColor,
+          onWebViewFinishCreated: (controller) {
+            logic.state.setWebController(controller);
+            logic.initCodeMirror();
+          },
+          jsCallName: "MessageInvoker",
+          webViewJSCallback: (event) {
+            logic.autoSaveCode(event.message);
+          }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _run();
@@ -55,11 +51,15 @@ class EditorPage extends StatelessWidget {
 
   _run() async {
     final String result = await state.buildPreviewCode();
-    Get.bottomSheet(
-      CodeMirrorWebView(
-        rawCode: result,
-      ),
-      enableDrag: false,
-    );
+    if (state.isFullScreen.isTrue) {
+      Get.to(CodeMirrorWebView(rawCode: result, isClose: true), fullscreenDialog: true, popGesture: true, transition: Transition.downToUp);
+    } else {
+      Get.bottomSheet(
+        CodeMirrorWebView(
+          rawCode: result,
+        ),
+        enableDrag: false,
+      );
+    }
   }
 }

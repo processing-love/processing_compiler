@@ -1,6 +1,5 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 /// App static functions and constants used in the example applications.
 ///
@@ -114,7 +113,6 @@ class AppData {
 
   // Get the main font that is used in some of the examples.
   // Feel free to try different fonts.
-  static String? get font => GoogleFonts.notoSans().fontFamily;
 
   // Defining the visual density here to so we can change it in one spot when
   // we want to try different options.

@@ -41,18 +41,6 @@ class _TestWebViewState extends State<TestWebView> {
       appBar: AppBar(
         title: const Text('web view'),
       ),
-      body: Container(
-        child: html.isEmpty
-            ? const Text('loading')
-            : WebView(
-                javascriptMode: JavascriptMode.unrestricted,
-                onPageFinished: (String url) {},
-                onWebResourceError: (WebResourceError error) {},
-                onWebViewCreated: (controller) async {
-                  controller.loadHtmlString(html);
-                },
-              ),
-      ),
     );
   }
 }
