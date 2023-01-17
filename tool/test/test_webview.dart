@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:processing_compiler/compiler/code_mirror/code_raw.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 import 'html.dart';
 

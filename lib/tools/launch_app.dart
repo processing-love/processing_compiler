@@ -3,14 +3,14 @@ import 'dart:io';
 import 'package:get/get.dart';
 import 'package:processing_compiler/devices/third_platform.dart';
 import 'package:processing_compiler/widgets/dialog.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 /// @author u
 /// @date 2020/6/12.
 
 launchApp(String url, String errorMessage) async {
-  if (await canLaunch(url)) {
-    await launch(url);
+  if (await canLaunchUrlString(url)) {
+    await launchUrlString(url);
   } else {
     showTalkErrorDialog(errorMessage);
   }

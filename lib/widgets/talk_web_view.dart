@@ -39,7 +39,7 @@ class _TalkWebViewState extends State<TalkWebView> {
             if (mounted) {
               setState(() {});
             }
-            widget.onWebViewFinishCreated?.call(webViewController!);
+            widget.onWebViewFinishCreated?.call(webViewController);
           },
           onPageStarted: (_) async {},
           onWebResourceError: (error) {

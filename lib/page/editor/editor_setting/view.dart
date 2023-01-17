@@ -8,7 +8,6 @@ import 'package:processing_compiler/tools/responsive.dart';
 import 'package:processing_compiler/widgets/code_mirror_web_view.dart';
 import 'package:processing_compiler/widgets/item_widget.dart';
 import 'package:styled_widget/styled_widget.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 class EditorSettingPage extends StatelessWidget {
   final logic = Get.find<EditorLogic>();
