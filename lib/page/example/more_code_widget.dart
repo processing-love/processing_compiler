@@ -27,7 +27,7 @@ class _MoreCodeWidgetState extends State<MoreCodeWidget> {
       children: [
         Text(
           'code'.tr,
-          style: Get.textTheme.headline6,
+          style: Get.textTheme.titleLarge,
         ),
         buildCodeTitleWidget(),
         buildCodeContentWidget().marginSymmetric(vertical: 4)

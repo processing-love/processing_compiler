@@ -50,11 +50,11 @@ class ExampleState {
         ),
         Text(
           'feature'.tr,
-          style: Get.textTheme.bodyText2,
+          style: Get.textTheme.bodyMedium,
         ),
         Text(
           featured,
-          style: Get.textTheme.caption,
+          style: Get.textTheme.bodySmall,
         ).marginSymmetric(vertical: Responsive.responsiveInsets() / 2),
       ],
     );

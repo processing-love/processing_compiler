@@ -73,7 +73,7 @@ class EditorSettingPage extends StatelessWidget {
                             }),
                             Text(
                               'slide_setting_font_size'.tr,
-                              style: Get.textTheme.bodyText1,
+                              style: Get.textTheme.bodyLarge,
                             ).marginOnly(top: 14)
                           ],
                         ),

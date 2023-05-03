@@ -1485,9 +1485,9 @@ float speed = 0;
 float g = 0.1;  // gravity
 
 void setup(){
-  size(1024, 1024);
-  x = width/2;
-  y = height/3;  // start from half height
+  size(window.innerWidth, window.innerHeight);
+  x = window.innerWidth/2;
+  y = window.innerHeight/3;  // start from half height
 }
 
 void draw(){

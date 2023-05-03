@@ -39,7 +39,7 @@ class HomePage extends StatelessWidget {
         ).marginOnly(bottom: 12),
         Text(
           'empty_pro'.tr,
-          style: Get.textTheme.bodyText1,
+          style: Get.textTheme.bodyLarge,
         ),
       ],
     ).gestures(onTap: () {

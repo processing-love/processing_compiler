@@ -49,7 +49,7 @@ class HomeState {
       return ListTile(
         title: Text(
           title,
-          style: Get.textTheme.bodyText1,
+          style: Get.textTheme.bodyLarge,
           textAlign: TextAlign.center,
         ),
         onTap: () {
@@ -63,7 +63,7 @@ class HomeState {
       ListTile(
         title: Text(
           'create_project'.tr,
-          style: Get.textTheme.headline6,
+          style: Get.textTheme.titleLarge,
           textAlign: TextAlign.center,
         ),
       ),

@@ -39,7 +39,7 @@ class ExamplePage extends StatelessWidget {
                       children: [
                         Text(
                           currentJson?.title ?? '',
-                          style: Get.textTheme.subtitle2,
+                          style: Get.textTheme.titleSmall,
                         ),
                         state.buildFeaturedWidget(currentJson)
                       ],

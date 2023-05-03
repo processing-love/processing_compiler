@@ -54,7 +54,6 @@ class HomeLogic extends GetxController {
 
   List<DbProjectFile> buildSortResultProjectFiles() {
     final List<DbProjectFile> result = List.from(state.projectFiles);
-    // result.sort((p, p1) => p1.modifyTime.compareTo(p.modifyTime));
     return result;
   }
 
