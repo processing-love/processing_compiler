@@ -11,10 +11,12 @@ class BasePage extends StatelessWidget {
   final bool? isContentList;
   final bool? isHaveAppBar;
   final FloatingActionButton? floatingActionButton;
+  final Widget? drawer;
 
   const BasePage(
       {Key? key,
       this.title,
+      this.drawer,
       this.isContentList,
       this.body,
       this.actions,
@@ -33,6 +35,7 @@ class BasePage extends StatelessWidget {
           centerTitle: true,
           actions: actions,
         ),
+        drawer: drawer,
         body: buildContentWidget(),
         floatingActionButton: floatingActionButton,
       );

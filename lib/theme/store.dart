@@ -74,7 +74,7 @@ class Store {
   // Default value for the schemeIndex, also used to reset settings.
   // Defaults to 35, in examples 4 & 5 where this is used it will make
   // the default theme based on the [FlexColor.flutterDash] color scheme.
-  static const int defaultSchemeIndex = 39;
+  static const int defaultSchemeIndex = 0;
 
   // Key used to read and save the interactionEffects value.
   static const String keyInteractionEffects = 'interactionEffects';

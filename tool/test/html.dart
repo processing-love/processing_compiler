@@ -77,7 +77,7 @@ const String gP5Html = r'''
     <link rel="stylesheet" href="https://codemirror.net/theme/yonce.css">
     <link rel="stylesheet" href="https://codemirror.net/theme/zenburn.css">
 
-    <link rel="stylesheet" href="https://cdn.staticfile.org/codemirror/5.65.0/addon/hint/show-hint.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/codemirror/5.65.13/addon/hint/show-hint.css">
 
     <style>
         body {
@@ -90,14 +90,14 @@ const String gP5Html = r'''
     </style>
 </head>
 <body>
-<script src="https://cdn.staticfile.org/codemirror/5.65.0/codemirror.min.js"></script>
-<script src="https://cdn.staticfile.org/codemirror/5.65.0/mode/javascript/javascript.min.js"></script>
-<script src="https://cdn.staticfile.org/codemirror/5.65.0/addon/selection/active-line.min.js"></script>
-<script src="https://cdn.staticfile.org/codemirror/5.65.0/addon/edit/matchbrackets.min.js"></script>
-<script src="https://cdn.staticfile.org/codemirror/5.65.0/addon/edit/closebrackets.min.js"></script>
-<script src="https://cdn.staticfile.org/codemirror/5.65.0/addon/edit/closetag.min.js"></script>
+<script src="https://cdn.staticfile.org/codemirror/5.65.13/codemirror.min.js"></script>
+<script src="https://cdn.staticfile.org/codemirror/5.65.13/mode/javascript/javascript.min.js"></script>
+<script src="https://cdn.staticfile.org/codemirror/5.65.13/addon/selection/active-line.min.js"></script>
+<script src="https://cdn.staticfile.org/codemirror/5.65.13/addon/edit/matchbrackets.min.js"></script>
+<script src="https://cdn.staticfile.org/codemirror/5.65.13/addon/edit/closebrackets.min.js"></script>
+<script src="https://cdn.staticfile.org/codemirror/5.65.13/addon/edit/closetag.min.js"></script>
 
-<script src="https://cdn.staticfile.org/codemirror/5.65.0/addon/hint/show-hint.min.js"></script>
+<script src="https://cdn.staticfile.org/codemirror/5.65.13/addon/hint/show-hint.min.js"></script>
 
 <script type="text/javascript">
 <-script->
@@ -220,7 +220,7 @@ const String gP5HtmlWeb = r'''
     <link rel="stylesheet" href="https://codemirror.net/theme/yonce.css">
     <link rel="stylesheet" href="https://codemirror.net/theme/zenburn.css">
 
-    <link rel="stylesheet" href="https://cdn.staticfile.org/codemirror/5.65.0/addon/hint/show-hint.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/codemirror/5.65.13/addon/hint/show-hint.css">
 
     <style>
         body {
@@ -233,14 +233,14 @@ const String gP5HtmlWeb = r'''
     </style>
 </head>
 <body>
-<script src="https://cdn.staticfile.org/codemirror/5.65.0/codemirror.min.js"></script>
-<script src="https://cdn.staticfile.org/codemirror/5.65.0/mode/javascript/javascript.min.js"></script>
-<script src="https://cdn.staticfile.org/codemirror/5.65.0/addon/selection/active-line.min.js"></script>
-<script src="https://cdn.staticfile.org/codemirror/5.65.0/addon/edit/matchbrackets.min.js"></script>
-<script src="https://cdn.staticfile.org/codemirror/5.65.0/addon/edit/closebrackets.min.js"></script>
-<script src="https://cdn.staticfile.org/codemirror/5.65.0/addon/edit/closetag.min.js"></script>
+<script src="https://cdn.staticfile.org/codemirror/5.65.13/codemirror.min.js"></script>
+<script src="https://cdn.staticfile.org/codemirror/5.65.13/mode/javascript/javascript.min.js"></script>
+<script src="https://cdn.staticfile.org/codemirror/5.65.13/addon/selection/active-line.min.js"></script>
+<script src="https://cdn.staticfile.org/codemirror/5.65.13/addon/edit/matchbrackets.min.js"></script>
+<script src="https://cdn.staticfile.org/codemirror/5.65.13/addon/edit/closebrackets.min.js"></script>
+<script src="https://cdn.staticfile.org/codemirror/5.65.13/addon/edit/closetag.min.js"></script>
 
-<script src="https://cdn.staticfile.org/codemirror/5.65.0/addon/hint/show-hint.min.js"></script>
+<script src="https://cdn.staticfile.org/codemirror/5.65.13/addon/hint/show-hint.min.js"></script>
 
 
 <script type="text/javascript">
