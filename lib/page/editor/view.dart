@@ -37,7 +37,7 @@ class EditorPage extends StatelessWidget {
           webViewJSCallback: (event) {
             logic.autoSaveCode(event.message);
           }),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.large(
         onPressed: () {
           _run();
         },

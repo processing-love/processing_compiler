@@ -44,6 +44,12 @@ flutter_icons:
   image_path: "assets/icon.png"
   remove_alpha_ios: true
 
+flutter_native_splash:
+  color: "#FFFFFF"
+  image: "assets/icon.png"
+  android_gravity: center
+  ios_content_mode: center
+  fullscreen: true
 
 flutter:
   uses-material-design: true
