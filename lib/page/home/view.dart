@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:processing_compiler/page/base/base_page.dart';
 import 'package:processing_compiler/page/home/projcet_widget.dart';
 import 'package:styled_widget/styled_widget.dart';
-
 import '../profile/view.dart';
 import 'logic.dart';
 
