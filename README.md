@@ -11,6 +11,6 @@ processing app项目
   
 https://github.com/processing-love/processing_compiler/blob/main/LICENSE
 
-# notice
+# Notice
 
 This application is neither affiliated with nor endorsed by the Processing Foundation
