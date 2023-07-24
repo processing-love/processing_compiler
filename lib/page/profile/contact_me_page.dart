@@ -17,9 +17,7 @@ class ContactMePage extends StatelessWidget {
         isContentList: true,
         contentListWidgets: [
           cardItemWidget(
-              child: ListView(
-            shrinkWrap: true,
-            padding: EdgeInsets.zero,
+              child: Column(
             children: [
               itemListTile(
                   title: "email".tr,
@@ -41,6 +39,19 @@ class ContactMePage extends StatelessWidget {
                   }),
             ],
           )),
+          SizedBox(
+            height: 12,
+          ),
+          cardItemWidget(
+              child: ListTile(
+            subtitle: Text(
+                'This application is neither affiliated with nor endorsed by the Processing Foundation'),
+            title: Text('Special Notice'),
+            leading: Icon(
+              Icons.error,
+              color: Colors.red,
+            ),
+          ))
         ]);
   }
 }
